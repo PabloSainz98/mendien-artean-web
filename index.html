@@ -28,20 +28,36 @@
     <div class="container">
       <a href="#" class="nav-logo">Mendien Artean</a>
       
-      <div class="nav-links" id="navLinks">
-        <a href="#about">Etxea</a>
-        <a href="#services">Zerbitzuak</a>
-        <a href="#availability">Eskuragarritasuna</a>
-        <a href="#activities">Jarduerak</a>
-        <a href="#gallery">Argazkiak</a>
-        <a href="#contact">Kontaktua</a>
-        <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" target="_blank" class="nav-cta">Erreserbatu</a>
-      </div>
+      <div class="nav-right">
+        <div class="nav-links" id="navLinks">
+          <a href="#about" data-i18n="nav.about">Etxea</a>
+          <a href="#services" data-i18n="nav.services">Zerbitzuak</a>
+          <a href="#availability" data-i18n="nav.availability">Eskuragarritasuna</a>
+          <a href="#activities" data-i18n="nav.activities">Jarduerak</a>
+          <a href="#gallery" data-i18n="nav.gallery">Argazkiak</a>
+          <a href="#contact" data-i18n="nav.contact">Kontaktua</a>
+          <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" target="_blank" class="nav-cta" data-i18n="nav.book">Erreserbatu</a>
+          
+          <!-- Language Switcher (Mobile) -->
+          <div class="lang-switcher lang-switcher-mobile" id="langSwitcherMobile">
+            <button class="lang-btn" data-lang="es">ES</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="eu">EU</button>
+          </div>
+        </div>
 
-      <div class="nav-toggle" id="navToggle">
-        <span></span>
-        <span></span>
-        <span></span>
+        <!-- Language Switcher (Desktop) -->
+        <div class="lang-switcher lang-switcher-desktop" id="langSwitcherDesktop">
+          <button class="lang-btn" data-lang="es">ES</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="eu">EU</button>
+        </div>
+
+        <div class="nav-toggle" id="navToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
     </div>
     <div class="nav-overlay" id="navOverlay"></div>
@@ -57,16 +73,16 @@
     <div class="hero-content">
       <div class="hero-badge">
         <span>🌿</span>
-        <span>Igorre, Euskadi</span>
+        <span data-i18n="hero.badge">Igorre, Euskadi</span>
       </div>
       <h1><em>Mendien Artean</em></h1>
-      <p class="hero-subtitle">
+      <p class="hero-subtitle" data-i18n="hero.subtitle">
         Casa rural con encanto entre los parques naturales de Urkiola y Gorbeia.<br>
         Tu refugio de naturaleza en el corazón del País Vasco.
       </p>
       <div class="hero-ctas">
-        <a href="#availability" class="btn btn-primary btn-lg">Ver disponibilidad</a>
-        <a href="#about" class="btn btn-secondary btn-lg">Descubre la casa</a>
+        <a href="#availability" class="btn btn-primary btn-lg" data-i18n="hero.cta1">Ver disponibilidad</a>
+        <a href="#about" class="btn btn-secondary btn-lg" data-i18n="hero.cta2">Descubre la casa</a>
       </div>
     </div>
 
@@ -86,12 +102,12 @@
         </div>
         
         <div class="about-content reveal-right">
-          <h2>Zure etxea mendien artean</h2>
-          <p>
+          <h2 data-i18n="about.title">Tu casa entre montañas</h2>
+          <p data-i18n="about.p1">
             <strong>Mendien Artean</strong> es una acogedora casa rural independiente situada en el corazón del País Vasco, 
             entre los impresionantes parques naturales de <strong>Urkiola</strong> y <strong>Gorbeia</strong>.
           </p>
-          <p>
+          <p data-i18n="about.p2">
             Con 48m² de espacio bien aprovechado, jardín vallado y una terraza con vistas a la montaña, 
             es el lugar perfecto para desconectar, ya sea en pareja, en familia o con tu mascota.
           </p>
@@ -99,19 +115,19 @@
           <div class="about-features stagger-children">
             <div class="about-feature reveal">
               <div class="icon">👥</div>
-              <span>Hasta 4 huéspedes</span>
+              <span data-i18n="about.feat1">Hasta 4 huéspedes</span>
             </div>
             <div class="about-feature reveal">
               <div class="icon">🛏️</div>
-              <span>1 dormitorio + cuna</span>
+              <span data-i18n="about.feat2">1 dormitorio + cuna</span>
             </div>
             <div class="about-feature reveal">
               <div class="icon">🐕</div>
-              <span>Pet-friendly</span>
+              <span data-i18n="about.feat3">Pet-friendly</span>
             </div>
             <div class="about-feature reveal">
               <div class="icon">🌳</div>
-              <span>Jardín vallado</span>
+              <span data-i18n="about.feat4">Jardín vallado</span>
             </div>
           </div>
         </div>
@@ -123,45 +139,45 @@
   <section class="services section" id="services">
     <div class="container">
       <div class="section-header">
-        <h2>Zerbitzuak</h2>
-        <p>Todo lo que necesitas para una estancia cómoda y relajada</p>
+        <h2 data-i18n="services.title">Servicios</h2>
+        <p data-i18n="services.subtitle">Todo lo que necesitas para una estancia cómoda y relajada</p>
       </div>
       
       <div class="services-grid stagger-children">
         <div class="service-card reveal">
           <div class="service-icon">🍳</div>
-          <h4>Cocina equipada</h4>
-          <p>Cocina completa con horno, microondas, lavavajillas, frigorífico y cafetera</p>
+          <h4 data-i18n="svc.kitchen.title">Cocina equipada</h4>
+          <p data-i18n="svc.kitchen.desc">Cocina completa con horno, microondas, lavavajillas, frigorífico y cafetera</p>
         </div>
         
         <div class="service-card reveal">
           <div class="service-icon">📶</div>
-          <h4>WiFi gratuito</h4>
-          <p>Conexión WiFi de alta velocidad en toda la casa</p>
+          <h4 data-i18n="svc.wifi.title">WiFi gratuito</h4>
+          <p data-i18n="svc.wifi.desc">Conexión WiFi de alta velocidad en toda la casa</p>
         </div>
         
         <div class="service-card reveal">
           <div class="service-icon">🚗</div>
-          <h4>Parking privado</h4>
-          <p>Aparcamiento gratuito en la propiedad</p>
+          <h4 data-i18n="svc.parking.title">Parking privado</h4>
+          <p data-i18n="svc.parking.desc">Aparcamiento gratuito en la propiedad</p>
         </div>
         
         <div class="service-card reveal">
           <div class="service-icon">🔥</div>
-          <h4>Barbacoa</h4>
-          <p>Zona de barbacoa en el jardín con mesa y sillas</p>
+          <h4 data-i18n="svc.bbq.title">Barbacoa</h4>
+          <p data-i18n="svc.bbq.desc">Zona de barbacoa en el jardín con mesa y sillas</p>
         </div>
         
         <div class="service-card reveal">
           <div class="service-icon">🐾</div>
-          <h4>Mascotas bienvenidas</h4>
-          <p>Jardín vallado perfecto para que tus mascotas disfruten</p>
+          <h4 data-i18n="svc.pets.title">Mascotas bienvenidas</h4>
+          <p data-i18n="svc.pets.desc">Jardín vallado perfecto para que tus mascotas disfruten</p>
         </div>
         
         <div class="service-card reveal">
           <div class="service-icon">👶</div>
-          <h4>Familiar</h4>
-          <p>Cuna disponible, ropa de cama y toallas incluidas</p>
+          <h4 data-i18n="svc.family.title">Familiar</h4>
+          <p data-i18n="svc.family.desc">Cuna disponible, ropa de cama y toallas incluidas</p>
         </div>
       </div>
     </div>
@@ -171,8 +187,8 @@
   <section class="availability section" id="availability">
     <div class="container">
       <div class="section-header">
-        <h2>Eskuragarritasuna</h2>
-        <p>Consulta la disponibilidad y reserva tu estancia</p>
+        <h2 data-i18n="avail.title">Eskuragarritasuna</h2>
+        <p data-i18n="avail.subtitle">Consulta la disponibilidad y reserva tu estancia</p>
       </div>
 
       <div class="availability-content">
@@ -186,47 +202,53 @@
             </div>
           </div>
           <div class="calendar-weekdays">
-            <span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span>
+            <span data-i18n="cal.mon">Lun</span>
+            <span data-i18n="cal.tue">Mar</span>
+            <span data-i18n="cal.wed">Mié</span>
+            <span data-i18n="cal.thu">Jue</span>
+            <span data-i18n="cal.fri">Vie</span>
+            <span data-i18n="cal.sat">Sáb</span>
+            <span data-i18n="cal.sun">Dom</span>
           </div>
           <div class="calendar-days" id="calendarDays"></div>
           <div class="calendar-legend">
             <div class="legend-item">
               <div class="legend-dot available"></div>
-              <span>Disponible</span>
+              <span data-i18n="avail.available">Disponible</span>
             </div>
             <div class="legend-item">
               <div class="legend-dot booked"></div>
-              <span>Reservado</span>
+              <span data-i18n="avail.booked">Reservado</span>
             </div>
           </div>
         </div>
 
         <!-- Pricing -->
         <div class="pricing-panel reveal-right">
-          <h3>Precios por noche</h3>
+          <h3 data-i18n="price.title">Precios por noche</h3>
           
           <div class="price-tier">
             <div>
-              <div class="price-tier-name">🌸 Temporada baja</div>
-              <div class="price-tier-dates">Enero — Marzo, Noviembre</div>
+              <div class="price-tier-name">🌸 <span data-i18n="price.low">Temporada baja</span></div>
+              <div class="price-tier-dates" data-i18n="price.low.dates">Enero — Marzo, Noviembre</div>
             </div>
-            <div class="price-tier-amount">75€ <span>/noche</span></div>
+            <div class="price-tier-amount">75€ <span data-i18n="price.night">/noche</span></div>
           </div>
           
           <div class="price-tier">
             <div>
-              <div class="price-tier-name">☀️ Temporada media</div>
-              <div class="price-tier-dates">Abril — Junio, Septiembre — Octubre</div>
+              <div class="price-tier-name">☀️ <span data-i18n="price.mid">Temporada media</span></div>
+              <div class="price-tier-dates" data-i18n="price.mid.dates">Abril — Junio, Septiembre — Octubre</div>
             </div>
-            <div class="price-tier-amount">95€ <span>/noche</span></div>
+            <div class="price-tier-amount">95€ <span data-i18n="price.night">/noche</span></div>
           </div>
           
           <div class="price-tier">
             <div>
-              <div class="price-tier-name">🔥 Temporada alta</div>
-              <div class="price-tier-dates">Julio — Agosto, Puentes y Festivos</div>
+              <div class="price-tier-name">🔥 <span data-i18n="price.high">Temporada alta</span></div>
+              <div class="price-tier-dates" data-i18n="price.high.dates">Julio — Agosto, Puentes y Festivos</div>
             </div>
-            <div class="price-tier-amount">120€ <span>/noche</span></div>
+            <div class="price-tier-amount">120€ <span data-i18n="price.night">/noche</span></div>
           </div>
 
           <div class="pricing-book">
@@ -234,13 +256,13 @@
                target="_blank" 
                class="btn btn-primary btn-lg"
                id="bookingBtn">
-              <span class="booking-badge">Reservar en Booking.com</span>
+              <span class="booking-badge" data-i18n="price.bookbooking">Reservar en Booking.com</span>
             </a>
             <a href="https://www.airbnb.es/rooms/26868295" 
                target="_blank" 
                class="btn btn-outline btn-lg"
                id="airbnbBtn">
-              <span class="booking-badge">Reservar en Airbnb</span>
+              <span class="booking-badge" data-i18n="price.bookairbnb">Reservar en Airbnb</span>
             </a>
           </div>
         </div>
@@ -252,51 +274,51 @@
   <section class="activities section" id="activities">
     <div class="container">
       <div class="section-header">
-        <h2>Jarduerak eta inguruak</h2>
-        <p>Descubre todo lo que puedes hacer y ver cerca de Mendien Artean</p>
+        <h2 data-i18n="act.title">Jarduerak eta inguruak</h2>
+        <p data-i18n="act.subtitle">Descubre todo lo que puedes hacer y ver cerca de Mendien Artean</p>
       </div>
 
       <div class="activities-grid stagger-children">
         <div class="activity-card reveal">
           <div class="activity-icon">⛰️</div>
-          <h4>Parque Natural de Urkiola</h4>
-          <p>Rutas de senderismo espectaculares, el emblemático santuario y vistas impresionantes del Anboto</p>
-          <span class="activity-distance">📍 15 min en coche</span>
+          <h4 data-i18n="act.urkiola.title">Parque Natural de Urkiola</h4>
+          <p data-i18n="act.urkiola.desc">Rutas de senderismo espectaculares, el emblemático santuario y vistas impresionantes del Anboto</p>
+          <span class="activity-distance" data-i18n="act.urkiola.dist">📍 15 min en coche</span>
         </div>
 
         <div class="activity-card reveal">
           <div class="activity-icon">🌲</div>
-          <h4>Parque Natural de Gorbeia</h4>
-          <p>El techo de Bizkaia con hayedos centenarios, cascadas y la icónica cruz de Gorbeia</p>
-          <span class="activity-distance">📍 20 min en coche</span>
+          <h4 data-i18n="act.gorbeia.title">Parque Natural de Gorbeia</h4>
+          <p data-i18n="act.gorbeia.desc">El techo de Bizkaia con hayedos centenarios, cascadas y la icónica cruz de Gorbeia</p>
+          <span class="activity-distance" data-i18n="act.gorbeia.dist">📍 20 min en coche</span>
         </div>
 
         <div class="activity-card reveal">
           <div class="activity-icon">🏛️</div>
-          <h4>Bilbao y Guggenheim</h4>
-          <p>La vibrante capital vizcaína con el museo Guggenheim, pintxos y el Casco Viejo</p>
-          <span class="activity-distance">📍 30 min en coche</span>
+          <h4 data-i18n="act.bilbao.title">Bilbao y Guggenheim</h4>
+          <p data-i18n="act.bilbao.desc">La vibrante capital vizcaína con el museo Guggenheim, pintxos y el Casco Viejo</p>
+          <span class="activity-distance" data-i18n="act.bilbao.dist">📍 30 min en coche</span>
         </div>
 
         <div class="activity-card reveal">
           <div class="activity-icon">🍷</div>
-          <h4>Gastronomía vasca</h4>
-          <p>Sidrerías, asadores y la mejor gastronomía del mundo a pocos minutos</p>
-          <span class="activity-distance">📍 En los alrededores</span>
+          <h4 data-i18n="act.gastro.title">Gastronomía vasca</h4>
+          <p data-i18n="act.gastro.desc">Sidrerías, asadores y la mejor gastronomía del mundo a pocos minutos</p>
+          <span class="activity-distance" data-i18n="act.gastro.dist">📍 En los alrededores</span>
         </div>
 
         <div class="activity-card reveal">
           <div class="activity-icon">🏖️</div>
-          <h4>Playas de Bizkaia</h4>
-          <p>Playa de Bakio, Bermeo, Laga y la espectacular reserva de Urdaibai</p>
-          <span class="activity-distance">📍 40 min en coche</span>
+          <h4 data-i18n="act.beach.title">Playas de Bizkaia</h4>
+          <p data-i18n="act.beach.desc">Playa de Bakio, Bermeo, Laga y la espectacular reserva de Urdaibai</p>
+          <span class="activity-distance" data-i18n="act.beach.dist">📍 40 min en coche</span>
         </div>
 
         <div class="activity-card reveal">
           <div class="activity-icon">🚴</div>
-          <h4>Ciclismo y BTT</h4>
-          <p>Rutas ciclistas por carretera y montaña entre paisajes verdes increíbles</p>
-          <span class="activity-distance">📍 Desde la puerta</span>
+          <h4 data-i18n="act.cycling.title">Ciclismo y BTT</h4>
+          <p data-i18n="act.cycling.desc">Rutas ciclistas por carretera y montaña entre paisajes verdes increíbles</p>
+          <span class="activity-distance" data-i18n="act.cycling.dist">📍 Desde la puerta</span>
         </div>
       </div>
     </div>
@@ -306,8 +328,8 @@
   <section class="gallery section" id="gallery">
     <div class="container">
       <div class="section-header">
-        <h2>Argazkiak</h2>
-        <p>Echa un vistazo a la casa y sus alrededores</p>
+        <h2 data-i18n="gallery.title">Argazkiak</h2>
+        <p data-i18n="gallery.subtitle">Echa un vistazo a la casa y sus alrededores</p>
       </div>
 
       <div class="gallery-grid" id="galleryGrid">
@@ -353,24 +375,76 @@
     </div>
   </div>
 
+  <!-- ============ REVIEWS ============ -->
+  <section class="reviews section" id="reviews">
+    <div class="container">
+      <div class="section-header">
+        <h2 data-i18n="reviews.title">Opiniones</h2>
+        <p data-i18n="reviews.subtitle">Lo que dicen nuestros huéspedes</p>
+      </div>
+
+      <div class="reviews-grid stagger-children">
+        <div class="review-card reveal">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"La casa es ideal con la parcela muy agradable. Zona súper tranquila. Ideal para visitar Urkiola, Gorbea y la costa vizcaína. Trato muy atento."</p>
+          <div class="review-author">
+            <div class="review-author-avatar">A</div>
+            <div class="review-author-info">
+              <strong>Alberto</strong>
+              <span>Booking.com</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="review-card reveal">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Hemos estado una semana con los perros y es una gozada tener el jardín cerrado y sin ningún peligro. Total tranquilidad y cerca de muchos sitios preciosos."</p>
+          <div class="review-author">
+            <div class="review-author-avatar">M</div>
+            <div class="review-author-info">
+              <strong>María</strong>
+              <span>Google Maps</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card reveal">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"Espectacular todo. La facilidad desde la entrada y poder estar tan a gusto. Volveremos seguro si subimos otra vez."</p>
+          <div class="review-author">
+            <div class="review-author-avatar">D</div>
+            <div class="review-author-info">
+              <strong>Daniel</strong>
+              <span>Airbnb</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="reviews-cta">
+        <a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" target="_blank" class="btn btn-outline" data-i18n="reviews.cta">Ver todas las reseñas en Google</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ CONTACT ============ -->
   <section class="contact section" id="contact">
     <div class="container">
       <div class="section-header">
-        <h2>Kontaktua</h2>
-        <p>¿Tienes alguna pregunta? No dudes en contactarnos</p>
+        <h2 data-i18n="contact.title">Kontaktua</h2>
+        <p data-i18n="contact.subtitle">¿Tienes alguna pregunta? No dudes en contactarnos</p>
       </div>
 
       <div class="contact-grid">
         <div class="contact-info reveal-left">
-          <h3>Nola iritsi</h3>
-          <p>Estamos en Igorre, en el corazón de Bizkaia, a solo 30 minutos de Bilbao y entre dos parques naturales.</p>
+          <h3 data-i18n="contact.how">Nola iritsi</h3>
+          <p data-i18n="contact.how.desc">Estamos en Igorre, en el corazón de Bizkaia, a solo 30 minutos de Bilbao y entre dos parques naturales.</p>
           
           <div class="contact-details">
             <div class="contact-detail">
               <div class="icon">📍</div>
               <div class="contact-detail-text">
-                <strong>Ubicación</strong>
+                <strong data-i18n="contact.location">Ubicación</strong>
                 <span>Igorre, Bizkaia, Euskadi</span>
               </div>
             </div>
@@ -378,15 +452,15 @@
             <div class="contact-detail">
               <div class="icon">🕐</div>
               <div class="contact-detail-text">
-                <strong>Check-in / Check-out</strong>
-                <span>Entrada: 16:00 — Salida: 11:00</span>
+                <strong data-i18n="contact.checkin">Check-in / Check-out</strong>
+                <span data-i18n="contact.checkin.val">Entrada: 16:00 — Salida: 11:00</span>
               </div>
             </div>
 
             <div class="contact-detail">
               <div class="icon">📱</div>
               <div class="contact-detail-text">
-                <strong>Reservas</strong>
+                <strong data-i18n="contact.reservas">Reservas</strong>
                 <span>
                   <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" target="_blank">Booking.com</a> · 
                   <a href="https://www.airbnb.es/rooms/26868295" target="_blank">Airbnb</a>
@@ -397,8 +471,8 @@
             <div class="contact-detail">
               <div class="icon">🗺️</div>
               <div class="contact-detail-text">
-                <strong>Cómo llegar</strong>
-                <span><a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" target="_blank">Ver en Google Maps →</a></span>
+                <strong data-i18n="contact.directions">Cómo llegar</strong>
+                <span><a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" target="_blank" data-i18n="contact.directions.link">Ver en Google Maps →</a></span>
               </div>
             </div>
           </div>
@@ -423,23 +497,23 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <h3>Mendien Artean</h3>
-          <p>Casa rural entre los parques naturales de Urkiola y Gorbeia. Tu refugio de naturaleza en el corazón del País Vasco.</p>
+          <p data-i18n="footer.desc">Casa rural entre los parques naturales de Urkiola y Gorbeia. Tu refugio de naturaleza en el corazón del País Vasco.</p>
         </div>
 
         <div class="footer-links">
-          <h4>Secciones</h4>
+          <h4 data-i18n="footer.sections">Secciones</h4>
           <ul>
-            <li><a href="#about">La Casa</a></li>
-            <li><a href="#services">Servicios</a></li>
-            <li><a href="#availability">Disponibilidad</a></li>
-            <li><a href="#activities">Actividades</a></li>
-            <li><a href="#gallery">Galería</a></li>
-            <li><a href="#contact">Contacto</a></li>
+            <li><a href="#about" data-i18n="footer.house">La Casa</a></li>
+            <li><a href="#services" data-i18n="footer.services">Servicios</a></li>
+            <li><a href="#availability" data-i18n="footer.availability">Disponibilidad</a></li>
+            <li><a href="#activities" data-i18n="footer.activities">Actividades</a></li>
+            <li><a href="#gallery" data-i18n="footer.gallery">Galería</a></li>
+            <li><a href="#contact" data-i18n="footer.contact">Contacto</a></li>
           </ul>
         </div>
 
         <div class="footer-links">
-          <h4>Reservar</h4>
+          <h4 data-i18n="footer.book">Reservar</h4>
           <ul>
             <li><a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" target="_blank">Booking.com</a></li>
             <li><a href="https://www.airbnb.es/rooms/26868295" target="_blank">Airbnb</a></li>
@@ -449,7 +523,7 @@
       </div>
 
       <div class="footer-bottom">
-        <span>© 2026 Mendien Artean. Todos los derechos reservados.</span>
+        <span data-i18n="footer.rights">© 2026 Mendien Artean. Todos los derechos reservados.</span>
         <div class="footer-social">
           <a href="https://www.airbnb.es/rooms/26868295" target="_blank" aria-label="Airbnb" title="Airbnb">🏠</a>
           <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" target="_blank" aria-label="Booking" title="Booking">📘</a>
@@ -460,6 +534,7 @@
   </footer>
 
   <!-- Scripts -->
+  <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

@@ -976,3 +976,127 @@
   color: var(--color-white);
   transform: translateY(-2px);
 }
+
+/* ==== LANGUAGE SWITCHER ==== */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.lang-switcher {
+  display: flex;
+  gap: var(--space-xs);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px;
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(10px);
+}
+
+.navbar.scrolled .lang-switcher {
+  background: rgba(45, 80, 22, 0.05);
+}
+
+.lang-btn {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--color-white);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+  opacity: 0.7;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+
+.navbar.scrolled .lang-btn {
+  color: var(--color-text);
+}
+
+.lang-btn:hover {
+  opacity: 1;
+}
+
+.lang-btn.active {
+  background: var(--color-accent);
+  color: var(--color-white);
+  opacity: 1;
+}
+
+.lang-switcher-mobile {
+  display: none;
+}
+
+/* ==== REVIEWS ==== */
+.reviews {
+  background: var(--color-bg);
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.review-card {
+  background: var(--color-white);
+  padding: var(--space-2xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-base);
+}
+
+.review-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.review-stars {
+  color: #F5A623;
+  font-size: var(--fs-lg);
+  margin-bottom: var(--space-md);
+  letter-spacing: 2px;
+}
+
+.review-text {
+  font-style: italic;
+  margin-bottom: var(--space-xl);
+  color: var(--color-text-light);
+  line-height: 1.6;
+}
+
+.review-author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.review-author-avatar {
+  width: 40px;
+  height: 40px;
+  background: var(--color-primary-light);
+  color: var(--color-white);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: var(--fs-md);
+}
+
+.review-author-info strong {
+  display: block;
+  font-size: var(--fs-sm);
+  color: var(--color-text);
+}
+
+.review-author-info span {
+  font-size: var(--fs-xs);
+  color: var(--color-text-light);
+}
+
+.reviews-cta {
+  text-align: center;
+}

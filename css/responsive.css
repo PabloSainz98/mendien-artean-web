@@ -162,6 +162,21 @@
     gap: var(--space-md);
     text-align: center;
   }
+
+  /* Language Switcher Mobile */
+  .lang-switcher-desktop {
+    display: none;
+  }
+  .lang-switcher-mobile {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--space-lg);
+  }
+
+  /* Reviews Mobile */
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Tablet — 769px to 1024px */

@@ -3,6 +3,11 @@
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize language first
+  if (typeof initLanguageSwitcher === 'function') {
+    initLanguageSwitcher();
+  }
+  
   initNavbar();
   initCalendar();
   initGallery();
