@@ -7,12 +7,18 @@
   <meta name="description" content="Mendien Artean: casa rural con jardín y terraza entre los parques naturales de Urkiola y Gorbeia en el País Vasco. Hasta 4 huéspedes, pet-friendly, cocina equipada.">
   <meta name="keywords" content="agroturismo, País Vasco, Euskadi, casa rural, Urkiola, Gorbeia, Igorre, naturaleza, rural tourism, Basque Country">
   
-  <!-- Open Graph -->
-  <meta property="og:title" content="Mendien Artean — Agroturismo en el País Vasco">
-  <meta property="og:description" content="Casa rural con jardín y terraza entre los parques naturales de Urkiola y Gorbeia">
-  <meta property="og:image" content="images/444547533.jpg">
+  <!-- Open Graph & Social Cards -->
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pablosainz98.github.io/mendien-artean-web/">
+  <meta property="og:title" content="Mendien Artean — Agroturismo en País Vasco">
+  <meta property="og:description" content="Casa rural con jardín y terraza entre los parques naturales de Urkiola y Gorbeia. Hasta 4 huéspedes.">
+  <meta property="og:image" content="https://pablosainz98.github.io/mendien-artean-web/images/444547533.jpg">
   
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mendien Artean — Agroturismo en País Vasco">
+  <meta name="twitter:description" content="Casa rural con encanto entre Urkiola y Gorbeia.">
+  <meta name="twitter:image" content="https://pablosainz98.github.io/mendien-artean-web/images/444547533.jpg">
+
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏡</text></svg>">
   
@@ -266,6 +272,68 @@
             </a>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DIRECT BOOKING ============ -->
+  <section class="booking section" id="booking" style="background-color: var(--color-bg-alt);">
+    <div class="container">
+      <div class="section-header">
+        <h2 data-i18n="booking.title">Solicitar Reserva Directa</h2>
+        <p data-i18n="booking.subtitle">Reserva directamente con nosotros para evitar comisiones de plataformas</p>
+      </div>
+
+      <div class="booking-container reveal">
+        <form id="bookingForm" class="booking-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="b_name" data-i18n="booking.name">Nombre completo</label>
+              <input type="text" id="b_name" required>
+            </div>
+            <div class="form-group">
+              <label for="b_email" data-i18n="booking.email">Email</label>
+              <input type="email" id="b_email" required>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="b_phone" data-i18n="booking.phone">Teléfono (WhatsApp)</label>
+              <input type="tel" id="b_phone" required>
+            </div>
+            <div class="form-group">
+              <label for="b_guests" data-i18n="booking.guests">Huéspedes (Max 4)</label>
+              <select id="b_guests" required>
+                <option value="1">1</option>
+                <option value="2" selected>2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="b_checkin" data-i18n="booking.checkin">Fecha de Entrada</label>
+              <input type="date" id="b_checkin" required>
+            </div>
+            <div class="form-group">
+              <label for="b_checkout" data-i18n="booking.checkout">Fecha de Salida</label>
+              <input type="date" id="b_checkout" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="b_message" data-i18n="booking.message">Mensaje / Mascotas / Peticiones</label>
+            <textarea id="b_message" rows="3"></textarea>
+          </div>
+
+          <div class="form-submit">
+            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;" data-i18n="booking.submit">Solicitar Presupuesto sin Compromiso</button>
+            <p class="form-note" style="text-align: center; margin-top: var(--space-sm); font-size: var(--fs-xs); color: var(--color-text-light);" data-i18n="booking.note">Nos pondremos en contacto contigo lo antes posible para confirmar disponibilidad y precio exacto.</p>
+          </div>
+        </form>
       </div>
     </div>
   </section>

@@ -60,6 +60,19 @@ const translations = {
     'price.bookbooking': 'Reservar en Booking.com',
     'price.bookairbnb': 'Reservar en Airbnb',
 
+    // Booking Form
+    'booking.title': 'Solicitar Reserva Directa',
+    'booking.subtitle': 'Reserva directamente con nosotros para evitar comisiones de plataformas',
+    'booking.name': 'Nombre completo',
+    'booking.email': 'Email',
+    'booking.phone': 'Teléfono (WhatsApp)',
+    'booking.guests': 'Huéspedes (Max 4)',
+    'booking.checkin': 'Fecha de Entrada',
+    'booking.checkout': 'Fecha de Salida',
+    'booking.message': 'Mensaje / Peticiones / Mascotas',
+    'booking.submit': 'Solicitar Presupuesto sin Compromiso',
+    'booking.note': 'Nos pondremos en contacto contigo lo antes posible para confirmar disponibilidad y precio exacto.',
+
     // Calendar weekdays
     'cal.mon': 'Lun', 'cal.tue': 'Mar', 'cal.wed': 'Mié',
     'cal.thu': 'Jue', 'cal.fri': 'Vie', 'cal.sat': 'Sáb', 'cal.sun': 'Dom',
@@ -178,6 +191,18 @@ const translations = {
     'price.bookbooking': 'Book on Booking.com',
     'price.bookairbnb': 'Book on Airbnb',
 
+    'booking.title': 'Direct Booking Request',
+    'booking.subtitle': 'Book directly with us to avoid platform fees',
+    'booking.name': 'Full Name',
+    'booking.email': 'Email Address',
+    'booking.phone': 'Phone Number (WhatsApp)',
+    'booking.guests': 'Guests (Max 4)',
+    'booking.checkin': 'Check-in Date',
+    'booking.checkout': 'Check-out Date',
+    'booking.message': 'Message / Special Requests / Pets',
+    'booking.submit': 'Request Quote Without Commitment',
+    'booking.note': 'We will contact you as soon as possible to confirm availability and exact pricing.',
+
     'cal.mon': 'Mon', 'cal.tue': 'Tue', 'cal.wed': 'Wed',
     'cal.thu': 'Thu', 'cal.fri': 'Fri', 'cal.sat': 'Sat', 'cal.sun': 'Sun',
 
@@ -288,6 +313,18 @@ const translations = {
     'price.night': '/gau',
     'price.bookbooking': 'Booking.com-en erreserbatu',
     'price.bookairbnb': 'Airbnb-n erreserbatu',
+
+    'booking.title': 'Zuzeneko Erreserba Eskaera',
+    'booking.subtitle': 'Erreserbatu zuzenean gurekin plataformen komisioak saihesteko',
+    'booking.name': 'Izen-abizenak',
+    'booking.email': 'Emaila',
+    'booking.phone': 'Telefonoa (WhatsApp)',
+    'booking.guests': 'Gonbidatuak (Max 4)',
+    'booking.checkin': 'Sarrera data',
+    'booking.checkout': 'Irteera data',
+    'booking.message': 'Mezua / Eskaerak / Maskotak',
+    'booking.submit': 'Aurrekontua Eskatu Konpromisorik Gabe',
+    'booking.note': 'Ahalik eta lasterren jarriko gara zurekin harremanetan eskuragarritasuna eta prezio zehatza baieztatzeko.',
 
     'cal.mon': 'Al', 'cal.tue': 'As', 'cal.wed': 'Az',
     'cal.thu': 'Og', 'cal.fri': 'Or', 'cal.sat': 'Lr', 'cal.sun': 'Ig',
