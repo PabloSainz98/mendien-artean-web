@@ -171,6 +171,15 @@
     display: flex;
     justify-content: center;
     margin-top: var(--space-lg);
+    background: rgba(45, 80, 22, 0.1); /* Darker background */
+  }
+  
+  .lang-switcher-mobile .lang-btn {
+    color: var(--color-text); /* Dark text */
+  }
+  
+  .lang-switcher-mobile .lang-btn.active {
+    color: var(--color-white); /* White text when active */
   }
 
   /* Reviews Mobile */
