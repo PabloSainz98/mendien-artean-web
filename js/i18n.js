@@ -403,12 +403,14 @@ function setLanguage(lang) {
  * Initialize language switcher
  */
 function initLanguageSwitcher() {
-  const switcher = document.getElementById('langSwitcher');
-  if (!switcher) return;
+  const switchers = document.querySelectorAll('.lang-switcher');
+  if (switchers.length === 0) return;
 
-  switcher.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      setLanguage(btn.dataset.lang);
+  switchers.forEach(switcher => {
+    switcher.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        setLanguage(btn.dataset.lang);
+      });
     });
   });
 
