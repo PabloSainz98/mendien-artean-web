@@ -34,6 +34,8 @@
   color: var(--color-white);
   transition: color var(--transition-base);
   letter-spacing: 0.02em;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .navbar.scrolled .nav-logo {
@@ -43,16 +45,16 @@
 .nav-links {
   display: flex;
   align-items: center;
-  gap: var(--space-2xl);
+  gap: var(--space-md);
 }
 
 .nav-links a {
-  font-size: var(--fs-sm);
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 600;
   color: var(--color-white);
   transition: color var(--transition-base);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   position: relative;
 }
 
@@ -981,7 +983,7 @@
 .nav-right {
   display: flex;
   align-items: center;
-  gap: var(--space-xl);
+  gap: var(--space-md);
 }
 
 .lang-switcher {
