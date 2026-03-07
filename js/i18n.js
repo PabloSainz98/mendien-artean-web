@@ -68,7 +68,7 @@ const translations = {
 
     // Booking Form
     'booking.title': 'Solicitar Reserva Directa',
-    'booking.subtitle': 'Reserva directamente con nosotros para evitar comisiones de plataformas',
+    'booking.subtitle': 'Haz tu solicitud y te confirmamos disponibilidad y precio en poco tiempo.',
     'booking.name': 'Nombre completo',
     'booking.email': 'Email',
     'booking.phone': 'Teléfono (WhatsApp)',
@@ -209,7 +209,7 @@ const translations = {
     'price.bookairbnb': 'Airbnb',
 
     'booking.title': 'Direct Booking Request',
-    'booking.subtitle': 'Book directly with us to avoid platform fees',
+    'booking.subtitle': 'Send your request and we will confirm availability and price shortly.',
     'booking.name': 'Full Name',
     'booking.email': 'Email Address',
     'booking.phone': 'Phone Number (WhatsApp)',
@@ -287,7 +287,7 @@ const translations = {
   eu: {
     'nav.about': 'Etxea',
     'nav.services': 'Zerbitzuak',
-    'nav.availability': 'Eskuragarritasuna',
+    'nav.availability': 'Eskuragarri',
     'nav.activities': 'Jarduerak',
     'nav.gallery': 'Argazkiak',
     'nav.contact': 'Kontaktua',
@@ -343,7 +343,7 @@ const translations = {
     'price.bookairbnb': 'Airbnb',
 
     'booking.title': 'Zuzeneko Erreserba Eskaera',
-    'booking.subtitle': 'Erreserbatu zuzenean gurekin plataformen komisioak saihesteko',
+    'booking.subtitle': 'Bidali zure eskaera eta laster baieztatuko dizkizugu eskuragarritasuna eta prezioa.',
     'booking.name': 'Izen-abizenak',
     'booking.email': 'Emaila',
     'booking.phone': 'Telefonoa (WhatsApp)',
@@ -430,6 +430,38 @@ function t(key) {
 }
 
 /**
+ * Limit translated HTML to a tiny safe subset.
+ */
+function sanitizeTranslationMarkup(value) {
+  const template = document.createElement('template');
+  template.innerHTML = value;
+
+  const allowedTags = new Set(['BR', 'STRONG', 'EM']);
+
+  const sanitizeNode = (node) => {
+    Array.from(node.childNodes).forEach(child => {
+      if (child.nodeType === Node.ELEMENT_NODE) {
+        if (!allowedTags.has(child.tagName)) {
+          child.replaceWith(document.createTextNode(child.textContent || ''));
+          return;
+        }
+
+        Array.from(child.attributes).forEach(attr => child.removeAttribute(attr.name));
+        sanitizeNode(child);
+        return;
+      }
+
+      if (child.nodeType !== Node.TEXT_NODE) {
+        child.remove();
+      }
+    });
+  };
+
+  sanitizeNode(template.content);
+  return template.content;
+}
+
+/**
  * Apply translations to all elements with data-i18n attribute
  */
 function applyTranslations() {
@@ -439,7 +471,7 @@ function applyTranslations() {
     if (value) {
       // Check if the content contains HTML
       if (value.includes('<')) {
-        el.innerHTML = value;
+        el.replaceChildren(sanitizeTranslationMarkup(value));
       } else {
         el.textContent = value;
       }
