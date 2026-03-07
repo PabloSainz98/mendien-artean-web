@@ -62,7 +62,7 @@ const translations = {
 
     // Booking Form
     'booking.title': 'Solicitar Reserva Directa',
-    'booking.subtitle': 'Reserva directamente con nosotros para evitar comisiones de plataformas',
+    'booking.subtitle': 'Haz tu solicitud y te confirmamos disponibilidad y precio en poco tiempo.',
     'booking.name': 'Nombre completo',
     'booking.email': 'Email',
     'booking.phone': 'Teléfono (WhatsApp)',
@@ -195,7 +195,7 @@ const translations = {
     'price.bookairbnb': 'Book on Airbnb',
 
     'booking.title': 'Direct Booking Request',
-    'booking.subtitle': 'Book directly with us to avoid platform fees',
+    'booking.subtitle': 'Send your request and we will confirm availability and price shortly.',
     'booking.name': 'Full Name',
     'booking.email': 'Email Address',
     'booking.phone': 'Phone Number (WhatsApp)',
@@ -321,7 +321,7 @@ const translations = {
     'price.bookairbnb': 'Airbnb-n erreserbatu',
 
     'booking.title': 'Zuzeneko Erreserba Eskaera',
-    'booking.subtitle': 'Erreserbatu zuzenean gurekin plataformen komisioak saihesteko',
+    'booking.subtitle': 'Bidali zure eskaera eta laster baieztatuko dizkizugu eskuragarritasuna eta prezioa.',
     'booking.name': 'Izen-abizenak',
     'booking.email': 'Emaila',
     'booking.phone': 'Telefonoa (WhatsApp)',

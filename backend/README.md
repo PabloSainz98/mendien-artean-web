@@ -16,7 +16,6 @@ Este backend reemplaza el envio por email del cliente con una API propia y base 
 - `GET /api/admin/booking-requests` para ver solicitudes (token de admin)
 - `GET /api/admin/booking-requests.csv` para exportar CSV compatible con Excel
 - Genera automaticamente `bookings.csv` al recibir nuevas reservas
-- Integracion opcional con Google Calendar para crear eventos automaticamente
 
 ## Seguridad incluida
 
@@ -36,12 +35,6 @@ cp backend/.env.example backend/.env
 ```
 
 2. Ajusta al menos `ADMIN_TOKEN`.
-
-3. Si quieres calendario de Google automatico, configura:
-- `GOOGLE_CALENDAR_ENABLED=true`
-- `GOOGLE_CALENDAR_ID`
-- `GOOGLE_SERVICE_ACCOUNT_EMAIL`
-- `GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY`
 
 ## Desarrollo local
 

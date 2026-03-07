@@ -7,14 +7,6 @@ function ensureDirectory(filePath) {
   fs.mkdirSync(dir, { recursive: true });
 }
 
-function ensureColumn(db, tableName, columnName, columnDefinition) {
-  const columns = db.prepare(`PRAGMA table_info(${tableName})`).all();
-  const exists = columns.some((column) => column.name === columnName);
-  if (!exists) {
-    db.exec(`ALTER TABLE ${tableName} ADD COLUMN ${columnDefinition}`);
-  }
-}
-
 function createDatabase(databasePath) {
   const resolvedPath = path.resolve(databasePath);
   ensureDirectory(resolvedPath);
@@ -45,7 +37,6 @@ function createDatabase(databasePath) {
     CREATE INDEX IF NOT EXISTS idx_booking_requests_status
       ON booking_requests(status);
   `);
-  ensureColumn(db, 'booking_requests', 'calendar_event_id', 'calendar_event_id TEXT');
 
   const insertRequestStmt = db.prepare(`
     INSERT INTO booking_requests (
@@ -72,17 +63,10 @@ function createDatabase(databasePath) {
       message,
       status,
       source,
-      calendar_event_id AS calendarEventId,
       created_at AS createdAt
     FROM booking_requests
     ORDER BY id DESC
     LIMIT ?
-  `);
-
-  const setCalendarEventStmt = db.prepare(`
-    UPDATE booking_requests
-    SET calendar_event_id = ?
-    WHERE id = ?
   `);
 
   return {
@@ -104,10 +88,6 @@ function createDatabase(databasePath) {
 
     listRequests(limit = 100) {
       return listRequestsStmt.all(limit);
-    },
-
-    setCalendarEventId(requestId, eventId) {
-      setCalendarEventStmt.run(eventId, requestId);
     }
   };
 }

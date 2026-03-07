@@ -7,7 +7,6 @@ const helmet = require('helmet');
 require('dotenv').config({ path: path.resolve(__dirname, '..', '.env') });
 
 const { createDatabase } = require('./db');
-const { createGoogleCalendarIntegration } = require('./googleCalendar');
 const { validateBookingPayload } = require('./validation');
 
 const app = express();
@@ -26,7 +25,6 @@ const bookingsCsvPath = process.env.BOOKINGS_CSV_PATH
 
 const projectRoot = path.resolve(__dirname, '..', '..');
 const db = createDatabase(databasePath);
-const googleCalendar = createGoogleCalendarIntegration();
 
 app.disable('x-powered-by');
 app.set('trust proxy', trustProxy);
@@ -90,7 +88,6 @@ function buildBookingsCsv(items) {
     'checkout',
     'status',
     'source',
-    'calendarEventId',
     'createdAt',
     'message'
   ];
@@ -109,7 +106,6 @@ function buildBookingsCsv(items) {
         item.checkout,
         item.status,
         item.source,
-        item.calendarEventId,
         item.createdAt,
         item.message
       ]
@@ -153,7 +149,7 @@ app.get('/api/health', (_req, res) => {
   });
 });
 
-app.post('/api/booking-requests', rateLimit, async (req, res) => {
+app.post('/api/booking-requests', rateLimit, (req, res) => {
   const parsed = validateBookingPayload(req.body);
 
   if (!parsed.valid) {
@@ -170,20 +166,6 @@ app.post('/api/booking-requests', rateLimit, async (req, res) => {
     ...parsed.values,
     ipHash: hashIp(ip)
   });
-
-  if (googleCalendar.enabled) {
-    try {
-      const eventId = await googleCalendar.createBookingEvent({
-        id: requestId,
-        ...parsed.values
-      });
-      if (eventId) {
-        db.setCalendarEventId(requestId, eventId);
-      }
-    } catch (error) {
-      console.error('Google Calendar event creation failed:', error.message);
-    }
-  }
 
   try {
     writeBookingsCsvSnapshot();
