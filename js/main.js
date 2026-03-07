@@ -36,11 +36,12 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactLinks();
   initNavbar();
   initCalendar();
+  initGalleryTabs();
+  initPropertySelectors();
   initBookingForm();
   initGallery();
   initScrollReveal();
   initSmoothScroll();
-  initBookingForm();
   initDateConstraints();
 });
 
@@ -336,6 +337,8 @@ function initGalleryTabs() {
     });
   }
 
+  window.switchGalleryTab = switchTab;
+
   // Click en tabs
   tabs.forEach(tab => {
     tab.addEventListener('click', () => switchTab(tab.dataset.tab));
@@ -350,6 +353,48 @@ function initGalleryTabs() {
       if (gallery) gallery.scrollIntoView({ behavior: 'smooth' });
     });
   });
+}
+
+/* ==========================================
+   PROPERTY SELECTOR — choose stay from cards
+   ========================================== */
+function initPropertySelectors() {
+  const cards = document.querySelectorAll('.property-card[data-property-card]');
+  const selectButtons = document.querySelectorAll('.property-select-btn[data-select-property]');
+  const bookingSelect = document.getElementById('b_property');
+
+  if (!cards.length) return;
+
+  const setSelectedProperty = (property, options = {}) => {
+    const { syncBooking = true, syncGallery = false } = options;
+
+    cards.forEach(card => {
+      card.classList.toggle('is-selected', card.dataset.propertyCard === property);
+    });
+
+    if (syncBooking && bookingSelect) {
+      bookingSelect.value = property;
+    }
+
+    if (syncGallery && typeof window.switchGalleryTab === 'function') {
+      window.switchGalleryTab(property);
+    }
+  };
+
+  selectButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      setSelectedProperty(btn.dataset.selectProperty, { syncBooking: true, syncGallery: true });
+    });
+  });
+
+  if (bookingSelect) {
+    bookingSelect.addEventListener('change', () => {
+      setSelectedProperty(bookingSelect.value, { syncBooking: false, syncGallery: false });
+    });
+  }
+
+  const initialProperty = bookingSelect?.value || 'domo';
+  setSelectedProperty(initialProperty, { syncBooking: true, syncGallery: false });
 }
 
 /* ==========================================

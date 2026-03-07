@@ -76,6 +76,8 @@
       { "@type": "LocationFeatureSpecification", "name": "Mascotas permitidas", "value": true }
     ],
     "sameAs": [
+      "https://www.booking.com/hotel/es/domo-en-plena-naturaleza.es.html",
+      "https://www.airbnb.es/rooms/1550920029631784546",
       "https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html",
       "https://www.airbnb.es/rooms/26868295"
     ]
@@ -219,7 +221,7 @@
 
       <div class="properties-grid">
         <!-- DOMO -->
-        <div class="property-card property-card--featured reveal">
+        <div class="property-card property-card--featured reveal is-selected" data-property-card="domo">
           <div class="property-card-image">
             <img src="images/domo/domo-exterior-noche.jpg" alt="Domo geodésico iluminado al atardecer" loading="lazy" decoding="async" width="600" height="400">
             <span class="property-badge" data-i18n="properties.featured">Destacado</span>
@@ -236,12 +238,15 @@
             <div class="property-card-price">
               <span data-i18n="properties.pricefrom">desde</span> <strong>75€</strong><span data-i18n="properties.pricenight">/noche</span>
             </div>
-            <a href="#gallery" class="btn btn-primary" data-gallery-tab="domo" data-i18n="properties.photos">Ver fotos →</a>
+            <div class="property-card-actions">
+              <a href="#gallery" class="btn btn-primary" data-gallery-tab="domo" data-i18n="properties.photos">Ver fotos →</a>
+              <button type="button" class="btn btn-outline property-select-btn" data-select-property="domo" data-i18n="properties.select">Seleccionar</button>
+            </div>
           </div>
         </div>
 
         <!-- CASA RURAL -->
-        <div class="property-card reveal">
+        <div class="property-card reveal" data-property-card="casa">
           <div class="property-card-image">
             <img src="images/444547533.jpg" alt="Casa rural con terraza y jardín" loading="lazy" decoding="async" width="600" height="400">
           </div>
@@ -257,7 +262,10 @@
             <div class="property-card-price">
               <span data-i18n="properties.pricefrom">desde</span> <strong>75€</strong><span data-i18n="properties.pricenight">/noche</span>
             </div>
-            <a href="#gallery" class="btn btn-primary" data-gallery-tab="casa" data-i18n="properties.photos">Ver fotos →</a>
+            <div class="property-card-actions">
+              <a href="#gallery" class="btn btn-primary" data-gallery-tab="casa" data-i18n="properties.photos">Ver fotos →</a>
+              <button type="button" class="btn btn-outline property-select-btn" data-select-property="casa" data-i18n="properties.select">Seleccionar</button>
+            </div>
           </div>
         </div>
       </div>

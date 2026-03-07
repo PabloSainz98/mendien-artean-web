@@ -47,6 +47,7 @@ const translations = {
     'properties.pricefrom': 'desde',
     'properties.pricenight': '/noche',
     'properties.photos': 'Ver fotos →',
+    'properties.select': 'Seleccionar',
 
     // Services
     'services.title': 'Servicios',
@@ -214,6 +215,7 @@ const translations = {
     'properties.pricefrom': 'from',
     'properties.pricenight': '/night',
     'properties.photos': 'View photos →',
+    'properties.select': 'Select',
 
     'services.title': 'Services',
     'services.subtitle': 'Everything you need for a comfortable and relaxing stay',
@@ -371,6 +373,7 @@ const translations = {
     'properties.pricefrom': 'tik',
     'properties.pricenight': '/gau',
     'properties.photos': 'Argazkiak ikusi →',
+    'properties.select': 'Hautatu',
 
     'services.title': 'Zerbitzuak',
     'services.subtitle': 'Egonaldi erosoa eta lasaia izateko behar duzun guztia',

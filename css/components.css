@@ -943,6 +943,27 @@
   margin-top: var(--space-xs);
 }
 
+.property-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-xs);
+}
+
+.property-card-actions .btn {
+  margin-top: 0;
+}
+
+.property-select-btn {
+  min-width: 140px;
+}
+
+.property-card.is-selected {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  box-shadow: 0 12px 30px rgba(166, 116, 67, 0.28);
+}
+
 /* ==== GALLERY ==== */
 .gallery {
   background: var(--color-bg-alt);
