@@ -271,7 +271,7 @@ const translations = {
   eu: {
     'nav.about': 'Etxea',
     'nav.services': 'Zerbitzuak',
-    'nav.availability': 'Eskuragarritasuna',
+    'nav.availability': 'Eskuragarri',
     'nav.activities': 'Jarduerak',
     'nav.gallery': 'Argazkiak',
     'nav.contact': 'Kontaktua',
