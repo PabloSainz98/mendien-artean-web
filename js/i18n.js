@@ -334,7 +334,7 @@ const translations = {
   eu: {
     'nav.about': 'Ostatuak',
     'nav.services': 'Zerbitzuak',
-    'nav.availability': 'Egutegia',
+    'nav.availability': 'Eskuragarri',
     'nav.activities': 'Jarduerak',
     'nav.gallery': 'Argazkiak',
     'nav.contact': 'Kontaktua',

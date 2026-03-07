@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactLinks();
   initNavbar();
   initCalendar();
-  initGalleryTabs();
+  initBookingForm();
   initGallery();
   initScrollReveal();
   initSmoothScroll();
