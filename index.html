@@ -107,6 +107,7 @@
           <div class="lang-switcher lang-switcher-mobile" id="langSwitcherMobile">
             <button class="lang-btn" data-lang="es">ES</button>
             <button class="lang-btn" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="eu">EU</button>
           </div>
         </div>
 
@@ -114,6 +115,7 @@
         <div class="lang-switcher lang-switcher-desktop" id="langSwitcherDesktop">
           <button class="lang-btn" data-lang="es">ES</button>
           <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="eu">EU</button>
         </div>
 
         <div class="nav-toggle" id="navToggle">
@@ -141,7 +143,7 @@
       <h1><em>Mendien Artean</em></h1>
       <p class="hero-subtitle" data-i18n="hero.subtitle">
         Mendien Artean es un acogedor complejo rural entre los parques naturales de Urkiola y Gorbeia.<br>
-        El complejo cuenta con dos alojamientos: Domo Igorre y Urkiola Etxea.
+        El complejo cuenta con dos alojamientos: Domo Gorbeia y Urkiola Etxea.
       </p>
       <!-- Precio visible desde el hero -->
       <div class="hero-price" aria-label="Precio desde 75 euros por noche">
@@ -177,7 +179,7 @@
             entre los impresionantes parques naturales de <strong>Urkiola</strong> y <strong>Gorbeia</strong>.
           </p>
           <p data-i18n="about.p2">
-            El complejo cuenta con dos alojamientos: <strong>Domo Igorre</strong>, una experiencia glamping con vistas panorámicas,
+            El complejo cuenta con dos alojamientos: <strong>Domo Gorbeia</strong>, una experiencia glamping con vistas panorámicas,
             y <strong>Urkiola Etxea</strong>, una casa rural independiente con jardín vallado y terraza.
           </p>
 
@@ -225,7 +227,7 @@
             <span class="property-badge" data-i18n="properties.featured">Destacado</span>
           </div>
           <div class="property-card-content">
-            <h3 data-i18n="properties.domo.title">Domo Igorre</h3>
+            <h3 data-i18n="properties.domo.title">Domo Gorbeia</h3>
             <p data-i18n="properties.domo.desc">Glamping de lujo con paneles panorámicos, jacuzzi privado y vistas al valle. Una experiencia única bajo las estrellas.</p>
             <div class="property-card-features">
               <span>📐 38m²</span>
@@ -396,31 +398,27 @@
           <h4 data-i18n="price.bookvia">Reservar alojamiento</h4>
 
           <div class="pricing-property-links">
-            <div class="pricing-property">
-              <strong data-i18n="properties.domo.title">Domo Igorre</strong>
+            <div class="pricing-property is-active" data-pricing-property="domo">
+              <strong data-i18n="properties.domo.title">Domo Gorbeia</strong>
               <div class="pricing-book">
                 <a href="#booking" class="btn btn-primary btn-sm">
                   <span data-i18n="price.bookdirect">✉️ Directo</span>
                 </a>
                 <a href="https://www.booking.com/hotel/es/domo-en-plena-naturaleza.es.html"
-                   target="_blank" rel="noopener noreferrer"
                    class="btn btn-outline btn-sm">Booking</a>
                 <a href="https://www.airbnb.es/rooms/1550920029631784546"
-                   target="_blank" rel="noopener noreferrer"
                    class="btn btn-outline btn-sm">Airbnb</a>
               </div>
             </div>
-            <div class="pricing-property">
+            <div class="pricing-property" data-pricing-property="casa">
               <strong data-i18n="properties.casa.title">Urkiola Etxea</strong>
               <div class="pricing-book">
                 <a href="#booking" class="btn btn-primary btn-sm">
                   <span data-i18n="price.bookdirect">✉️ Directo</span>
                 </a>
                 <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html"
-                   target="_blank" rel="noopener noreferrer"
                    class="btn btn-outline btn-sm">Booking</a>
                 <a href="https://www.airbnb.es/rooms/26868295"
-                   target="_blank" rel="noopener noreferrer"
                    class="btn btn-outline btn-sm">Airbnb</a>
               </div>
             </div>
@@ -459,7 +457,7 @@
             <div class="form-group">
               <label for="b_property" data-i18n="booking.property">Alojamiento</label>
               <select id="b_property" name="property" required>
-                <option value="domo" data-i18n="booking.property.domo">Domo Igorre</option>
+                <option value="domo" data-i18n="booking.property.domo">Domo Gorbeia</option>
                 <option value="casa" data-i18n="booking.property.casa">Urkiola Etxea</option>
               </select>
             </div>
@@ -575,7 +573,7 @@
       </div>
 
       <div class="gallery-tabs">
-        <button class="gallery-tab active" data-tab="domo" data-i18n="gallery.tab.domo">Domo Igorre</button>
+        <button class="gallery-tab active" data-tab="domo" data-i18n="gallery.tab.domo">Domo Gorbeia</button>
         <button class="gallery-tab" data-tab="casa" data-i18n="gallery.tab.casa">Urkiola Etxea</button>
       </div>
 
@@ -682,8 +680,7 @@
             <div class="review-author-info">
               <strong>Alberto</strong>
               <span class="review-platform">
-                <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html#tab-reviews"
-                   target="_blank" rel="noopener noreferrer" aria-label="Ver reseña en Booking.com">Booking.com</a>
+                <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html#tab-reviews" aria-label="Ver reseña en Booking.com">Booking.com</a>
                 <span class="review-verified" data-i18n="reviews.verified">✓ Estancia verificada</span>
               </span>
               <time class="review-date" datetime="2025-08">Agosto 2025</time>
@@ -699,8 +696,7 @@
             <div class="review-author-info">
               <strong>María</strong>
               <span class="review-platform">
-                <a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7"
-                   target="_blank" rel="noopener noreferrer" aria-label="Ver reseña en Google">Google Maps</a>
+                <a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" aria-label="Ver reseña en Google">Google Maps</a>
                 <span class="review-verified" data-i18n="reviews.verified">✓ Estancia verificada</span>
               </span>
               <time class="review-date" datetime="2025-07">Julio 2025</time>
@@ -716,8 +712,7 @@
             <div class="review-author-info">
               <strong>Daniel</strong>
               <span class="review-platform">
-                <a href="https://www.airbnb.es/rooms/26868295"
-                   target="_blank" rel="noopener noreferrer" aria-label="Ver reseña en Airbnb">Airbnb</a>
+                <a href="https://www.airbnb.es/rooms/26868295" aria-label="Ver reseña en Airbnb">Airbnb</a>
                 <span class="review-verified" data-i18n="reviews.verified">✓ Estancia verificada</span>
               </span>
               <time class="review-date" datetime="2025-06">Junio 2025</time>
@@ -727,7 +722,7 @@
       </div>
 
       <div class="reviews-cta">
-        <a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" target="_blank" rel="noopener noreferrer" class="btn btn-outline" data-i18n="reviews.cta">Ver todas las reseñas en Google</a>
+        <a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" class="btn btn-outline" data-i18n="reviews.cta">Ver todas las reseñas en Google</a>
       </div>
     </div>
   </section>
@@ -767,8 +762,7 @@
               <div class="contact-detail-text">
                 <strong>WhatsApp</strong>
                 <span>
-                  <a href="#" data-wa data-wa-display
-                     target="_blank" rel="noopener noreferrer">+34 646 39 78 76</a>
+                  <a href="#" data-wa data-wa-display>+34 646 39 78 76</a>
                 </span>
               </div>
             </div>
@@ -778,10 +772,10 @@
               <div class="contact-detail-text">
                 <strong data-i18n="contact.reservas">Reservas</strong>
                 <span>
-                  <a href="https://www.booking.com/hotel/es/domo-en-plena-naturaleza.es.html" target="_blank" rel="noopener noreferrer">Booking Domo</a> ·
-                  <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" target="_blank" rel="noopener noreferrer">Booking Casa</a> ·
-                  <a href="https://www.airbnb.es/rooms/1550920029631784546" target="_blank" rel="noopener noreferrer">Airbnb Domo</a> ·
-                  <a href="https://www.airbnb.es/rooms/26868295" target="_blank" rel="noopener noreferrer">Airbnb Casa</a>
+                  <a href="https://www.booking.com/hotel/es/domo-en-plena-naturaleza.es.html">Booking Domo</a> ·
+                  <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html">Booking Casa</a> ·
+                  <a href="https://www.airbnb.es/rooms/1550920029631784546">Airbnb Domo</a> ·
+                  <a href="https://www.airbnb.es/rooms/26868295">Airbnb Casa</a>
                 </span>
               </div>
             </div>
@@ -790,7 +784,7 @@
               <div class="icon">🗺️</div>
               <div class="contact-detail-text">
                 <strong data-i18n="contact.directions">Cómo llegar</strong>
-                <span><a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" target="_blank" rel="noopener noreferrer" data-i18n="contact.directions.link">Ver en Google Maps →</a></span>
+                <span><a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" data-i18n="contact.directions.link">Ver en Google Maps →</a></span>
               </div>
             </div>
           </div>
@@ -802,7 +796,7 @@
             allowfullscreen=""
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-            sandbox="allow-scripts allow-same-origin allow-popups"
+            sandbox="allow-scripts allow-same-origin"
             title="Ubicación de Mendien Artean en Google Maps">
           </iframe>
         </div>
@@ -816,9 +810,8 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <h3>Mendien Artean</h3>
-          <p data-i18n="footer.desc">Mendien Artean es un acogedor complejo rural con dos alojamientos: Domo Igorre y Urkiola Etxea, entre Urkiola y Gorbeia.</p>
+          <p data-i18n="footer.desc">Mendien Artean es un acogedor complejo rural con dos alojamientos: Domo Gorbeia y Urkiola Etxea, entre Urkiola y Gorbeia.</p>
           <a href="#" data-wa
-             target="_blank" rel="noopener noreferrer"
              class="btn btn-whatsapp-footer"
              aria-label="Contactar por WhatsApp">
             💬 WhatsApp
@@ -841,11 +834,11 @@
           <h4 data-i18n="footer.book">Reservar</h4>
           <ul>
             <li><a href="#booking" data-i18n="footer.direct">Reserva directa</a></li>
-            <li><a href="https://www.booking.com/hotel/es/domo-en-plena-naturaleza.es.html" target="_blank" rel="noopener noreferrer">Booking Domo</a></li>
-            <li><a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" target="_blank" rel="noopener noreferrer">Booking Casa</a></li>
-            <li><a href="https://www.airbnb.es/rooms/1550920029631784546" target="_blank" rel="noopener noreferrer">Airbnb Domo</a></li>
-            <li><a href="https://www.airbnb.es/rooms/26868295" target="_blank" rel="noopener noreferrer">Airbnb Casa</a></li>
-            <li><a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" target="_blank" rel="noopener noreferrer">Google Maps</a></li>
+            <li><a href="https://www.booking.com/hotel/es/domo-en-plena-naturaleza.es.html">Booking Domo</a></li>
+            <li><a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html">Booking Casa</a></li>
+            <li><a href="https://www.airbnb.es/rooms/1550920029631784546">Airbnb Domo</a></li>
+            <li><a href="https://www.airbnb.es/rooms/26868295">Airbnb Casa</a></li>
+            <li><a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7">Google Maps</a></li>
           </ul>
         </div>
       </div>
@@ -853,10 +846,10 @@
       <div class="footer-bottom">
         <span data-i18n="footer.rights">© 2026 Mendien Artean. Todos los derechos reservados.</span>
         <div class="footer-social">
-          <a href="https://www.airbnb.es/rooms/26868295" target="_blank" rel="noopener noreferrer" aria-label="Airbnb" title="Airbnb">🏠</a>
-          <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" target="_blank" rel="noopener noreferrer" aria-label="Booking" title="Booking">📘</a>
-          <a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" target="_blank" rel="noopener noreferrer" aria-label="Maps" title="Google Maps">🗺️</a>
-          <a href="#" data-wa target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">💬</a>
+          <a href="https://www.airbnb.es/rooms/26868295" aria-label="Airbnb" title="Airbnb">🏠</a>
+          <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" aria-label="Booking" title="Booking">📘</a>
+          <a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" aria-label="Maps" title="Google Maps">🗺️</a>
+          <a href="#" data-wa aria-label="WhatsApp" title="WhatsApp">💬</a>
         </div>
       </div>
     </div>
@@ -865,8 +858,6 @@
   <!-- ============ WHATSAPP FLOTANTE ============ -->
   <a href="#" data-wa
      class="whatsapp-float"
-     target="_blank"
-     rel="noopener noreferrer"
      aria-label="Contactar por WhatsApp">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>

@@ -273,7 +273,7 @@ function initBookingForm() {
     const email    = document.getElementById('b_email').value.trim();
     const phone    = document.getElementById('b_phone').value.trim();
     const property = document.getElementById('b_property').value;
-    const propertyName = property === 'domo' ? 'Domo Igorre' : 'Urkiola Etxea';
+    const propertyName = property === 'domo' ? 'Domo Gorbeia' : 'Urkiola Etxea';
     const guests   = document.getElementById('b_guests').value;
     const checkin  = document.getElementById('b_checkin').value;
     const checkout = document.getElementById('b_checkout').value;
@@ -362,14 +362,20 @@ function initPropertySelectors() {
   const cards = document.querySelectorAll('.property-card[data-property-card]');
   const selectButtons = document.querySelectorAll('.property-select-btn[data-select-property]');
   const bookingSelect = document.getElementById('b_property');
+  const pricingBlocks = document.querySelectorAll('.pricing-property[data-pricing-property]');
+  const bookingSection = document.getElementById('booking');
 
   if (!cards.length) return;
 
   const setSelectedProperty = (property, options = {}) => {
-    const { syncBooking = true, syncGallery = false } = options;
+    const { syncBooking = true, syncGallery = false, scrollToBooking = false } = options;
 
     cards.forEach(card => {
       card.classList.toggle('is-selected', card.dataset.propertyCard === property);
+    });
+
+    pricingBlocks.forEach(block => {
+      block.classList.toggle('is-active', block.dataset.pricingProperty === property);
     });
 
     if (syncBooking && bookingSelect) {
@@ -379,11 +385,22 @@ function initPropertySelectors() {
     if (syncGallery && typeof window.switchGalleryTab === 'function') {
       window.switchGalleryTab(property);
     }
+
+    if (scrollToBooking && bookingSection) {
+      const navHeight = document.getElementById('navbar')?.offsetHeight || 0;
+      const top = bookingSection.getBoundingClientRect().top + window.scrollY - navHeight;
+      window.scrollTo({ top, behavior: 'smooth' });
+      bookingSelect?.focus({ preventScroll: true });
+    }
   };
 
   selectButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-      setSelectedProperty(btn.dataset.selectProperty, { syncBooking: true, syncGallery: true });
+      setSelectedProperty(btn.dataset.selectProperty, {
+        syncBooking: true,
+        syncGallery: true,
+        scrollToBooking: true
+      });
     });
   });
 
