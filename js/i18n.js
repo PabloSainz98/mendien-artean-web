@@ -72,6 +72,9 @@ const translations = {
     'booking.message': 'Mensaje / Peticiones / Mascotas',
     'booking.submit': 'Solicitar Presupuesto sin Compromiso',
     'booking.note': 'Nos pondremos en contacto contigo lo antes posible para confirmar disponibilidad y precio exacto.',
+    'booking.sending': 'Enviando solicitud...',
+    'booking.success': 'Solicitud enviada. Te responderemos muy pronto.',
+    'booking.error': 'No hemos podido enviar la solicitud. Inténtalo de nuevo.',
 
     // Calendar weekdays
     'cal.mon': 'Lun', 'cal.tue': 'Mar', 'cal.wed': 'Mié',
@@ -202,6 +205,9 @@ const translations = {
     'booking.message': 'Message / Special Requests / Pets',
     'booking.submit': 'Request Quote Without Commitment',
     'booking.note': 'We will contact you as soon as possible to confirm availability and exact pricing.',
+    'booking.sending': 'Sending request...',
+    'booking.success': 'Request sent. We will get back to you shortly.',
+    'booking.error': 'We could not send your request. Please try again.',
 
     'cal.mon': 'Mon', 'cal.tue': 'Tue', 'cal.wed': 'Wed',
     'cal.thu': 'Thu', 'cal.fri': 'Fri', 'cal.sat': 'Sat', 'cal.sun': 'Sun',
@@ -325,6 +331,9 @@ const translations = {
     'booking.message': 'Mezua / Eskaerak / Maskotak',
     'booking.submit': 'Aurrekontua Eskatu Konpromisorik Gabe',
     'booking.note': 'Ahalik eta lasterren jarriko gara zurekin harremanetan eskuragarritasuna eta prezio zehatza baieztatzeko.',
+    'booking.sending': 'Eskaera bidaltzen...',
+    'booking.success': 'Eskaera bidalita. Laster erantzungo dizugu.',
+    'booking.error': 'Ezin izan dugu eskaera bidali. Saiatu berriro.',
 
     'cal.mon': 'Al', 'cal.tue': 'As', 'cal.wed': 'Az',
     'cal.thu': 'Og', 'cal.fri': 'Or', 'cal.sat': 'Lr', 'cal.sun': 'Ig',

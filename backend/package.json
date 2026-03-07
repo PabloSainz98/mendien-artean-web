@@ -1,0 +1,20 @@
+{
+  "name": "mendien-artean-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Backend propio para reservas y disponibilidad",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "check": "node --check src/server.js && node --check src/db.js && node --check src/validation.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "helmet": "^8.1.0"
+  }
+}

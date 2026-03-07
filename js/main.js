@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   initNavbar();
   initCalendar();
+  initBookingForm();
   initGallery();
   initScrollReveal();
   initSmoothScroll();
@@ -195,6 +196,87 @@ function initCalendar() {
   });
 
   renderCalendar();
+}
+
+/* ==========================================
+   BOOKING FORM — Backend submission
+   ========================================== */
+function getI18nValue(key, fallback) {
+  if (typeof t === 'function') {
+    const value = t(key);
+    if (value && value !== key) {
+      return value;
+    }
+  }
+  return fallback;
+}
+
+function initBookingForm() {
+  const form = document.getElementById('bookingForm');
+  if (!form) return;
+
+  const feedback = document.getElementById('bookingFeedback');
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const guestsSelect = document.getElementById('b_guests');
+
+  const setFeedback = (type, key, fallback) => {
+    if (!feedback) return;
+    feedback.hidden = false;
+    feedback.className = `form-feedback ${type}`;
+    feedback.textContent = getI18nValue(key, fallback);
+  };
+
+  const clearFeedback = () => {
+    if (!feedback) return;
+    feedback.hidden = true;
+    feedback.textContent = '';
+    feedback.className = 'form-feedback';
+  };
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearFeedback();
+
+    const payload = {
+      name: document.getElementById('b_name')?.value || '',
+      email: document.getElementById('b_email')?.value || '',
+      phone: document.getElementById('b_phone')?.value || '',
+      guests: Number(document.getElementById('b_guests')?.value || 0),
+      checkin: document.getElementById('b_checkin')?.value || '',
+      checkout: document.getElementById('b_checkout')?.value || '',
+      message: document.getElementById('b_message')?.value || '',
+      company: document.getElementById('b_company')?.value || ''
+    };
+
+    const originalLabel = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = getI18nValue('booking.sending', 'Enviando solicitud...');
+
+    try {
+      const res = await fetch('/api/booking-requests', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!res.ok) {
+        throw new Error(`Request failed with status ${res.status}`);
+      }
+
+      form.reset();
+      if (guestsSelect) {
+        guestsSelect.value = '2';
+      }
+      setFeedback('success', 'booking.success', 'Solicitud enviada. Te responderemos muy pronto.');
+    } catch (error) {
+      setFeedback('error', 'booking.error', 'No hemos podido enviar la solicitud. Inténtalo de nuevo.');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalLabel;
+    }
+  });
 }
 
 /* ==========================================

@@ -291,22 +291,22 @@
           <div class="form-row">
             <div class="form-group">
               <label for="b_name" data-i18n="booking.name">Nombre completo</label>
-              <input type="text" id="b_name" required>
+              <input type="text" id="b_name" name="name" required>
             </div>
             <div class="form-group">
               <label for="b_email" data-i18n="booking.email">Email</label>
-              <input type="email" id="b_email" required>
+              <input type="email" id="b_email" name="email" required>
             </div>
           </div>
           
           <div class="form-row">
             <div class="form-group">
               <label for="b_phone" data-i18n="booking.phone">Teléfono (WhatsApp)</label>
-              <input type="tel" id="b_phone" required>
+              <input type="tel" id="b_phone" name="phone" required>
             </div>
             <div class="form-group">
               <label for="b_guests" data-i18n="booking.guests">Huéspedes (Max 4)</label>
-              <select id="b_guests" required>
+              <select id="b_guests" name="guests" required>
                 <option value="1">1</option>
                 <option value="2" selected>2</option>
                 <option value="3">3</option>
@@ -318,21 +318,27 @@
           <div class="form-row">
             <div class="form-group">
               <label for="b_checkin" data-i18n="booking.checkin">Fecha de Entrada</label>
-              <input type="date" id="b_checkin" required>
+              <input type="date" id="b_checkin" name="checkin" required>
             </div>
             <div class="form-group">
               <label for="b_checkout" data-i18n="booking.checkout">Fecha de Salida</label>
-              <input type="date" id="b_checkout" required>
+              <input type="date" id="b_checkout" name="checkout" required>
             </div>
           </div>
 
           <div class="form-group">
             <label for="b_message" data-i18n="booking.message">Mensaje / Mascotas / Peticiones</label>
-            <textarea id="b_message" rows="3"></textarea>
+            <textarea id="b_message" name="message" rows="3"></textarea>
+          </div>
+
+          <div class="form-group honeypot" aria-hidden="true">
+            <label for="b_company">Company</label>
+            <input type="text" id="b_company" name="company" tabindex="-1" autocomplete="off">
           </div>
 
           <div class="form-submit">
             <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;" data-i18n="booking.submit">Solicitar Presupuesto sin Compromiso</button>
+            <p class="form-feedback" id="bookingFeedback" hidden aria-live="polite"></p>
             <p class="form-note" style="text-align: center; margin-top: var(--space-sm); font-size: var(--fs-xs); color: var(--color-text-light);" data-i18n="booking.note">Nos pondremos en contacto contigo lo antes posible para confirmar disponibilidad y precio exacto.</p>
           </div>
         </form>
