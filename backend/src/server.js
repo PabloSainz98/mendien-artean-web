@@ -12,8 +12,9 @@ const app = express();
 
 const port = Number(process.env.PORT || 8787);
 const host = process.env.HOST || '0.0.0.0';
+const isProduction = process.env.NODE_ENV === 'production';
 const trustProxy = String(process.env.TRUST_PROXY || 'false') === 'true';
-const databasePath = process.env.DATABASE_PATH || path.join('backend', 'data', 'app.db');
+const databasePath = process.env.DATABASE_PATH || path.resolve(__dirname, '..', 'data', 'app.db');
 const adminToken = process.env.ADMIN_TOKEN || '';
 const rateLimitWindowMs = Number(process.env.RATE_LIMIT_WINDOW_MS || 15 * 60 * 1000);
 const rateLimitMax = Number(process.env.RATE_LIMIT_MAX || 20);
@@ -26,6 +27,7 @@ app.set('trust proxy', trustProxy);
 
 app.use(
   helmet({
+    hsts: isProduction,
     crossOriginEmbedderPolicy: false,
     contentSecurityPolicy: false
   })
