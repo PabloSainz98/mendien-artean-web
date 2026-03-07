@@ -280,6 +280,25 @@
   }
 }
 
+/* Desktop fine-tuning for Basque navbar labels */
+@media (min-width: 1101px) {
+  html:lang(eu) .nav-links {
+    gap: 0.65rem;
+  }
+
+  html:lang(eu) .nav-links a {
+    text-transform: none;
+    letter-spacing: 0.015em;
+    font-size: 12px;
+  }
+
+  html:lang(eu) .nav-cta {
+    font-size: 12px !important;
+    letter-spacing: 0.05em !important;
+    padding: 0.5rem 1.1rem !important;
+  }
+}
+
 /* Reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
   html {
