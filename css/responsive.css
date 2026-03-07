@@ -186,6 +186,29 @@
   .reviews-grid {
     grid-template-columns: 1fr;
   }
+
+  /* WhatsApp flotante Mobile */
+  .whatsapp-float {
+    bottom: var(--space-lg);
+    right: var(--space-lg);
+    width: 52px;
+    height: 52px;
+  }
+
+  .whatsapp-float svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .whatsapp-tooltip {
+    display: none;
+  }
+
+  /* About price note Mobile */
+  .about-price-note {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
 /* Tablet — 769px to 1024px */
