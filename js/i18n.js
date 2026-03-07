@@ -78,8 +78,8 @@ const translations = {
     'booking.message': 'Mensaje / Peticiones / Mascotas',
     'booking.submit': 'Solicitar Presupuesto sin Compromiso',
     'booking.note': 'Nos pondremos en contacto contigo en menos de 24h para confirmar disponibilidad y precio exacto.',
-    'booking.success': '✅ Tu cliente de correo se ha abierto con todos los datos. Envía el email para completar la solicitud. Si no se abrió, escríbenos a pablosainz98@gmail.com',
-    'booking.error': 'No se pudo abrir el cliente de correo. Escríbenos a pablosainz98@gmail.com o por WhatsApp.',
+    'booking.success': '✅ Tu cliente de correo se ha abierto con todos los datos. Envía el email para completar la solicitud.',
+    'booking.error': 'No se pudo abrir el cliente de correo. Contáctanos directamente por WhatsApp.',
 
     // Calendar weekdays
     'cal.mon': 'Lun', 'cal.tue': 'Mar', 'cal.wed': 'Mié',
@@ -219,8 +219,8 @@ const translations = {
     'booking.message': 'Message / Special Requests / Pets',
     'booking.submit': 'Request Quote Without Commitment',
     'booking.note': 'We will contact you within 24 hours to confirm availability and exact pricing.',
-    'booking.success': '✅ Your email client has opened with all the details. Send the email to complete your request. If it didn\'t open, write to pablosainz98@gmail.com',
-    'booking.error': 'Could not open email client. Please write to pablosainz98@gmail.com or via WhatsApp.',
+    'booking.success': '✅ Your email client has opened with all the details. Send the email to complete your request.',
+    'booking.error': 'Could not open email client. Please contact us directly via WhatsApp.',
 
     'cal.mon': 'Mon', 'cal.tue': 'Tue', 'cal.wed': 'Wed',
     'cal.thu': 'Thu', 'cal.fri': 'Fri', 'cal.sat': 'Sat', 'cal.sun': 'Sun',
@@ -353,8 +353,8 @@ const translations = {
     'booking.message': 'Mezua / Eskaerak / Maskotak',
     'booking.submit': 'Aurrekontua Eskatu Konpromisorik Gabe',
     'booking.note': '24 ordutan jarriko gara zurekin harremanetan eskuragarritasuna eta prezio zehatza baieztatzeko.',
-    'booking.success': '✅ Zure posta-programa ireki da datu guztiekin. Bidali emaila eskaeraz arduratzeko. Ireki ez bada, idatzi pablosainz98@gmail.com helbidera.',
-    'booking.error': 'Ezin izan da posta-programa ireki. Idatzi pablosainz98@gmail.com helbidera edo WhatsApp bidez.',
+    'booking.success': '✅ Zure posta-programa ireki da datu guztiekin. Bidali emaila eskaeraz arduratzeko.',
+    'booking.error': 'Ezin izan da posta-programa ireki. Jarri gurekin harremanetan WhatsApp bidez.',
 
     'cal.mon': 'Al', 'cal.tue': 'As', 'cal.wed': 'Az',
     'cal.thu': 'Og', 'cal.fri': 'Or', 'cal.sat': 'Lr', 'cal.sun': 'Ig',
@@ -420,7 +420,7 @@ const translations = {
 };
 
 // Current language
-let currentLang = localStorage.getItem('mendien-lang') || 'es';
+let currentLang = sessionStorage.getItem('mendien-lang') || 'es';
 
 /**
  * Get translation for a key
@@ -465,7 +465,7 @@ function applyTranslations() {
  */
 function setLanguage(lang) {
   currentLang = lang;
-  localStorage.setItem('mendien-lang', lang);
+  sessionStorage.setItem('mendien-lang', lang);
   applyTranslations();
 }
 

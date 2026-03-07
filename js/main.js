@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initLanguageSwitcher();
   }
 
+  initContactLinks();
   initNavbar();
   initCalendar();
   initGallery();
@@ -217,20 +218,48 @@ function initDateConstraints() {
 }
 
 /* ==========================================
-   BOOKING FORM — Web3Forms (envío directo sin popup)
-   Sin registro: visita https://web3forms.com,
-   introduce tu email y recibirás una clave gratuita.
-   Ponla en el input hidden access_key del formulario.
+   CONTACT LINKS — rellena hrefs y textos desde config.js
+   config.js está en .gitignore; usa config.example.js como plantilla.
+   ========================================== */
+function initContactLinks() {
+  const cfg = window.SITE_CONFIG;
+  if (!cfg) return;
+
+  const waText = encodeURIComponent('Hola, me gustaría obtener más información sobre Mendien Artean');
+  const waUrl  = `https://wa.me/${cfg.phone}?text=${waText}`;
+
+  // Actualiza todos los enlaces de WhatsApp
+  document.querySelectorAll('[data-wa]').forEach(el => {
+    el.href = waUrl;
+  });
+
+  // Actualiza el número de teléfono visible en la sección de contacto
+  document.querySelectorAll('[data-wa-display]').forEach(el => {
+    el.textContent = cfg.phoneDisplay;
+  });
+
+  // Actualiza el JSON-LD del <head> con teléfono y email reales
+  const ldScript = document.querySelector('script[type="application/ld+json"]');
+  if (ldScript) {
+    ldScript.textContent = ldScript.textContent
+      .replace('"__PHONE__"', `"+${cfg.phone}"`)
+      .replace('"__EMAIL__"', `"${cfg.email}"`);
+  }
+}
+
+/* ==========================================
+   BOOKING FORM — mailto: (sin registro, sin backend)
+   Al enviar, abre el cliente de correo del usuario
+   con todos los campos pre-rellenados.
    ========================================== */
 function initBookingForm() {
   const form = document.getElementById('bookingForm');
-  const submitBtn = document.getElementById('bookingSubmit');
   const successEl = document.getElementById('formSuccess');
   const errorEl = document.getElementById('formError');
 
   if (!form) return;
 
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
 
     if (!form.checkValidity()) {
@@ -238,40 +267,42 @@ function initBookingForm() {
       return;
     }
 
-    // Deshabilitar botón durante el envío
-    const originalText = submitBtn.textContent;
-    submitBtn.disabled = true;
-    submitBtn.textContent = '...';
+    const name     = document.getElementById('b_name').value.trim();
+    const email    = document.getElementById('b_email').value.trim();
+    const phone    = document.getElementById('b_phone').value.trim();
+    const guests   = document.getElementById('b_guests').value;
+    const checkin  = document.getElementById('b_checkin').value;
+    const checkout = document.getElementById('b_checkout').value;
+    const message  = document.getElementById('b_message').value.trim();
+
+    const subject = `Solicitud de reserva: ${name} | ${checkin} - ${checkout}`;
+    const body = [
+      'SOLICITUD DE RESERVA - MENDIEN ARTEAN',
+      '-----------------------------------------',
+      `Nombre:      ${name}`,
+      `Email:       ${email}`,
+      `Teléfono:    ${phone}`,
+      `Huéspedes:   ${guests}`,
+      `Entrada:     ${checkin}`,
+      `Salida:      ${checkout}`,
+      `Mensaje:     ${message || '(ninguno)'}`,
+      '-----------------------------------------',
+      'Enviado desde mendienartean.com',
+    ].join('\n');
+
+    const dest = (window.SITE_CONFIG && window.SITE_CONFIG.email) || '';
+    const mailtoUrl = `mailto:${dest}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
     try {
-      const name     = document.getElementById('b_name').value.trim();
-      const checkin  = document.getElementById('b_checkin').value;
-      const checkout = document.getElementById('b_checkout').value;
-
-      const formData = new FormData(form);
-      formData.set('subject', `Solicitud de reserva: ${name} | ${checkin} - ${checkout}`);
-
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formData,
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
+      window.location.href = mailtoUrl;
+      setTimeout(() => {
         if (successEl) successEl.style.display = 'block';
         if (errorEl) errorEl.style.display = 'none';
         form.reset();
         setTimeout(() => { if (successEl) successEl.style.display = 'none'; }, 6000);
-      } else {
-        throw new Error(data.message || 'Error');
-      }
+      }, 500);
     } catch {
       if (errorEl) errorEl.style.display = 'block';
-      if (successEl) successEl.style.display = 'none';
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = originalText;
     }
   });
 }

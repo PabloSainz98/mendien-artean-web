@@ -48,8 +48,8 @@
     "name": "Mendien Artean",
     "description": "Casa rural con jardín vallado y terraza con vistas a la montaña entre los parques naturales de Urkiola y Gorbeia. Hasta 4 huéspedes. Pet-friendly.",
     "url": "https://pablosainz98.github.io/mendien-artean-web/",
-    "telephone": "+34646397876",
-    "email": "pablosainz98@gmail.com",
+    "telephone": "__PHONE__",
+    "email": "__EMAIL__",
     "priceRange": "75€ - 120€",
     "checkinTime": "16:00",
     "checkoutTime": "11:00",
@@ -361,8 +361,6 @@
 
       <div class="booking-container reveal">
         <form id="bookingForm" class="booking-form" novalidate>
-          <!-- Web3Forms: obtén tu clave gratuita en https://web3forms.com (solo necesitas confirmar tu email) -->
-          <input type="hidden" name="access_key" value="TU_CLAVE_WEB3FORMS">
           <div class="form-row">
             <div class="form-group">
               <label for="b_name" data-i18n="booking.name">Nombre completo</label>
@@ -632,7 +630,7 @@
               <div class="contact-detail-text">
                 <strong>WhatsApp</strong>
                 <span>
-                  <a href="https://wa.me/34646397876?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Mendien%20Artean"
+                  <a href="#" data-wa data-wa-display
                      target="_blank" rel="noopener noreferrer">+34 646 39 78 76</a>
                 </span>
               </div>
@@ -680,7 +678,7 @@
         <div class="footer-brand">
           <h3>Mendien Artean</h3>
           <p data-i18n="footer.desc">Casa rural entre los parques naturales de Urkiola y Gorbeia. Tu refugio de naturaleza en el corazón del País Vasco.</p>
-          <a href="https://wa.me/34646397876?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Mendien%20Artean"
+          <a href="#" data-wa
              target="_blank" rel="noopener noreferrer"
              class="btn btn-whatsapp-footer"
              aria-label="Contactar por WhatsApp">
@@ -717,14 +715,14 @@
           <a href="https://www.airbnb.es/rooms/26868295" target="_blank" rel="noopener noreferrer" aria-label="Airbnb" title="Airbnb">🏠</a>
           <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" target="_blank" rel="noopener noreferrer" aria-label="Booking" title="Booking">📘</a>
           <a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" target="_blank" rel="noopener noreferrer" aria-label="Maps" title="Google Maps">🗺️</a>
-          <a href="https://wa.me/34646397876" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">💬</a>
+          <a href="#" data-wa target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">💬</a>
         </div>
       </div>
     </div>
   </footer>
 
   <!-- ============ WHATSAPP FLOTANTE ============ -->
-  <a href="https://wa.me/34646397876?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Mendien%20Artean"
+  <a href="#" data-wa
      class="whatsapp-float"
      target="_blank"
      rel="noopener noreferrer"
@@ -736,6 +734,7 @@
   </a>
 
   <!-- Scripts -->
+  <script src="js/config.js"></script>
   <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
 
