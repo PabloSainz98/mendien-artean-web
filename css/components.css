@@ -97,21 +97,6 @@
   display: none !important;
 }
 
-/* Euskera — compact nav for long Basque words (>1100px desktop) */
-:lang(eu) .nav-links {
-  gap: var(--space-sm);
-}
-
-:lang(eu) .nav-links a {
-  font-size: 10px;
-  letter-spacing: 0.01em;
-}
-
-:lang(eu) .nav-cta {
-  font-size: 10px !important;
-  letter-spacing: 0.05em !important;
-  padding: var(--space-sm) var(--space-md) !important;
-}
 
 .nav-cta:hover {
   background: var(--color-accent-dark) !important;
@@ -664,15 +649,33 @@
   color: var(--color-text-light);
 }
 
-.pricing-book {
-  margin-top: var(--space-xl);
+.pricing-property-links {
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: var(--space-lg);
+  margin-top: var(--space-md);
+}
+
+.pricing-property {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.pricing-property strong {
+  font-size: var(--fs-sm);
+  color: var(--color-primary);
+}
+
+.pricing-book {
+  display: flex;
+  gap: var(--space-sm);
 }
 
 .pricing-book .btn {
-  width: 100%;
+  flex: 1;
+  text-align: center;
+  font-size: var(--fs-xs);
 }
 
 .booking-badge {
@@ -750,9 +753,137 @@
   font-weight: 600;
 }
 
+/* ==== PROPERTIES ==== */
+.properties-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xl);
+}
+
+.property-card {
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.property-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.property-card-image {
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+}
+
+.property-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-base);
+}
+
+.property-card:hover .property-card-image img {
+  transform: scale(1.05);
+}
+
+.property-badge {
+  position: absolute;
+  top: var(--space-md);
+  left: var(--space-md);
+  background: var(--color-accent);
+  color: var(--color-white);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.property-card-content {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.property-card-content h3 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-xl);
+  color: var(--color-primary);
+}
+
+.property-card-content p {
+  font-size: var(--fs-sm);
+  color: var(--color-text-light);
+  line-height: 1.6;
+}
+
+.property-card-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin: var(--space-xs) 0;
+}
+
+.property-card-features span {
+  font-size: var(--fs-xs);
+  background: var(--color-bg);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  color: var(--color-text);
+}
+
+.property-card-price {
+  font-size: var(--fs-sm);
+  color: var(--color-text-light);
+}
+
+.property-card-price strong {
+  font-size: var(--fs-xl);
+  color: var(--color-primary);
+}
+
+.property-card-content .btn {
+  align-self: flex-start;
+  margin-top: var(--space-xs);
+}
+
 /* ==== GALLERY ==== */
 .gallery {
   background: var(--color-bg-alt);
+}
+
+.gallery-tabs {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+}
+
+.gallery-tab {
+  padding: var(--space-sm) var(--space-lg);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-primary);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.gallery-tab:hover {
+  background: rgba(45, 80, 22, 0.08);
+}
+
+.gallery-tab.active {
+  background: var(--color-primary);
+  color: var(--color-white);
 }
 
 .gallery-grid {
