@@ -16,7 +16,7 @@ const translations = {
     // Hero
     'hero.badge': 'Igorre, Euskadi',
     'hero.subtitle': 'Casa rural con encanto entre los parques naturales de Urkiola y Gorbeia.<br>Tu refugio de naturaleza en el corazón del País Vasco.',
-    'hero.cta1': 'Reserva directa — sin comisiones',
+    'hero.cta1': 'Reservar ahora',
     'hero.cta2': 'Descubre la casa',
     'hero.pricefrom': 'desde',
     'hero.pricenight': '/noche',
@@ -29,8 +29,8 @@ const translations = {
     'about.feat2': '1 dormitorio + cuna',
     'about.feat3': 'Pet-friendly',
     'about.feat4': 'Jardín vallado',
-    'about.pricenote': 'Desde <strong>75€/noche</strong> · Reserva directa sin comisiones',
-    'about.bookdirect': 'Solicitar reserva →',
+    'about.pricenote': 'Desde <strong>75€/noche</strong> · Reserva directa',
+    'about.bookdirect': 'Reservar ahora →',
 
     // Services
     'services.title': 'Servicios',
@@ -62,7 +62,7 @@ const translations = {
     'price.high': 'Temporada alta',
     'price.high.dates': 'Julio — Agosto, Puentes y Festivos',
     'price.night': '/noche',
-    'price.bookdirect': '✉️ Reserva directa — sin comisiones',
+    'price.bookdirect': '✉️ Reservar ahora',
     'price.bookbooking': 'Booking.com',
     'price.bookairbnb': 'Airbnb',
 
@@ -78,8 +78,8 @@ const translations = {
     'booking.message': 'Mensaje / Peticiones / Mascotas',
     'booking.submit': 'Solicitar Presupuesto sin Compromiso',
     'booking.note': 'Nos pondremos en contacto contigo en menos de 24h para confirmar disponibilidad y precio exacto.',
-    'booking.success': '¡Solicitud enviada! Te contactamos en menos de 24h.',
-    'booking.error': 'Error al enviar. Escríbenos por WhatsApp o email directamente.',
+    'booking.success': '✅ Tu cliente de correo se ha abierto con todos los datos. Envía el email para completar la solicitud. Si no se abrió, escríbenos a pablosainz98@gmail.com',
+    'booking.error': 'No se pudo abrir el cliente de correo. Escríbenos a pablosainz98@gmail.com o por WhatsApp.',
 
     // Calendar weekdays
     'cal.mon': 'Lun', 'cal.tue': 'Mar', 'cal.wed': 'Mié',
@@ -161,7 +161,7 @@ const translations = {
 
     'hero.badge': 'Igorre, Basque Country',
     'hero.subtitle': 'Charming rural house between the natural parks of Urkiola and Gorbeia.<br>Your nature retreat in the heart of the Basque Country.',
-    'hero.cta1': 'Book direct — no fees',
+    'hero.cta1': 'Book now',
     'hero.cta2': 'Discover the house',
     'hero.pricefrom': 'from',
     'hero.pricenight': '/night',
@@ -173,8 +173,8 @@ const translations = {
     'about.feat2': '1 bedroom + crib',
     'about.feat3': 'Pet-friendly',
     'about.feat4': 'Fenced garden',
-    'about.pricenote': 'From <strong>€75/night</strong> · Book direct with no platform fees',
-    'about.bookdirect': 'Request booking →',
+    'about.pricenote': 'From <strong>€75/night</strong> · Direct booking',
+    'about.bookdirect': 'Book now →',
 
     'services.title': 'Services',
     'services.subtitle': 'Everything you need for a comfortable and relaxing stay',
@@ -204,7 +204,7 @@ const translations = {
     'price.high': 'High season',
     'price.high.dates': 'July — August, Bank Holidays',
     'price.night': '/night',
-    'price.bookdirect': '✉️ Book direct — no fees',
+    'price.bookdirect': '✉️ Book now',
     'price.bookbooking': 'Booking.com',
     'price.bookairbnb': 'Airbnb',
 
@@ -219,8 +219,8 @@ const translations = {
     'booking.message': 'Message / Special Requests / Pets',
     'booking.submit': 'Request Quote Without Commitment',
     'booking.note': 'We will contact you within 24 hours to confirm availability and exact pricing.',
-    'booking.success': 'Request sent! We\'ll be in touch within 24 hours.',
-    'booking.error': 'Failed to send. Please contact us via WhatsApp or email directly.',
+    'booking.success': '✅ Your email client has opened with all the details. Send the email to complete your request. If it didn\'t open, write to pablosainz98@gmail.com',
+    'booking.error': 'Could not open email client. Please write to pablosainz98@gmail.com or via WhatsApp.',
 
     'cal.mon': 'Mon', 'cal.tue': 'Tue', 'cal.wed': 'Wed',
     'cal.thu': 'Thu', 'cal.fri': 'Fri', 'cal.sat': 'Sat', 'cal.sun': 'Sun',
@@ -295,7 +295,7 @@ const translations = {
 
     'hero.badge': 'Igorre, Euskadi',
     'hero.subtitle': 'Urkiola eta Gorbeia parke naturalen arteko landa-etxe xarmagarria.<br>Zure natura-babeslekua Euskal Herriaren bihotzean.',
-    'hero.cta1': 'Zuzeneko erreserba — komisiorik gabe',
+    'hero.cta1': 'Orain erreserbatu',
     'hero.cta2': 'Etxea ezagutu',
     'hero.pricefrom': 'tik',
     'hero.pricenight': '/gau',
@@ -307,8 +307,8 @@ const translations = {
     'about.feat2': 'Logela 1 + seaska',
     'about.feat3': 'Maskotak onartzen dira',
     'about.feat4': 'Lorategi itxia',
-    'about.pricenote': '<strong>75€/gau</strong>tik · Zuzeneko erreserba komisiorik gabe',
-    'about.bookdirect': 'Erreserba eskatu →',
+    'about.pricenote': '<strong>75€/gau</strong>tik · Zuzeneko erreserba',
+    'about.bookdirect': 'Orain erreserbatu →',
 
     'services.title': 'Zerbitzuak',
     'services.subtitle': 'Egonaldi erosoa eta lasaia izateko behar duzun guztia',
@@ -338,7 +338,7 @@ const translations = {
     'price.high': 'Goi sasoia',
     'price.high.dates': 'Uztaila — Abuztua, Zubi eta Jaiak',
     'price.night': '/gau',
-    'price.bookdirect': '✉️ Zuzeneko erreserba — komisiorik gabe',
+    'price.bookdirect': '✉️ Orain erreserbatu',
     'price.bookbooking': 'Booking.com',
     'price.bookairbnb': 'Airbnb',
 
@@ -353,8 +353,8 @@ const translations = {
     'booking.message': 'Mezua / Eskaerak / Maskotak',
     'booking.submit': 'Aurrekontua Eskatu Konpromisorik Gabe',
     'booking.note': '24 ordutan jarriko gara zurekin harremanetan eskuragarritasuna eta prezio zehatza baieztatzeko.',
-    'booking.success': 'Eskaera bidali da! 24 ordutan jarriko gara zurekin harremanetan.',
-    'booking.error': 'Errorea bidaltzean. Jar zaitez gurekin harremanetan WhatsApp bidez.',
+    'booking.success': '✅ Zure posta-programa ireki da datu guztiekin. Bidali emaila eskaeraz arduratzeko. Ireki ez bada, idatzi pablosainz98@gmail.com helbidera.',
+    'booking.error': 'Ezin izan da posta-programa ireki. Idatzi pablosainz98@gmail.com helbidera edo WhatsApp bidez.',
 
     'cal.mon': 'Al', 'cal.tue': 'As', 'cal.wed': 'Az',
     'cal.thu': 'Og', 'cal.fri': 'Or', 'cal.sat': 'Lr', 'cal.sun': 'Ig',

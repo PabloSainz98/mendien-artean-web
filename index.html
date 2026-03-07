@@ -82,19 +82,7 @@
   }
   </script>
 
-  <!-- EmailJS SDK (gratuito, sin backend) -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script>
-    // CONFIGURACIÓN EMAILJS — Necesitas crear cuenta gratuita en emailjs.com
-    // 1. Crea un "Email Service" conectado a tu Gmail
-    // 2. Crea un "Email Template" con las variables del formulario
-    // 3. Copia tu Public Key, Service ID y Template ID aquí:
-    (function() {
-      emailjs.init({
-        publicKey: 'TU_PUBLIC_KEY_AQUI', // Reemplaza con tu clave pública de EmailJS
-      });
-    })();
-  </script>
+  <!-- Sin dependencias externas — el formulario usa mailto: nativo -->
 </head>
 <body>
 
@@ -162,8 +150,7 @@
         <span class="hero-price-night" data-i18n="hero.pricenight">/noche</span>
       </div>
       <div class="hero-ctas">
-        <!-- CTA primaria → reserva directa sin comisiones -->
-        <a href="#booking" class="btn btn-primary btn-lg" data-i18n="hero.cta1">Reserva directa — sin comisiones</a>
+        <a href="#booking" class="btn btn-primary btn-lg" data-i18n="hero.cta1">Reservar ahora</a>
         <a href="#about" class="btn btn-secondary btn-lg" data-i18n="hero.cta2">Descubre la casa</a>
       </div>
     </div>
@@ -341,9 +328,8 @@
           </div>
 
           <div class="pricing-book">
-            <!-- CTA principal: reserva directa (sin comisiones) -->
             <a href="#booking" class="btn btn-primary btn-lg">
-              <span data-i18n="price.bookdirect">✉️ Reserva directa — sin comisiones</span>
+              <span data-i18n="price.bookdirect">✉️ Reservar ahora</span>
             </a>
             <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html"
                target="_blank"
@@ -419,9 +405,8 @@
           </div>
 
           <div class="form-submit">
-            <button type="submit" class="btn btn-primary btn-lg btn-full" id="bookingSubmit">
-              <span class="btn-text" data-i18n="booking.submit">Solicitar Presupuesto sin Compromiso</span>
-              <span class="btn-spinner" aria-hidden="true" style="display:none;">⏳</span>
+            <button type="submit" class="btn btn-primary btn-lg btn-full" id="bookingSubmit" data-i18n="booking.submit">
+              Solicitar Presupuesto sin Compromiso
             </button>
             <p class="form-note" data-i18n="booking.note">Nos pondremos en contacto contigo en menos de 24h para confirmar disponibilidad y precio exacto.</p>
           </div>

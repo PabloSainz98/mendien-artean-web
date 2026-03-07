@@ -2,19 +2,8 @@
    MENDIEN ARTEAN — Main JavaScript
    ============================================ */
 
-// ============================================================
-// EMAILJS CONFIG — Crea tu cuenta gratuita en emailjs.com
-// Pasos:
-// 1. Crea un Email Service (Gmail) → copia el Service ID
-// 2. Crea un Email Template con estas variables:
-//    {{from_name}}, {{from_email}}, {{phone}}, {{guests}},
-//    {{checkin}}, {{checkout}}, {{message}}
-//    El template se envía a: pablosainz98@gmail.com
-// 3. Copia tu Public Key desde Account → API Keys
-// Reemplaza los valores de abajo con los tuyos:
-// ============================================================
-const EMAILJS_SERVICE_ID = 'TU_SERVICE_ID';    // ej: 'service_abc123'
-const EMAILJS_TEMPLATE_ID = 'TU_TEMPLATE_ID';  // ej: 'template_xyz789'
+// Email de destino para las solicitudes de reserva
+const CONTACT_EMAIL = 'pablosainz98@gmail.com';
 
 // ============================================================
 // CALENDARIO — Fechas reservadas
@@ -231,45 +220,68 @@ function initDateConstraints() {
 }
 
 /* ==========================================
-   BOOKING FORM — EmailJS integration
+   BOOKING FORM — mailto: (sin registro, sin backend)
+   Al enviar, abre el cliente de correo del usuario
+   (Gmail, Apple Mail, Outlook…) con todos los
+   campos pre-rellenados en el cuerpo del email.
    ========================================== */
 function initBookingForm() {
   const form = document.getElementById('bookingForm');
   const submitBtn = document.getElementById('bookingSubmit');
-  const btnText = submitBtn?.querySelector('.btn-text');
-  const btnSpinner = submitBtn?.querySelector('.btn-spinner');
   const successEl = document.getElementById('formSuccess');
   const errorEl = document.getElementById('formError');
 
   if (!form) return;
 
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    // Validación básica
     if (!form.checkValidity()) {
       form.reportValidity();
       return;
     }
 
-    // UI: loading state
-    if (submitBtn) submitBtn.disabled = true;
-    if (btnText) btnText.style.display = 'none';
-    if (btnSpinner) btnSpinner.style.display = 'inline';
-    if (successEl) successEl.style.display = 'none';
-    if (errorEl) errorEl.style.display = 'none';
+    // Recoger valores del formulario
+    const name     = document.getElementById('b_name').value.trim();
+    const email    = document.getElementById('b_email').value.trim();
+    const phone    = document.getElementById('b_phone').value.trim();
+    const guests   = document.getElementById('b_guests').value;
+    const checkin  = document.getElementById('b_checkin').value;
+    const checkout = document.getElementById('b_checkout').value;
+    const message  = document.getElementById('b_message').value.trim();
+
+    // Construir asunto y cuerpo del email
+    const subject = `Solicitud de reserva — ${name} | ${checkin} → ${checkout}`;
+
+    const body = [
+      '📋 SOLICITUD DE RESERVA — MENDIEN ARTEAN',
+      '─────────────────────────────────────────',
+      `👤 Nombre:       ${name}`,
+      `📧 Email:        ${email}`,
+      `📱 Teléfono:     ${phone}`,
+      `👥 Huéspedes:    ${guests}`,
+      `📅 Entrada:      ${checkin}`,
+      `📅 Salida:       ${checkout}`,
+      `💬 Mensaje:      ${message || '(ninguno)'}`,
+      '─────────────────────────────────────────',
+      'Enviado desde mendienartean.com',
+    ].join('\n');
+
+    // Abrir cliente de correo del usuario
+    const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
     try {
-      await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form);
-      if (successEl) successEl.style.display = 'block';
-      form.reset();
-    } catch (err) {
-      console.error('EmailJS error:', err);
+      window.location.href = mailtoUrl;
+      // Mostrar confirmación y limpiar el formulario tras un breve retraso
+      setTimeout(() => {
+        if (successEl) successEl.style.display = 'block';
+        if (errorEl) errorEl.style.display = 'none';
+        form.reset();
+        // Ocultar el mensaje de éxito después de 6 segundos
+        setTimeout(() => { if (successEl) successEl.style.display = 'none'; }, 6000);
+      }, 500);
+    } catch {
       if (errorEl) errorEl.style.display = 'block';
-    } finally {
-      if (submitBtn) submitBtn.disabled = false;
-      if (btnText) btnText.style.display = 'inline';
-      if (btnSpinner) btnSpinner.style.display = 'none';
     }
   });
 }
