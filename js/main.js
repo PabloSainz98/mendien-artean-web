@@ -251,11 +251,11 @@ function initBookingForm() {
     const message  = document.getElementById('b_message').value.trim();
 
     // Construir asunto y cuerpo del email
-    const subject = `Solicitud de reserva — ${name} | ${checkin} → ${checkout}`;
+    const subject = `Solicitud de reserva: ${name} | ${checkin} - ${checkout}`;
 
     const body = [
-      '📋 SOLICITUD DE RESERVA — MENDIEN ARTEAN',
-      '─────────────────────────────────────────',
+      'SOLICITUD DE RESERVA - MENDIEN ARTEAN',
+      '-----------------------------------------',
       `👤 Nombre:       ${name}`,
       `📧 Email:        ${email}`,
       `📱 Teléfono:     ${phone}`,
@@ -263,7 +263,7 @@ function initBookingForm() {
       `📅 Entrada:      ${checkin}`,
       `📅 Salida:       ${checkout}`,
       `💬 Mensaje:      ${message || '(ninguno)'}`,
-      '─────────────────────────────────────────',
+      '-----------------------------------------',
       'Enviado desde mendienartean.com',
     ].join('\n');
 
