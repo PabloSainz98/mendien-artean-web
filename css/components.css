@@ -97,6 +97,22 @@
   display: none !important;
 }
 
+/* Euskera — compact nav for long Basque words (>1100px desktop) */
+:lang(eu) .nav-links {
+  gap: var(--space-sm);
+}
+
+:lang(eu) .nav-links a {
+  font-size: 10px;
+  letter-spacing: 0.01em;
+}
+
+:lang(eu) .nav-cta {
+  font-size: 10px !important;
+  letter-spacing: 0.05em !important;
+  padding: var(--space-sm) var(--space-md) !important;
+}
+
 .nav-cta:hover {
   background: var(--color-accent-dark) !important;
   transform: translateY(-1px);

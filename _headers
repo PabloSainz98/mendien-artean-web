@@ -18,12 +18,12 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
 
   # Content Security Policy
-  # - Scripts: solo self + EmailJS CDN + inline del HTML (service worker)
+  # - Scripts: solo self + inline del HTML (service worker)
   # - Styles: self + Google Fonts + inline necesario para variables CSS
   # - Fonts: self + Google Fonts gstatic
   # - Frames: solo Google Maps
-  # - Conexiones: self + EmailJS API
-  Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-src https://www.google.com; connect-src 'self' https://api.emailjs.com; worker-src 'self';
+  # - Conexiones: self + Web3Forms API
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-src https://www.google.com; connect-src 'self' https://api.web3forms.com; worker-src 'self';
 
   # HSTS — fuerza HTTPS (solo activar cuando el sitio esté en producción con HTTPS)
   # Strict-Transport-Security: max-age=31536000; includeSubDomains; preload

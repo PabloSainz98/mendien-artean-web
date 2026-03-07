@@ -2,9 +2,6 @@
    MENDIEN ARTEAN — Main JavaScript
    ============================================ */
 
-// Email de destino para las solicitudes de reserva
-const CONTACT_EMAIL = 'pablosainz98@gmail.com';
-
 // ============================================================
 // CALENDARIO — Fechas reservadas
 // Para sincronizar con Booking.com y Airbnb:
@@ -220,10 +217,10 @@ function initDateConstraints() {
 }
 
 /* ==========================================
-   BOOKING FORM — mailto: (sin registro, sin backend)
-   Al enviar, abre el cliente de correo del usuario
-   (Gmail, Apple Mail, Outlook…) con todos los
-   campos pre-rellenados en el cuerpo del email.
+   BOOKING FORM — Web3Forms (envío directo sin popup)
+   Sin registro: visita https://web3forms.com,
+   introduce tu email y recibirás una clave gratuita.
+   Ponla en el input hidden access_key del formulario.
    ========================================== */
 function initBookingForm() {
   const form = document.getElementById('bookingForm');
@@ -233,7 +230,7 @@ function initBookingForm() {
 
   if (!form) return;
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     if (!form.checkValidity()) {
@@ -241,47 +238,40 @@ function initBookingForm() {
       return;
     }
 
-    // Recoger valores del formulario
-    const name     = document.getElementById('b_name').value.trim();
-    const email    = document.getElementById('b_email').value.trim();
-    const phone    = document.getElementById('b_phone').value.trim();
-    const guests   = document.getElementById('b_guests').value;
-    const checkin  = document.getElementById('b_checkin').value;
-    const checkout = document.getElementById('b_checkout').value;
-    const message  = document.getElementById('b_message').value.trim();
-
-    // Construir asunto y cuerpo del email
-    const subject = `Solicitud de reserva: ${name} | ${checkin} - ${checkout}`;
-
-    const body = [
-      'SOLICITUD DE RESERVA - MENDIEN ARTEAN',
-      '-----------------------------------------',
-      `👤 Nombre:       ${name}`,
-      `📧 Email:        ${email}`,
-      `📱 Teléfono:     ${phone}`,
-      `👥 Huéspedes:    ${guests}`,
-      `📅 Entrada:      ${checkin}`,
-      `📅 Salida:       ${checkout}`,
-      `💬 Mensaje:      ${message || '(ninguno)'}`,
-      '-----------------------------------------',
-      'Enviado desde mendienartean.com',
-    ].join('\n');
-
-    // Abrir cliente de correo del usuario
-    const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    // Deshabilitar botón durante el envío
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = '...';
 
     try {
-      window.location.href = mailtoUrl;
-      // Mostrar confirmación y limpiar el formulario tras un breve retraso
-      setTimeout(() => {
+      const name     = document.getElementById('b_name').value.trim();
+      const checkin  = document.getElementById('b_checkin').value;
+      const checkout = document.getElementById('b_checkout').value;
+
+      const formData = new FormData(form);
+      formData.set('subject', `Solicitud de reserva: ${name} | ${checkin} - ${checkout}`);
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
         if (successEl) successEl.style.display = 'block';
         if (errorEl) errorEl.style.display = 'none';
         form.reset();
-        // Ocultar el mensaje de éxito después de 6 segundos
         setTimeout(() => { if (successEl) successEl.style.display = 'none'; }, 6000);
-      }, 500);
+      } else {
+        throw new Error(data.message || 'Error');
+      }
     } catch {
       if (errorEl) errorEl.style.display = 'block';
+      if (successEl) successEl.style.display = 'none';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
     }
   });
 }
