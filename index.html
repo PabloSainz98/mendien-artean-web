@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; frame-src https://www.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Mendien Artean — Agroturismo en el País Vasco | Casa Rural entre Parques Naturales</title>
   <meta name="description" content="Mendien Artean: casa rural con jardín y terraza entre los parques naturales de Urkiola y Gorbeia en el País Vasco. Hasta 4 huéspedes, pet-friendly, cocina equipada.">
   <meta name="keywords" content="agroturismo, País Vasco, Euskadi, casa rural, Urkiola, Gorbeia, Igorre, naturaleza, rural tourism, Basque Country">
@@ -42,7 +44,7 @@
           <a href="#activities" data-i18n="nav.activities">Actividades</a>
           <a href="#gallery" data-i18n="nav.gallery">Galería</a>
           <a href="#contact" data-i18n="nav.contact">Contacto</a>
-          <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" target="_blank" class="nav-cta" data-i18n="nav.book">Reservar</a>
+          <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" target="_blank" rel="noopener noreferrer" class="nav-cta" data-i18n="nav.book">Reservar</a>
           
           <!-- Language Switcher (Mobile) -->
           <div class="lang-switcher lang-switcher-mobile" id="langSwitcherMobile">
@@ -259,13 +261,13 @@
 
           <div class="pricing-book">
             <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" 
-               target="_blank" 
+               target="_blank" rel="noopener noreferrer" 
                class="btn btn-primary btn-lg"
                id="bookingBtn">
               <span class="booking-badge" data-i18n="price.bookbooking">Reservar en Booking.com</span>
             </a>
             <a href="https://www.airbnb.es/rooms/26868295" 
-               target="_blank" 
+               target="_blank" rel="noopener noreferrer" 
                class="btn btn-outline btn-lg"
                id="airbnbBtn">
               <span class="booking-badge" data-i18n="price.bookairbnb">Reservar en Airbnb</span>
@@ -490,7 +492,7 @@
       </div>
       
       <div class="reviews-cta">
-        <a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" target="_blank" class="btn btn-outline" data-i18n="reviews.cta">Ver todas las reseñas en Google</a>
+        <a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" target="_blank" rel="noopener noreferrer" class="btn btn-outline" data-i18n="reviews.cta">Ver todas las reseñas en Google</a>
       </div>
     </div>
   </section>
@@ -530,8 +532,8 @@
               <div class="contact-detail-text">
                 <strong data-i18n="contact.reservas">Reservas</strong>
                 <span>
-                  <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" target="_blank">Booking.com</a> · 
-                  <a href="https://www.airbnb.es/rooms/26868295" target="_blank">Airbnb</a>
+                  <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" target="_blank" rel="noopener noreferrer">Booking.com</a> · 
+                  <a href="https://www.airbnb.es/rooms/26868295" target="_blank" rel="noopener noreferrer">Airbnb</a>
                 </span>
               </div>
             </div>
@@ -540,7 +542,7 @@
               <div class="icon">🗺️</div>
               <div class="contact-detail-text">
                 <strong data-i18n="contact.directions">Cómo llegar</strong>
-                <span><a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" target="_blank" data-i18n="contact.directions.link">Ver en Google Maps →</a></span>
+                <span><a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" target="_blank" rel="noopener noreferrer" data-i18n="contact.directions.link">Ver en Google Maps →</a></span>
               </div>
             </div>
           </div>
@@ -551,7 +553,7 @@
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11614.984!2d-2.8196!3d43.0882!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4e5d7eb4c9f587%3A0x40d63ae0a5fc270!2s48140+Igorre%2C+Bizkaia!5e0!3m2!1ses!2ses!4v1709740000000"
             allowfullscreen="" 
             loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade"
+            referrerpolicy="strict-origin-when-cross-origin"
             title="Ubicación de Mendien Artean en Google Maps">
           </iframe>
         </div>
@@ -583,9 +585,9 @@
         <div class="footer-links">
           <h4 data-i18n="footer.book">Reservar</h4>
           <ul>
-            <li><a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" target="_blank">Booking.com</a></li>
-            <li><a href="https://www.airbnb.es/rooms/26868295" target="_blank">Airbnb</a></li>
-            <li><a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" target="_blank">Google Maps</a></li>
+            <li><a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" target="_blank" rel="noopener noreferrer">Booking.com</a></li>
+            <li><a href="https://www.airbnb.es/rooms/26868295" target="_blank" rel="noopener noreferrer">Airbnb</a></li>
+            <li><a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" target="_blank" rel="noopener noreferrer">Google Maps</a></li>
           </ul>
         </div>
       </div>
@@ -593,9 +595,9 @@
       <div class="footer-bottom">
         <span data-i18n="footer.rights">© 2026 Mendien Artean. Todos los derechos reservados.</span>
         <div class="footer-social">
-          <a href="https://www.airbnb.es/rooms/26868295" target="_blank" aria-label="Airbnb" title="Airbnb">🏠</a>
-          <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" target="_blank" aria-label="Booking" title="Booking">📘</a>
-          <a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" target="_blank" aria-label="Maps" title="Google Maps">🗺️</a>
+          <a href="https://www.airbnb.es/rooms/26868295" target="_blank" rel="noopener noreferrer" aria-label="Airbnb" title="Airbnb">🏠</a>
+          <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" target="_blank" rel="noopener noreferrer" aria-label="Booking" title="Booking">📘</a>
+          <a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" target="_blank" rel="noopener noreferrer" aria-label="Maps" title="Google Maps">🗺️</a>
         </div>
       </div>
     </div>

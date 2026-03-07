@@ -397,6 +397,38 @@ function t(key) {
 }
 
 /**
+ * Limit translated HTML to a tiny safe subset.
+ */
+function sanitizeTranslationMarkup(value) {
+  const template = document.createElement('template');
+  template.innerHTML = value;
+
+  const allowedTags = new Set(['BR', 'STRONG', 'EM']);
+
+  const sanitizeNode = (node) => {
+    Array.from(node.childNodes).forEach(child => {
+      if (child.nodeType === Node.ELEMENT_NODE) {
+        if (!allowedTags.has(child.tagName)) {
+          child.replaceWith(document.createTextNode(child.textContent || ''));
+          return;
+        }
+
+        Array.from(child.attributes).forEach(attr => child.removeAttribute(attr.name));
+        sanitizeNode(child);
+        return;
+      }
+
+      if (child.nodeType !== Node.TEXT_NODE) {
+        child.remove();
+      }
+    });
+  };
+
+  sanitizeNode(template.content);
+  return template.content;
+}
+
+/**
  * Apply translations to all elements with data-i18n attribute
  */
 function applyTranslations() {
@@ -406,7 +438,7 @@ function applyTranslations() {
     if (value) {
       // Check if the content contains HTML
       if (value.includes('<')) {
-        el.innerHTML = value;
+        el.replaceChildren(sanitizeTranslationMarkup(value));
       } else {
         el.textContent = value;
       }

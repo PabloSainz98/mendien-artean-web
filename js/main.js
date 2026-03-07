@@ -160,10 +160,11 @@ function initCalendar() {
           const checkIn = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
           const nextDay = new Date(currentYear, currentMonth, day + 1);
           const checkOut = `${nextDay.getFullYear()}-${String(nextDay.getMonth() + 1).padStart(2, '0')}-${String(nextDay.getDate()).padStart(2, '0')}`;
-          window.open(
-            `https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html?checkin=${checkIn}&checkout=${checkOut}`,
-            '_blank'
-          );
+          const bookingUrl = `https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html?checkin=${checkIn}&checkout=${checkOut}`;
+          const bookingWindow = window.open(bookingUrl, '_blank', 'noopener,noreferrer');
+          if (bookingWindow) {
+            bookingWindow.opener = null;
+          }
         });
       }
 

@@ -598,6 +598,68 @@
 .legend-dot.available { background: rgba(45, 80, 22, 0.2); }
 .legend-dot.booked { background: rgba(200, 149, 108, 0.3); }
 
+/* Calendar desktop enhancements */
+@media (min-width: 769px) {
+  .availability-content {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.95fr);
+    gap: clamp(2rem, 4vw, 3.25rem);
+  }
+
+  .calendar-widget {
+    padding: clamp(1.75rem, 3vw, 2.5rem);
+    border: 1px solid rgba(45, 80, 22, 0.12);
+    box-shadow: 0 18px 44px rgba(26, 48, 9, 0.16);
+  }
+
+  .calendar-header {
+    margin-bottom: var(--space-xl);
+  }
+
+  .calendar-header h3 {
+    font-size: clamp(1.4rem, 2vw, 1.8rem);
+  }
+
+  .calendar-nav button {
+    width: 42px;
+    height: 42px;
+    font-size: 1.35rem;
+  }
+
+  .calendar-weekdays {
+    gap: 6px;
+    margin-bottom: var(--space-md);
+  }
+
+  .calendar-weekdays span {
+    font-size: var(--fs-sm);
+  }
+
+  .calendar-days {
+    gap: 6px;
+  }
+
+  .calendar-day {
+    min-height: clamp(42px, 4.3vw, 58px);
+    font-size: var(--fs-base);
+    border-radius: var(--radius-lg);
+  }
+
+  .calendar-legend {
+    margin-top: var(--space-xl);
+    gap: var(--space-xl);
+  }
+
+  .legend-item {
+    font-size: var(--fs-sm);
+  }
+
+  .legend-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: var(--radius-md);
+  }
+}
+
 /* Pricing panel */
 .pricing-panel {
   background: var(--color-white);
