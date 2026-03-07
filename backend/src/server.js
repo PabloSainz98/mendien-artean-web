@@ -1,4 +1,5 @@
 const path = require('node:path');
+const fs = require('node:fs');
 const crypto = require('node:crypto');
 const express = require('express');
 const helmet = require('helmet');
@@ -6,6 +7,7 @@ const helmet = require('helmet');
 require('dotenv').config({ path: path.resolve(__dirname, '..', '.env') });
 
 const { createDatabase } = require('./db');
+const { createGoogleCalendarIntegration } = require('./googleCalendar');
 const { validateBookingPayload } = require('./validation');
 
 const app = express();
@@ -18,9 +20,13 @@ const databasePath = process.env.DATABASE_PATH || path.resolve(__dirname, '..', 
 const adminToken = process.env.ADMIN_TOKEN || '';
 const rateLimitWindowMs = Number(process.env.RATE_LIMIT_WINDOW_MS || 15 * 60 * 1000);
 const rateLimitMax = Number(process.env.RATE_LIMIT_MAX || 20);
+const bookingsCsvPath = process.env.BOOKINGS_CSV_PATH
+  ? path.resolve(process.env.BOOKINGS_CSV_PATH)
+  : path.resolve(__dirname, '..', 'data', 'bookings.csv');
 
 const projectRoot = path.resolve(__dirname, '..', '..');
 const db = createDatabase(databasePath);
+const googleCalendar = createGoogleCalendarIntegration();
 
 app.disable('x-powered-by');
 app.set('trust proxy', trustProxy);
@@ -68,6 +74,60 @@ function hashIp(ip) {
   return crypto.createHash('sha256').update(String(ip)).digest('hex');
 }
 
+function csvEscape(value) {
+  const asString = value == null ? '' : String(value);
+  return `"${asString.replace(/"/g, '""')}"`;
+}
+
+function buildBookingsCsv(items) {
+  const headers = [
+    'id',
+    'name',
+    'email',
+    'phone',
+    'guests',
+    'checkin',
+    'checkout',
+    'status',
+    'source',
+    'calendarEventId',
+    'createdAt',
+    'message'
+  ];
+
+  const lines = [headers.map(csvEscape).join(',')];
+
+  for (const item of items) {
+    lines.push(
+      [
+        item.id,
+        item.name,
+        item.email,
+        item.phone,
+        item.guests,
+        item.checkin,
+        item.checkout,
+        item.status,
+        item.source,
+        item.calendarEventId,
+        item.createdAt,
+        item.message
+      ]
+        .map(csvEscape)
+        .join(',')
+    );
+  }
+
+  return `\uFEFF${lines.join('\n')}`;
+}
+
+function writeBookingsCsvSnapshot() {
+  const items = db.listRequests(5000);
+  const csv = buildBookingsCsv(items);
+  fs.mkdirSync(path.dirname(bookingsCsvPath), { recursive: true });
+  fs.writeFileSync(bookingsCsvPath, csv, 'utf8');
+}
+
 function requireAdmin(req, res, next) {
   if (!adminToken) {
     return res.status(503).json({ ok: false, error: 'Admin token not configured' });
@@ -93,7 +153,7 @@ app.get('/api/health', (_req, res) => {
   });
 });
 
-app.post('/api/booking-requests', rateLimit, (req, res) => {
+app.post('/api/booking-requests', rateLimit, async (req, res) => {
   const parsed = validateBookingPayload(req.body);
 
   if (!parsed.valid) {
@@ -111,6 +171,26 @@ app.post('/api/booking-requests', rateLimit, (req, res) => {
     ipHash: hashIp(ip)
   });
 
+  if (googleCalendar.enabled) {
+    try {
+      const eventId = await googleCalendar.createBookingEvent({
+        id: requestId,
+        ...parsed.values
+      });
+      if (eventId) {
+        db.setCalendarEventId(requestId, eventId);
+      }
+    } catch (error) {
+      console.error('Google Calendar event creation failed:', error.message);
+    }
+  }
+
+  try {
+    writeBookingsCsvSnapshot();
+  } catch (error) {
+    console.error('CSV snapshot update failed:', error.message);
+  }
+
   return res.status(201).json({ ok: true, requestId });
 });
 
@@ -120,6 +200,13 @@ app.get('/api/admin/booking-requests', requireAdmin, (req, res) => {
 
   const items = db.listRequests(safeLimit);
   res.json({ ok: true, count: items.length, items });
+});
+
+app.get('/api/admin/booking-requests.csv', requireAdmin, (_req, res) => {
+  const csv = buildBookingsCsv(db.listRequests(5000));
+  res.setHeader('Content-Type', 'text/csv; charset=utf-8');
+  res.setHeader('Content-Disposition', 'attachment; filename=\"booking-requests.csv\"');
+  res.send(csv);
 });
 
 app.use('/css', express.static(path.join(projectRoot, 'css')));
