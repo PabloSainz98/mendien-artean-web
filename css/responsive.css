@@ -109,6 +109,15 @@
     height: 220px;
   }
 
+  .property-card-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .property-card-actions .btn {
+    width: 100%;
+  }
+
   /* Services Mobile */
   .services-grid {
     grid-template-columns: 1fr;

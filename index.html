@@ -76,6 +76,8 @@
       { "@type": "LocationFeatureSpecification", "name": "Mascotas permitidas", "value": true }
     ],
     "sameAs": [
+      "https://www.booking.com/hotel/es/domo-en-plena-naturaleza.es.html",
+      "https://www.airbnb.es/rooms/1550920029631784546",
       "https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html",
       "https://www.airbnb.es/rooms/26868295"
     ]
@@ -105,7 +107,6 @@
           <div class="lang-switcher lang-switcher-mobile" id="langSwitcherMobile">
             <button class="lang-btn" data-lang="es">ES</button>
             <button class="lang-btn" data-lang="en">EN</button>
-            <button class="lang-btn" data-lang="eu">EU</button>
           </div>
         </div>
 
@@ -113,7 +114,6 @@
         <div class="lang-switcher lang-switcher-desktop" id="langSwitcherDesktop">
           <button class="lang-btn" data-lang="es">ES</button>
           <button class="lang-btn" data-lang="en">EN</button>
-          <button class="lang-btn" data-lang="eu">EU</button>
         </div>
 
         <div class="nav-toggle" id="navToggle">
@@ -140,8 +140,8 @@
       </div>
       <h1><em>Mendien Artean</em></h1>
       <p class="hero-subtitle" data-i18n="hero.subtitle">
-        Domo geodésico y casa rural entre los parques naturales de Urkiola y Gorbeia.<br>
-        Tu refugio de naturaleza en el corazón del País Vasco.
+        Mendien Artean es un acogedor complejo rural entre los parques naturales de Urkiola y Gorbeia.<br>
+        El complejo cuenta con dos alojamientos: Domo Igorre y Urkiola Etxea.
       </p>
       <!-- Precio visible desde el hero -->
       <div class="hero-price" aria-label="Precio desde 75 euros por noche">
@@ -173,12 +173,12 @@
         <div class="about-content reveal-right">
           <h2 data-i18n="about.title">Tu refugio entre montañas</h2>
           <p data-i18n="about.p1">
-            <strong>Mendien Artean</strong> es un complejo de agroturismo situado en el corazón del País Vasco,
+            <strong>Mendien Artean</strong> es un acogedor complejo rural situado en el corazón del País Vasco,
             entre los impresionantes parques naturales de <strong>Urkiola</strong> y <strong>Gorbeia</strong>.
           </p>
           <p data-i18n="about.p2">
-            Ofrecemos dos experiencias únicas: un espectacular domo geodésico con vistas panorámicas
-            y una acogedora casa rural con jardín vallado. Pet-friendly, con parking privado y rodeados de naturaleza.
+            El complejo cuenta con dos alojamientos: <strong>Domo Igorre</strong>, una experiencia glamping con vistas panorámicas,
+            y <strong>Urkiola Etxea</strong>, una casa rural independiente con jardín vallado y terraza.
           </p>
 
           <div class="about-features stagger-children">
@@ -219,13 +219,13 @@
 
       <div class="properties-grid">
         <!-- DOMO -->
-        <div class="property-card property-card--featured reveal">
+        <div class="property-card property-card--featured reveal is-selected" data-property-card="domo">
           <div class="property-card-image">
             <img src="images/domo/domo-exterior-noche.jpg" alt="Domo geodésico iluminado al atardecer" loading="lazy" decoding="async" width="600" height="400">
             <span class="property-badge" data-i18n="properties.featured">Destacado</span>
           </div>
           <div class="property-card-content">
-            <h3 data-i18n="properties.domo.title">Domo Geodésico</h3>
+            <h3 data-i18n="properties.domo.title">Domo Igorre</h3>
             <p data-i18n="properties.domo.desc">Glamping de lujo con paneles panorámicos, jacuzzi privado y vistas al valle. Una experiencia única bajo las estrellas.</p>
             <div class="property-card-features">
               <span>📐 38m²</span>
@@ -236,17 +236,20 @@
             <div class="property-card-price">
               <span data-i18n="properties.pricefrom">desde</span> <strong>75€</strong><span data-i18n="properties.pricenight">/noche</span>
             </div>
-            <a href="#gallery" class="btn btn-primary" data-gallery-tab="domo" data-i18n="properties.photos">Ver fotos →</a>
+            <div class="property-card-actions">
+              <a href="#gallery" class="btn btn-primary" data-gallery-tab="domo" data-i18n="properties.photos">Ver fotos →</a>
+              <button type="button" class="btn btn-outline property-select-btn" data-select-property="domo" data-i18n="properties.select">Seleccionar</button>
+            </div>
           </div>
         </div>
 
         <!-- CASA RURAL -->
-        <div class="property-card reveal">
+        <div class="property-card reveal" data-property-card="casa">
           <div class="property-card-image">
             <img src="images/444547533.jpg" alt="Casa rural con terraza y jardín" loading="lazy" decoding="async" width="600" height="400">
           </div>
           <div class="property-card-content">
-            <h3 data-i18n="properties.casa.title">Casa Rural</h3>
+            <h3 data-i18n="properties.casa.title">Urkiola Etxea</h3>
             <p data-i18n="properties.casa.desc">Casa independiente con jardín vallado, terraza con vistas a la montaña, cocina completa y todo el confort para familias.</p>
             <div class="property-card-features">
               <span>📐 48m²</span>
@@ -257,7 +260,10 @@
             <div class="property-card-price">
               <span data-i18n="properties.pricefrom">desde</span> <strong>75€</strong><span data-i18n="properties.pricenight">/noche</span>
             </div>
-            <a href="#gallery" class="btn btn-primary" data-gallery-tab="casa" data-i18n="properties.photos">Ver fotos →</a>
+            <div class="property-card-actions">
+              <a href="#gallery" class="btn btn-primary" data-gallery-tab="casa" data-i18n="properties.photos">Ver fotos →</a>
+              <button type="button" class="btn btn-outline property-select-btn" data-select-property="casa" data-i18n="properties.select">Seleccionar</button>
+            </div>
           </div>
         </div>
       </div>
@@ -391,7 +397,7 @@
 
           <div class="pricing-property-links">
             <div class="pricing-property">
-              <strong data-i18n="properties.domo.title">Domo Geodésico</strong>
+              <strong data-i18n="properties.domo.title">Domo Igorre</strong>
               <div class="pricing-book">
                 <a href="#booking" class="btn btn-primary btn-sm">
                   <span data-i18n="price.bookdirect">✉️ Directo</span>
@@ -405,7 +411,7 @@
               </div>
             </div>
             <div class="pricing-property">
-              <strong data-i18n="properties.casa.title">Casa Rural</strong>
+              <strong data-i18n="properties.casa.title">Urkiola Etxea</strong>
               <div class="pricing-book">
                 <a href="#booking" class="btn btn-primary btn-sm">
                   <span data-i18n="price.bookdirect">✉️ Directo</span>
@@ -453,8 +459,8 @@
             <div class="form-group">
               <label for="b_property" data-i18n="booking.property">Alojamiento</label>
               <select id="b_property" name="property" required>
-                <option value="domo" data-i18n="booking.property.domo">Domo Geodésico</option>
-                <option value="casa" data-i18n="booking.property.casa">Casa Rural</option>
+                <option value="domo" data-i18n="booking.property.domo">Domo Igorre</option>
+                <option value="casa" data-i18n="booking.property.casa">Urkiola Etxea</option>
               </select>
             </div>
           </div>
@@ -569,8 +575,8 @@
       </div>
 
       <div class="gallery-tabs">
-        <button class="gallery-tab active" data-tab="domo" data-i18n="gallery.tab.domo">Domo</button>
-        <button class="gallery-tab" data-tab="casa" data-i18n="gallery.tab.casa">Casa Rural</button>
+        <button class="gallery-tab active" data-tab="domo" data-i18n="gallery.tab.domo">Domo Igorre</button>
+        <button class="gallery-tab" data-tab="casa" data-i18n="gallery.tab.casa">Urkiola Etxea</button>
       </div>
 
       <div class="gallery-grid" id="galleryGrid">
@@ -810,7 +816,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <h3>Mendien Artean</h3>
-          <p data-i18n="footer.desc">Casa rural entre los parques naturales de Urkiola y Gorbeia. Tu refugio de naturaleza en el corazón del País Vasco.</p>
+          <p data-i18n="footer.desc">Mendien Artean es un acogedor complejo rural con dos alojamientos: Domo Igorre y Urkiola Etxea, entre Urkiola y Gorbeia.</p>
           <a href="#" data-wa
              target="_blank" rel="noopener noreferrer"
              class="btn btn-whatsapp-footer"
