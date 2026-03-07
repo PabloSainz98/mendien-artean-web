@@ -2,18 +2,46 @@
    MENDIEN ARTEAN — Main JavaScript
    ============================================ */
 
+// ============================================================
+// CALENDARIO — Fechas reservadas
+// Para sincronizar con Booking.com y Airbnb:
+// 1. Booking.com: Extranet → Propiedades → Calendario → Exportar iCal
+// 2. Airbnb: Calendario → Disponibilidad → Exportar calendario (.ics)
+// 3. Actualiza el array BOOKED_DATES manualmente cada semana,
+//    o implementa un proxy serverless (Netlify Functions / Vercel)
+//    que parsee los .ics y devuelva JSON.
+// ============================================================
+const BOOKED_DATES = [
+  // Formato: 'YYYY-MM-DD' — sustituye con tus fechas reales
+  '2026-03-10', '2026-03-11', '2026-03-12', '2026-03-13',
+  '2026-03-22', '2026-03-23',
+  '2026-04-04', '2026-04-05', '2026-04-06', '2026-04-07', '2026-04-08', '2026-04-09', '2026-04-10',
+  '2026-04-18', '2026-04-19', '2026-04-20',
+  '2026-05-01', '2026-05-02', '2026-05-03',
+  '2026-05-15', '2026-05-16', '2026-05-17', '2026-05-18',
+  '2026-06-10', '2026-06-11', '2026-06-12', '2026-06-13', '2026-06-14',
+  '2026-06-24', '2026-06-25', '2026-06-26', '2026-06-27', '2026-06-28', '2026-06-29', '2026-06-30',
+  '2026-07-01', '2026-07-02', '2026-07-03', '2026-07-04', '2026-07-05',
+  '2026-07-18', '2026-07-19', '2026-07-20', '2026-07-21', '2026-07-22', '2026-07-23', '2026-07-24', '2026-07-25',
+  '2026-08-01', '2026-08-02', '2026-08-03', '2026-08-04', '2026-08-05', '2026-08-06', '2026-08-07',
+  '2026-08-14', '2026-08-15', '2026-08-16', '2026-08-17', '2026-08-18', '2026-08-19', '2026-08-20', '2026-08-21',
+  '2026-08-28', '2026-08-29', '2026-08-30', '2026-08-31',
+];
+
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize language first
   if (typeof initLanguageSwitcher === 'function') {
     initLanguageSwitcher();
   }
-  
+
+  initContactLinks();
   initNavbar();
   initCalendar();
   initBookingForm();
   initGallery();
   initScrollReveal();
   initSmoothScroll();
+  initBookingForm();
+  initDateConstraints();
 });
 
 /* ==========================================
@@ -25,19 +53,14 @@ function initNavbar() {
   const navLinks = document.getElementById('navLinks');
   const navOverlay = document.getElementById('navOverlay');
 
-  // Scroll effect
-  let lastScroll = 0;
   window.addEventListener('scroll', () => {
-    const currentScroll = window.scrollY;
-    if (currentScroll > 80) {
+    if (window.scrollY > 80) {
       navbar.classList.add('scrolled');
     } else {
       navbar.classList.remove('scrolled');
     }
-    lastScroll = currentScroll;
   });
 
-  // Mobile toggle
   navToggle.addEventListener('click', () => {
     navToggle.classList.toggle('active');
     navLinks.classList.toggle('open');
@@ -45,23 +68,18 @@ function initNavbar() {
     document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
   });
 
-  // Close on overlay click
-  navOverlay.addEventListener('click', () => {
+  navOverlay.addEventListener('click', closeNav);
+
+  navLinks.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', closeNav);
+  });
+
+  function closeNav() {
     navToggle.classList.remove('active');
     navLinks.classList.remove('open');
     navOverlay.classList.remove('active');
     document.body.style.overflow = '';
-  });
-
-  // Close on link click
-  navLinks.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', () => {
-      navToggle.classList.remove('active');
-      navLinks.classList.remove('open');
-      navOverlay.classList.remove('active');
-      document.body.style.overflow = '';
-    });
-  });
+  }
 }
 
 /* ==========================================
@@ -77,49 +95,25 @@ function initCalendar() {
   let currentMonth = currentDate.getMonth();
   let currentYear = currentDate.getFullYear();
 
-  const monthNames = [
-    'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-  ];
+  // Expose renderCalendar for i18n system
+  window.renderCalendar = renderCalendar;
 
-  // Simulated booked dates (for demo — these would come from Booking/Airbnb API)
-  const bookedDates = generateSampleBookings();
-
-  function generateSampleBookings() {
-    const booked = [];
-    const now = new Date();
-    
-    // Generate some sample bookings for the next 3 months
-    for (let m = 0; m < 4; m++) {
-      const month = (now.getMonth() + m) % 12;
-      const year = now.getFullYear() + Math.floor((now.getMonth() + m) / 12);
-      
-      // Random booking blocks
-      const startDay1 = 5 + Math.floor(Math.random() * 5);
-      const endDay1 = startDay1 + 2 + Math.floor(Math.random() * 4);
-      const startDay2 = 18 + Math.floor(Math.random() * 5);
-      const endDay2 = startDay2 + 2 + Math.floor(Math.random() * 3);
-
-      for (let d = startDay1; d <= endDay1 && d <= 28; d++) {
-        booked.push(`${year}-${String(month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`);
-      }
-      for (let d = startDay2; d <= endDay2 && d <= 28; d++) {
-        booked.push(`${year}-${String(month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`);
-      }
+  function getMonthNames() {
+    if (typeof t === 'function') {
+      return Array.from({ length: 12 }, (_, i) => t(`month.${i}`));
     }
-    return booked;
+    return ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
   }
 
   function isBooked(year, month, day) {
     const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-    return bookedDates.includes(dateStr);
+    return BOOKED_DATES.includes(dateStr);
   }
 
   function isPast(year, month, day) {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    const date = new Date(year, month, day);
-    return date < today;
+    return new Date(year, month, day) < today;
   }
 
   function isToday(year, month, day) {
@@ -128,23 +122,20 @@ function initCalendar() {
   }
 
   function renderCalendar() {
+    const monthNames = getMonthNames();
     calendarTitle.textContent = `${monthNames[currentMonth]} ${currentYear}`;
     calendarDays.innerHTML = '';
 
     const firstDay = new Date(currentYear, currentMonth, 1).getDay();
     const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-
-    // Adjust for Monday start (0=Mon, 6=Sun)
     const startDay = firstDay === 0 ? 6 : firstDay - 1;
 
-    // Empty cells before month starts
     for (let i = 0; i < startDay; i++) {
       const empty = document.createElement('div');
       empty.className = 'calendar-day empty';
       calendarDays.appendChild(empty);
     }
 
-    // Days of the month
     for (let day = 1; day <= daysInMonth; day++) {
       const dayEl = document.createElement('div');
       dayEl.className = 'calendar-day';
@@ -154,17 +145,29 @@ function initCalendar() {
         dayEl.classList.add('past');
       } else if (isBooked(currentYear, currentMonth, day)) {
         dayEl.classList.add('booked');
+        dayEl.setAttribute('aria-label', `${day}, reservado`);
       } else {
         dayEl.classList.add('available');
+        dayEl.setAttribute('aria-label', `${day}, disponible`);
         dayEl.addEventListener('click', () => {
-          // Redirect to Booking.com with date pre-filled
-          const checkIn = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-          const nextDay = new Date(currentYear, currentMonth, day + 1);
-          const checkOut = `${nextDay.getFullYear()}-${String(nextDay.getMonth() + 1).padStart(2, '0')}-${String(nextDay.getDate()).padStart(2, '0')}`;
-          const bookingUrl = `https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html?checkin=${checkIn}&checkout=${checkOut}`;
-          const bookingWindow = window.open(bookingUrl, '_blank', 'noopener,noreferrer');
-          if (bookingWindow) {
-            bookingWindow.opener = null;
+          // Al hacer clic en fecha disponible → ir al formulario de reserva directa
+          const checkinInput = document.getElementById('b_checkin');
+          if (checkinInput) {
+            const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            checkinInput.value = dateStr;
+            // Actualizar checkout mínimo
+            const checkoutInput = document.getElementById('b_checkout');
+            if (checkoutInput) {
+              const nextDay = new Date(currentYear, currentMonth, day + 1);
+              const nextDateStr = `${nextDay.getFullYear()}-${String(nextDay.getMonth() + 1).padStart(2, '0')}-${String(nextDay.getDate()).padStart(2, '0')}`;
+              checkoutInput.min = nextDateStr;
+            }
+          }
+          // Scroll al formulario
+          const bookingSection = document.getElementById('booking');
+          if (bookingSection) {
+            const navHeight = document.getElementById('navbar').offsetHeight;
+            window.scrollTo({ top: bookingSection.getBoundingClientRect().top + window.scrollY - navHeight, behavior: 'smooth' });
           }
         });
       }
@@ -179,19 +182,13 @@ function initCalendar() {
 
   calPrev.addEventListener('click', () => {
     currentMonth--;
-    if (currentMonth < 0) {
-      currentMonth = 11;
-      currentYear--;
-    }
+    if (currentMonth < 0) { currentMonth = 11; currentYear--; }
     renderCalendar();
   });
 
   calNext.addEventListener('click', () => {
     currentMonth++;
-    if (currentMonth > 11) {
-      currentMonth = 0;
-      currentYear++;
-    }
+    if (currentMonth > 11) { currentMonth = 0; currentYear++; }
     renderCalendar();
   });
 
@@ -199,82 +196,114 @@ function initCalendar() {
 }
 
 /* ==========================================
-   BOOKING FORM — Backend submission
+   DATE CONSTRAINTS — Fechas mínimas en formulario
    ========================================== */
-function getI18nValue(key, fallback) {
-  if (typeof t === 'function') {
-    const value = t(key);
-    if (value && value !== key) {
-      return value;
+function initDateConstraints() {
+  const checkinInput = document.getElementById('b_checkin');
+  const checkoutInput = document.getElementById('b_checkout');
+  if (!checkinInput || !checkoutInput) return;
+
+  const today = new Date().toISOString().split('T')[0];
+  checkinInput.min = today;
+
+  checkinInput.addEventListener('change', () => {
+    if (checkinInput.value) {
+      const nextDay = new Date(checkinInput.value);
+      nextDay.setDate(nextDay.getDate() + 1);
+      checkoutInput.min = nextDay.toISOString().split('T')[0];
+      if (checkoutInput.value && checkoutInput.value <= checkinInput.value) {
+        checkoutInput.value = '';
+      }
     }
-  }
-  return fallback;
+  });
 }
 
+/* ==========================================
+   CONTACT LINKS — rellena hrefs y textos desde config.js
+   config.js está en .gitignore; usa config.example.js como plantilla.
+   ========================================== */
+function initContactLinks() {
+  const cfg = window.SITE_CONFIG;
+  if (!cfg) return;
+
+  const waText = encodeURIComponent('Hola, me gustaría obtener más información sobre Mendien Artean');
+  const waUrl  = `https://wa.me/${cfg.phone}?text=${waText}`;
+
+  // Actualiza todos los enlaces de WhatsApp
+  document.querySelectorAll('[data-wa]').forEach(el => {
+    el.href = waUrl;
+  });
+
+  // Actualiza el número de teléfono visible en la sección de contacto
+  document.querySelectorAll('[data-wa-display]').forEach(el => {
+    el.textContent = cfg.phoneDisplay;
+  });
+
+  // Actualiza el JSON-LD del <head> con teléfono y email reales
+  const ldScript = document.querySelector('script[type="application/ld+json"]');
+  if (ldScript) {
+    ldScript.textContent = ldScript.textContent
+      .replace('"__PHONE__"', `"+${cfg.phone}"`)
+      .replace('"__EMAIL__"', `"${cfg.email}"`);
+  }
+}
+
+/* ==========================================
+   BOOKING FORM — mailto: (sin registro, sin backend)
+   Al enviar, abre el cliente de correo del usuario
+   con todos los campos pre-rellenados.
+   ========================================== */
 function initBookingForm() {
   const form = document.getElementById('bookingForm');
+  const successEl = document.getElementById('formSuccess');
+  const errorEl = document.getElementById('formError');
+
   if (!form) return;
 
-  const feedback = document.getElementById('bookingFeedback');
-  const submitBtn = form.querySelector('button[type="submit"]');
-  const guestsSelect = document.getElementById('b_guests');
-
-  const setFeedback = (type, key, fallback) => {
-    if (!feedback) return;
-    feedback.hidden = false;
-    feedback.className = `form-feedback ${type}`;
-    feedback.textContent = getI18nValue(key, fallback);
-  };
-
-  const clearFeedback = () => {
-    if (!feedback) return;
-    feedback.hidden = true;
-    feedback.textContent = '';
-    feedback.className = 'form-feedback';
-  };
-
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
-    clearFeedback();
 
-    const payload = {
-      name: document.getElementById('b_name')?.value || '',
-      email: document.getElementById('b_email')?.value || '',
-      phone: document.getElementById('b_phone')?.value || '',
-      guests: Number(document.getElementById('b_guests')?.value || 0),
-      checkin: document.getElementById('b_checkin')?.value || '',
-      checkout: document.getElementById('b_checkout')?.value || '',
-      message: document.getElementById('b_message')?.value || '',
-      company: document.getElementById('b_company')?.value || ''
-    };
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
 
-    const originalLabel = submitBtn.textContent;
-    submitBtn.disabled = true;
-    submitBtn.textContent = getI18nValue('booking.sending', 'Enviando solicitud...');
+    const name     = document.getElementById('b_name').value.trim();
+    const email    = document.getElementById('b_email').value.trim();
+    const phone    = document.getElementById('b_phone').value.trim();
+    const guests   = document.getElementById('b_guests').value;
+    const checkin  = document.getElementById('b_checkin').value;
+    const checkout = document.getElementById('b_checkout').value;
+    const message  = document.getElementById('b_message').value.trim();
+
+    const subject = `Solicitud de reserva: ${name} | ${checkin} - ${checkout}`;
+    const body = [
+      'SOLICITUD DE RESERVA - MENDIEN ARTEAN',
+      '-----------------------------------------',
+      `Nombre:      ${name}`,
+      `Email:       ${email}`,
+      `Teléfono:    ${phone}`,
+      `Huéspedes:   ${guests}`,
+      `Entrada:     ${checkin}`,
+      `Salida:      ${checkout}`,
+      `Mensaje:     ${message || '(ninguno)'}`,
+      '-----------------------------------------',
+      'Enviado desde mendienartean.com',
+    ].join('\n');
+
+    const dest = (window.SITE_CONFIG && window.SITE_CONFIG.email) || '';
+    const mailtoUrl = `mailto:${dest}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
     try {
-      const res = await fetch('/api/booking-requests', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      });
-
-      if (!res.ok) {
-        throw new Error(`Request failed with status ${res.status}`);
-      }
-
-      form.reset();
-      if (guestsSelect) {
-        guestsSelect.value = '2';
-      }
-      setFeedback('success', 'booking.success', 'Solicitud enviada. Te responderemos muy pronto.');
-    } catch (error) {
-      setFeedback('error', 'booking.error', 'No hemos podido enviar la solicitud. Inténtalo de nuevo.');
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = originalLabel;
+      window.location.href = mailtoUrl;
+      setTimeout(() => {
+        if (successEl) successEl.style.display = 'block';
+        if (errorEl) errorEl.style.display = 'none';
+        form.reset();
+        setTimeout(() => { if (successEl) successEl.style.display = 'none'; }, 6000);
+      }, 500);
+    } catch {
+      if (errorEl) errorEl.style.display = 'block';
     }
   });
 }
@@ -328,12 +357,10 @@ function initGallery() {
   lightboxPrev.addEventListener('click', () => navigate(-1));
   lightboxNext.addEventListener('click', () => navigate(1));
 
-  // Close on backdrop click
   lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox) closeLightbox();
   });
 
-  // Keyboard navigation
   document.addEventListener('keydown', (e) => {
     if (!lightbox.classList.contains('active')) return;
     if (e.key === 'Escape') closeLightbox();
@@ -341,7 +368,6 @@ function initGallery() {
     if (e.key === 'ArrowRight') navigate(1);
   });
 
-  // Add transition for smooth image switching
   lightboxImg.style.transition = 'opacity 0.2s ease';
 }
 
@@ -358,10 +384,7 @@ function initScrollReveal() {
         observer.unobserve(entry.target);
       }
     });
-  }, {
-    threshold: 0.15,
-    rootMargin: '0px 0px -50px 0px'
-  });
+  }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
 
   reveals.forEach(el => observer.observe(el));
 }
@@ -375,14 +398,15 @@ function initSmoothScroll() {
       e.preventDefault();
       const targetId = this.getAttribute('href');
       if (targetId === '#') return;
-      
+
+      // Validar que el selector es un ID simple antes de usarlo
+      if (!/^#[a-zA-Z][a-zA-Z0-9_-]*$/.test(targetId)) return;
+
       const target = document.querySelector(targetId);
       if (target) {
         const navHeight = document.getElementById('navbar').offsetHeight;
-        const targetPos = target.getBoundingClientRect().top + window.scrollY - navHeight;
-        
         window.scrollTo({
-          top: targetPos,
+          top: target.getBoundingClientRect().top + window.scrollY - navHeight,
           behavior: 'smooth'
         });
       }

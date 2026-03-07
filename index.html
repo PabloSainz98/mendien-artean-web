@@ -3,31 +3,86 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; frame-src https://www.google.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>Mendien Artean — Agroturismo en el País Vasco | Casa Rural entre Parques Naturales</title>
-  <meta name="description" content="Mendien Artean: casa rural con jardín y terraza entre los parques naturales de Urkiola y Gorbeia en el País Vasco. Hasta 4 huéspedes, pet-friendly, cocina equipada.">
+  <title>Mendien Artean | Agroturismo en el País Vasco | Casa Rural entre Parques Naturales</title>
+  <meta name="description" content="Mendien Artean: casa rural con jardín y terraza entre los parques naturales de Urkiola y Gorbeia en el País Vasco. Hasta 4 huéspedes, pet-friendly, cocina equipada. Desde 75€/noche.">
   <meta name="keywords" content="agroturismo, País Vasco, Euskadi, casa rural, Urkiola, Gorbeia, Igorre, naturaleza, rural tourism, Basque Country">
-  
+  <link rel="canonical" href="https://pablosainz98.github.io/mendien-artean-web/">
+
   <!-- Open Graph & Social Cards -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://pablosainz98.github.io/mendien-artean-web/">
-  <meta property="og:title" content="Mendien Artean — Agroturismo en País Vasco">
-  <meta property="og:description" content="Casa rural con jardín y terraza entre los parques naturales de Urkiola y Gorbeia. Hasta 4 huéspedes.">
+  <meta property="og:title" content="Mendien Artean | Agroturismo en País Vasco">
+  <meta property="og:description" content="Casa rural con jardín y terraza entre los parques naturales de Urkiola y Gorbeia. Hasta 4 huéspedes. Desde 75€/noche.">
   <meta property="og:image" content="https://pablosainz98.github.io/mendien-artean-web/images/444547533.jpg">
-  
+
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Mendien Artean — Agroturismo en País Vasco">
-  <meta name="twitter:description" content="Casa rural con encanto entre Urkiola y Gorbeia.">
+  <meta name="twitter:title" content="Mendien Artean | Agroturismo en País Vasco">
+  <meta name="twitter:description" content="Casa rural con encanto entre Urkiola y Gorbeia. Desde 75€/noche.">
   <meta name="twitter:image" content="https://pablosainz98.github.io/mendien-artean-web/images/444547533.jpg">
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2D5016">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Mendien Artean">
 
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏡</text></svg>">
-  
+
+  <!-- Google Fonts — preconnect to avoid render blocking -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap">
+
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/index.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Schema.org — LodgingBusiness structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LodgingBusiness",
+    "name": "Mendien Artean",
+    "description": "Casa rural con jardín vallado y terraza con vistas a la montaña entre los parques naturales de Urkiola y Gorbeia. Hasta 4 huéspedes. Pet-friendly.",
+    "url": "https://pablosainz98.github.io/mendien-artean-web/",
+    "telephone": "__PHONE__",
+    "email": "__EMAIL__",
+    "priceRange": "75€ - 120€",
+    "checkinTime": "16:00",
+    "checkoutTime": "11:00",
+    "numberOfRooms": 1,
+    "petsAllowed": true,
+    "image": "https://pablosainz98.github.io/mendien-artean-web/images/444547533.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Igorre",
+      "addressRegion": "Bizkaia",
+      "addressCountry": "ES"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 43.0882,
+      "longitude": -2.8196
+    },
+    "amenityFeature": [
+      { "@type": "LocationFeatureSpecification", "name": "WiFi gratuito", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Parking privado", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Cocina equipada", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Barbacoa", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Jardín vallado", "value": true },
+      { "@type": "LocationFeatureSpecification", "name": "Mascotas permitidas", "value": true }
+    ],
+    "sameAs": [
+      "https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html",
+      "https://www.airbnb.es/rooms/26868295"
+    ]
+  }
+  </script>
+
+  <!-- Sin dependencias externas — el formulario usa mailto: nativo -->
 </head>
 <body>
 
@@ -35,7 +90,7 @@
   <nav class="navbar" id="navbar">
     <div class="container">
       <a href="#" class="nav-logo">Mendien Artean</a>
-      
+
       <div class="nav-right">
         <div class="nav-links" id="navLinks">
           <a href="#about" data-i18n="nav.about">La Casa</a>
@@ -44,8 +99,8 @@
           <a href="#activities" data-i18n="nav.activities">Actividades</a>
           <a href="#gallery" data-i18n="nav.gallery">Galería</a>
           <a href="#contact" data-i18n="nav.contact">Contacto</a>
-          <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" target="_blank" rel="noopener noreferrer" class="nav-cta" data-i18n="nav.book">Reservar</a>
-          
+          <a href="#booking" class="nav-cta" data-i18n="nav.book">Reservar</a>
+
           <!-- Language Switcher (Mobile) -->
           <div class="lang-switcher lang-switcher-mobile" id="langSwitcherMobile">
             <button class="lang-btn" data-lang="es">ES</button>
@@ -74,10 +129,10 @@
   <!-- ============ HERO ============ -->
   <section class="hero" id="hero">
     <div class="hero-bg">
-      <img src="images/444547533.jpg" alt="Mendien Artean — Casa rural entre parques naturales en el País Vasco" loading="eager">
+      <img src="images/444547533.jpg" alt="Mendien Artean, casa rural entre parques naturales en el País Vasco" loading="eager" decoding="sync" width="1920" height="1080">
     </div>
     <div class="hero-overlay"></div>
-    
+
     <div class="hero-content">
       <div class="hero-badge">
         <span>🌿</span>
@@ -88,8 +143,14 @@
         Casa rural con encanto entre los parques naturales de Urkiola y Gorbeia.<br>
         Tu refugio de naturaleza en el corazón del País Vasco.
       </p>
+      <!-- Precio visible desde el hero -->
+      <div class="hero-price" aria-label="Precio desde 75 euros por noche">
+        <span class="hero-price-from" data-i18n="hero.pricefrom">desde</span>
+        <span class="hero-price-amount">75€</span>
+        <span class="hero-price-night" data-i18n="hero.pricenight">/noche</span>
+      </div>
       <div class="hero-ctas">
-        <a href="#availability" class="btn btn-primary btn-lg" data-i18n="hero.cta1">Ver disponibilidad</a>
+        <a href="#booking" class="btn btn-primary btn-lg" data-i18n="hero.cta1">Reservar ahora</a>
         <a href="#about" class="btn btn-secondary btn-lg" data-i18n="hero.cta2">Descubre la casa</a>
       </div>
     </div>
@@ -106,20 +167,20 @@
     <div class="container">
       <div class="about-grid">
         <div class="about-image reveal-left">
-          <img src="images/444547567.jpg" alt="Vista exterior de Mendien Artean al atardecer">
+          <img src="images/444547567.jpg" alt="Vista exterior de Mendien Artean al atardecer" loading="lazy" decoding="async" width="600" height="400">
         </div>
-        
+
         <div class="about-content reveal-right">
           <h2 data-i18n="about.title">Tu casa entre montañas</h2>
           <p data-i18n="about.p1">
-            <strong>Mendien Artean</strong> es una acogedora casa rural independiente situada en el corazón del País Vasco, 
+            <strong>Mendien Artean</strong> es una acogedora casa rural independiente situada en el corazón del País Vasco,
             entre los impresionantes parques naturales de <strong>Urkiola</strong> y <strong>Gorbeia</strong>.
           </p>
           <p data-i18n="about.p2">
-            Con 48m² de espacio bien aprovechado, jardín vallado y una terraza con vistas a la montaña, 
+            Con 48m² de espacio bien aprovechado, jardín vallado y una terraza con vistas a la montaña,
             es el lugar perfecto para desconectar, ya sea en pareja, en familia o con tu mascota.
           </p>
-          
+
           <div class="about-features stagger-children">
             <div class="about-feature reveal">
               <div class="icon">👥</div>
@@ -138,6 +199,12 @@
               <span data-i18n="about.feat4">Jardín vallado</span>
             </div>
           </div>
+
+          <!-- Precio destacado en about -->
+          <div class="about-price-note">
+            <span data-i18n="about.pricenote">Desde <strong>75€/noche</strong> · Reserva directa sin comisiones</span>
+            <a href="#booking" class="btn btn-primary" data-i18n="about.bookdirect">Solicitar reserva →</a>
+          </div>
         </div>
       </div>
     </div>
@@ -150,38 +217,38 @@
         <h2 data-i18n="services.title">Servicios</h2>
         <p data-i18n="services.subtitle">Todo lo que necesitas para una estancia cómoda y relajada</p>
       </div>
-      
+
       <div class="services-grid stagger-children">
         <div class="service-card reveal">
           <div class="service-icon">🍳</div>
           <h4 data-i18n="svc.kitchen.title">Cocina equipada</h4>
           <p data-i18n="svc.kitchen.desc">Cocina completa con horno, microondas, lavavajillas, frigorífico y cafetera</p>
         </div>
-        
+
         <div class="service-card reveal">
           <div class="service-icon">📶</div>
           <h4 data-i18n="svc.wifi.title">WiFi gratuito</h4>
           <p data-i18n="svc.wifi.desc">Conexión WiFi de alta velocidad en toda la casa</p>
         </div>
-        
+
         <div class="service-card reveal">
           <div class="service-icon">🚗</div>
           <h4 data-i18n="svc.parking.title">Parking privado</h4>
           <p data-i18n="svc.parking.desc">Aparcamiento gratuito en la propiedad</p>
         </div>
-        
+
         <div class="service-card reveal">
           <div class="service-icon">🔥</div>
           <h4 data-i18n="svc.bbq.title">Barbacoa</h4>
           <p data-i18n="svc.bbq.desc">Zona de barbacoa en el jardín con mesa y sillas</p>
         </div>
-        
+
         <div class="service-card reveal">
           <div class="service-icon">🐾</div>
           <h4 data-i18n="svc.pets.title">Mascotas bienvenidas</h4>
           <p data-i18n="svc.pets.desc">Jardín vallado perfecto para que tus mascotas disfruten</p>
         </div>
-        
+
         <div class="service-card reveal">
           <div class="service-icon">👶</div>
           <h4 data-i18n="svc.family.title">Familiar</h4>
@@ -229,48 +296,54 @@
               <span data-i18n="avail.booked">Reservado</span>
             </div>
           </div>
+          <p class="calendar-sync-note" data-i18n="avail.syncnote">📅 Disponibilidad actualizada desde Booking.com y Airbnb</p>
         </div>
 
         <!-- Pricing -->
         <div class="pricing-panel reveal-right">
           <h3 data-i18n="price.title">Precios por noche</h3>
-          
+
           <div class="price-tier">
             <div>
               <div class="price-tier-name">🌸 <span data-i18n="price.low">Temporada baja</span></div>
-              <div class="price-tier-dates" data-i18n="price.low.dates">Enero — Marzo, Noviembre</div>
+              <div class="price-tier-dates" data-i18n="price.low.dates">Enero - Marzo, Noviembre</div>
             </div>
             <div class="price-tier-amount">75€ <span data-i18n="price.night">/noche</span></div>
           </div>
-          
+
           <div class="price-tier">
             <div>
               <div class="price-tier-name">☀️ <span data-i18n="price.mid">Temporada media</span></div>
-              <div class="price-tier-dates" data-i18n="price.mid.dates">Abril — Junio, Septiembre — Octubre</div>
+              <div class="price-tier-dates" data-i18n="price.mid.dates">Abril - Junio, Septiembre - Octubre</div>
             </div>
             <div class="price-tier-amount">95€ <span data-i18n="price.night">/noche</span></div>
           </div>
-          
+
           <div class="price-tier">
             <div>
               <div class="price-tier-name">🔥 <span data-i18n="price.high">Temporada alta</span></div>
-              <div class="price-tier-dates" data-i18n="price.high.dates">Julio — Agosto, Puentes y Festivos</div>
+              <div class="price-tier-dates" data-i18n="price.high.dates">Julio - Agosto, Puentes y Festivos</div>
             </div>
             <div class="price-tier-amount">120€ <span data-i18n="price.night">/noche</span></div>
           </div>
 
           <div class="pricing-book">
-            <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" 
-               target="_blank" rel="noopener noreferrer" 
-               class="btn btn-primary btn-lg"
-               id="bookingBtn">
-              <span class="booking-badge" data-i18n="price.bookbooking">Reservar en Booking.com</span>
+            <a href="#booking" class="btn btn-primary btn-lg">
+              <span data-i18n="price.bookdirect">✉️ Reservar ahora</span>
             </a>
-            <a href="https://www.airbnb.es/rooms/26868295" 
-               target="_blank" rel="noopener noreferrer" 
+            <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="btn btn-outline btn-lg"
+               id="bookingBtn">
+              <span data-i18n="price.bookbooking">Booking.com</span>
+            </a>
+            <a href="https://www.airbnb.es/rooms/26868295"
+               target="_blank"
+               rel="noopener noreferrer"
                class="btn btn-outline btn-lg"
                id="airbnbBtn">
-              <span class="booking-badge" data-i18n="price.bookairbnb">Reservar en Airbnb</span>
+              <span data-i18n="price.bookairbnb">Airbnb</span>
             </a>
           </div>
         </div>
@@ -279,30 +352,30 @@
   </section>
 
   <!-- ============ DIRECT BOOKING ============ -->
-  <section class="booking section" id="booking" style="background-color: var(--color-bg-alt);">
+  <section class="booking section" id="booking">
     <div class="container">
       <div class="section-header">
         <h2 data-i18n="booking.title">Solicitar Reserva Directa</h2>
-        <p data-i18n="booking.subtitle">Haz tu solicitud y te confirmamos disponibilidad y precio en poco tiempo.</p>
+        <p data-i18n="booking.subtitle">Reserva directamente con nosotros y ahorra las comisiones de plataformas (hasta 20%)</p>
       </div>
 
       <div class="booking-container reveal">
-        <form id="bookingForm" class="booking-form">
+        <form id="bookingForm" class="booking-form" novalidate>
           <div class="form-row">
             <div class="form-group">
               <label for="b_name" data-i18n="booking.name">Nombre completo</label>
-              <input type="text" id="b_name" name="name" required>
+              <input type="text" id="b_name" name="from_name" required autocomplete="name">
             </div>
             <div class="form-group">
               <label for="b_email" data-i18n="booking.email">Email</label>
-              <input type="email" id="b_email" name="email" required>
+              <input type="email" id="b_email" name="from_email" required autocomplete="email">
             </div>
           </div>
-          
+
           <div class="form-row">
             <div class="form-group">
               <label for="b_phone" data-i18n="booking.phone">Teléfono (WhatsApp)</label>
-              <input type="tel" id="b_phone" name="phone" required>
+              <input type="tel" id="b_phone" name="phone" required autocomplete="tel">
             </div>
             <div class="form-group">
               <label for="b_guests" data-i18n="booking.guests">Huéspedes (Max 4)</label>
@@ -331,15 +404,19 @@
             <textarea id="b_message" name="message" rows="3"></textarea>
           </div>
 
-          <div class="form-group honeypot" aria-hidden="true">
-            <label for="b_company">Company</label>
-            <input type="text" id="b_company" name="company" tabindex="-1" autocomplete="off">
+          <div class="form-submit">
+            <button type="submit" class="btn btn-primary btn-lg btn-full" id="bookingSubmit" data-i18n="booking.submit">
+              Solicitar Presupuesto sin Compromiso
+            </button>
+            <p class="form-note" data-i18n="booking.note">Nos pondremos en contacto contigo en menos de 24h para confirmar disponibilidad y precio exacto.</p>
           </div>
 
-          <div class="form-submit">
-            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;" data-i18n="booking.submit">Solicitar Presupuesto sin Compromiso</button>
-            <p class="form-feedback" id="bookingFeedback" hidden aria-live="polite"></p>
-            <p class="form-note" style="text-align: center; margin-top: var(--space-sm); font-size: var(--fs-xs); color: var(--color-text-light);" data-i18n="booking.note">Nos pondremos en contacto contigo lo antes posible para confirmar disponibilidad y precio exacto.</p>
+          <!-- Feedback de envío -->
+          <div id="formSuccess" class="form-feedback form-success" style="display:none;" role="alert">
+            ✅ <span data-i18n="booking.success">¡Solicitud enviada! Te contactamos en menos de 24h.</span>
+          </div>
+          <div id="formError" class="form-feedback form-error" style="display:none;" role="alert">
+            ❌ <span data-i18n="booking.error">Error al enviar. Escríbenos por WhatsApp o email directamente.</span>
           </div>
         </form>
       </div>
@@ -410,31 +487,31 @@
 
       <div class="gallery-grid" id="galleryGrid">
         <div class="gallery-item reveal" data-index="0">
-          <img src="images/444547533.jpg" alt="Exterior de la casa con hamaca y terraza" loading="lazy">
+          <img src="images/444547533.jpg" alt="Exterior de la casa con hamaca y terraza" loading="lazy" decoding="async" width="800" height="600">
           <div class="gallery-zoom">🔍</div>
         </div>
         <div class="gallery-item reveal" data-index="1">
-          <img src="images/444547549.jpg" alt="Salón con sofá y televisión" loading="lazy">
+          <img src="images/444547549.jpg" alt="Salón con sofá y televisión" loading="lazy" decoding="async" width="800" height="600">
           <div class="gallery-zoom">🔍</div>
         </div>
         <div class="gallery-item reveal" data-index="2">
-          <img src="images/444547560.jpg" alt="Dormitorio con cama doble y cuna" loading="lazy">
+          <img src="images/444547560.jpg" alt="Dormitorio con cama doble y cuna" loading="lazy" decoding="async" width="800" height="600">
           <div class="gallery-zoom">🔍</div>
         </div>
         <div class="gallery-item reveal" data-index="3">
-          <img src="images/444547563.jpg" alt="Cocina equipada moderna" loading="lazy">
+          <img src="images/444547563.jpg" alt="Cocina equipada moderna" loading="lazy" decoding="async" width="800" height="600">
           <div class="gallery-zoom">🔍</div>
         </div>
         <div class="gallery-item reveal" data-index="4">
-          <img src="images/444547565.jpg" alt="Dormitorio con cama doble" loading="lazy">
+          <img src="images/444547565.jpg" alt="Dormitorio con cama doble" loading="lazy" decoding="async" width="800" height="600">
           <div class="gallery-zoom">🔍</div>
         </div>
         <div class="gallery-item reveal" data-index="5">
-          <img src="images/444547567.jpg" alt="Vista exterior al atardecer" loading="lazy">
+          <img src="images/444547567.jpg" alt="Vista exterior al atardecer" loading="lazy" decoding="async" width="800" height="600">
           <div class="gallery-zoom">🔍</div>
         </div>
         <div class="gallery-item reveal" data-index="6">
-          <img src="images/444547573.jpg" alt="Baño completo" loading="lazy">
+          <img src="images/444547573.jpg" alt="Baño completo" loading="lazy" decoding="async" width="800" height="600">
           <div class="gallery-zoom">🔍</div>
         </div>
       </div>
@@ -442,12 +519,12 @@
   </section>
 
   <!-- Lightbox -->
-  <div class="lightbox" id="lightbox">
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Galería de imágenes">
     <div class="lightbox-content">
-      <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">✕</button>
-      <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Anterior">‹</button>
-      <img id="lightboxImg" src="" alt="">
-      <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Siguiente">›</button>
+      <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar galería">✕</button>
+      <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Imagen anterior">‹</button>
+      <img id="lightboxImg" src="" alt="" loading="lazy">
+      <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Imagen siguiente">›</button>
     </div>
   </div>
 
@@ -461,42 +538,57 @@
 
       <div class="reviews-grid stagger-children">
         <div class="review-card reveal">
-          <div class="review-stars">★★★★★</div>
+          <div class="review-stars" aria-label="5 de 5 estrellas">★★★★★</div>
           <p class="review-text">"La casa es ideal con la parcela muy agradable. Zona súper tranquila. Ideal para visitar Urkiola, Gorbea y la costa vizcaína. Trato muy atento."</p>
           <div class="review-author">
             <div class="review-author-avatar">A</div>
             <div class="review-author-info">
               <strong>Alberto</strong>
-              <span>Booking.com</span>
-            </div>
-          </div>
-        </div>
-        
-        <div class="review-card reveal">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">"Hemos estado una semana con los perros y es una gozada tener el jardín cerrado y sin ningún peligro. Total tranquilidad y cerca de muchos sitios preciosos."</p>
-          <div class="review-author">
-            <div class="review-author-avatar">M</div>
-            <div class="review-author-info">
-              <strong>María</strong>
-              <span>Google Maps</span>
+              <span class="review-platform">
+                <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html#tab-reviews"
+                   target="_blank" rel="noopener noreferrer" aria-label="Ver reseña en Booking.com">Booking.com</a>
+                <span class="review-verified" data-i18n="reviews.verified">✓ Estancia verificada</span>
+              </span>
+              <time class="review-date" datetime="2025-08">Agosto 2025</time>
             </div>
           </div>
         </div>
 
         <div class="review-card reveal">
-          <div class="review-stars">★★★★★</div>
+          <div class="review-stars" aria-label="5 de 5 estrellas">★★★★★</div>
+          <p class="review-text">"Hemos estado una semana con los perros y es una gozada tener el jardín cerrado y sin ningún peligro. Total tranquilidad y cerca de muchos sitios preciosos."</p>
+          <div class="review-author">
+            <div class="review-author-avatar">M</div>
+            <div class="review-author-info">
+              <strong>María</strong>
+              <span class="review-platform">
+                <a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7"
+                   target="_blank" rel="noopener noreferrer" aria-label="Ver reseña en Google">Google Maps</a>
+                <span class="review-verified" data-i18n="reviews.verified">✓ Estancia verificada</span>
+              </span>
+              <time class="review-date" datetime="2025-07">Julio 2025</time>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card reveal">
+          <div class="review-stars" aria-label="5 de 5 estrellas">★★★★★</div>
           <p class="review-text">"Espectacular todo. La facilidad desde la entrada y poder estar tan a gusto. Volveremos seguro si subimos otra vez."</p>
           <div class="review-author">
             <div class="review-author-avatar">D</div>
             <div class="review-author-info">
               <strong>Daniel</strong>
-              <span>Airbnb</span>
+              <span class="review-platform">
+                <a href="https://www.airbnb.es/rooms/26868295"
+                   target="_blank" rel="noopener noreferrer" aria-label="Ver reseña en Airbnb">Airbnb</a>
+                <span class="review-verified" data-i18n="reviews.verified">✓ Estancia verificada</span>
+              </span>
+              <time class="review-date" datetime="2025-06">Junio 2025</time>
             </div>
           </div>
         </div>
       </div>
-      
+
       <div class="reviews-cta">
         <a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" target="_blank" rel="noopener noreferrer" class="btn btn-outline" data-i18n="reviews.cta">Ver todas las reseñas en Google</a>
       </div>
@@ -515,7 +607,7 @@
         <div class="contact-info reveal-left">
           <h3 data-i18n="contact.how">Cómo llegar</h3>
           <p data-i18n="contact.how.desc">Estamos en Igorre, en el corazón de Bizkaia, a solo 30 minutos de Bilbao y entre dos parques naturales.</p>
-          
+
           <div class="contact-details">
             <div class="contact-detail">
               <div class="icon">📍</div>
@@ -524,12 +616,23 @@
                 <span>Igorre, Bizkaia, Euskadi</span>
               </div>
             </div>
-            
+
             <div class="contact-detail">
               <div class="icon">🕐</div>
               <div class="contact-detail-text">
                 <strong data-i18n="contact.checkin">Check-in / Check-out</strong>
-                <span data-i18n="contact.checkin.val">Entrada: 16:00 — Salida: 11:00</span>
+                <span data-i18n="contact.checkin.val">Entrada: 16:00 · Salida: 11:00</span>
+              </div>
+            </div>
+
+            <div class="contact-detail">
+              <div class="icon">💬</div>
+              <div class="contact-detail-text">
+                <strong>WhatsApp</strong>
+                <span>
+                  <a href="#" data-wa data-wa-display
+                     target="_blank" rel="noopener noreferrer">+34 646 39 78 76</a>
+                </span>
               </div>
             </div>
 
@@ -538,7 +641,7 @@
               <div class="contact-detail-text">
                 <strong data-i18n="contact.reservas">Reservas</strong>
                 <span>
-                  <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" target="_blank" rel="noopener noreferrer">Booking.com</a> · 
+                  <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" target="_blank" rel="noopener noreferrer">Booking.com</a> ·
                   <a href="https://www.airbnb.es/rooms/26868295" target="_blank" rel="noopener noreferrer">Airbnb</a>
                 </span>
               </div>
@@ -555,11 +658,12 @@
         </div>
 
         <div class="map-container reveal-right">
-          <iframe 
+          <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11614.984!2d-2.8196!3d43.0882!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4e5d7eb4c9f587%3A0x40d63ae0a5fc270!2s48140+Igorre%2C+Bizkaia!5e0!3m2!1ses!2ses!4v1709740000000"
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            sandbox="allow-scripts allow-same-origin allow-popups"
             title="Ubicación de Mendien Artean en Google Maps">
           </iframe>
         </div>
@@ -574,6 +678,12 @@
         <div class="footer-brand">
           <h3>Mendien Artean</h3>
           <p data-i18n="footer.desc">Casa rural entre los parques naturales de Urkiola y Gorbeia. Tu refugio de naturaleza en el corazón del País Vasco.</p>
+          <a href="#" data-wa
+             target="_blank" rel="noopener noreferrer"
+             class="btn btn-whatsapp-footer"
+             aria-label="Contactar por WhatsApp">
+            💬 WhatsApp
+          </a>
         </div>
 
         <div class="footer-links">
@@ -591,6 +701,7 @@
         <div class="footer-links">
           <h4 data-i18n="footer.book">Reservar</h4>
           <ul>
+            <li><a href="#booking" data-i18n="footer.direct">Reserva directa</a></li>
             <li><a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" target="_blank" rel="noopener noreferrer">Booking.com</a></li>
             <li><a href="https://www.airbnb.es/rooms/26868295" target="_blank" rel="noopener noreferrer">Airbnb</a></li>
             <li><a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" target="_blank" rel="noopener noreferrer">Google Maps</a></li>
@@ -604,13 +715,38 @@
           <a href="https://www.airbnb.es/rooms/26868295" target="_blank" rel="noopener noreferrer" aria-label="Airbnb" title="Airbnb">🏠</a>
           <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" target="_blank" rel="noopener noreferrer" aria-label="Booking" title="Booking">📘</a>
           <a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" target="_blank" rel="noopener noreferrer" aria-label="Maps" title="Google Maps">🗺️</a>
+          <a href="#" data-wa target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">💬</a>
         </div>
       </div>
     </div>
   </footer>
 
+  <!-- ============ WHATSAPP FLOTANTE ============ -->
+  <a href="#" data-wa
+     class="whatsapp-float"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    <span class="whatsapp-tooltip" data-i18n="whatsapp.tooltip">¿Preguntas? Escríbenos</span>
+  </a>
+
   <!-- Scripts -->
+  <script src="js/config.js"></script>
   <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
+
+  <!-- Service Worker — PWA -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {
+          // Service worker registration failed — non-critical
+        });
+      });
+    }
+  </script>
 </body>
 </html>

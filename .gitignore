@@ -2,9 +2,4 @@
 *.log
 node_modules/
 .env
-.claude/
-backend/.env
-backend/data/*.db
-backend/data/*.db-*
-backend/data/*.csv
-backend/backend/
+js/config.js

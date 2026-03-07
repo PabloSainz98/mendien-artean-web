@@ -186,10 +186,33 @@
   .reviews-grid {
     grid-template-columns: 1fr;
   }
+
+  /* WhatsApp flotante Mobile */
+  .whatsapp-float {
+    bottom: var(--space-lg);
+    right: var(--space-lg);
+    width: 52px;
+    height: 52px;
+  }
+
+  .whatsapp-float svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .whatsapp-tooltip {
+    display: none;
+  }
+
+  /* About price note Mobile */
+  .about-price-note {
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
-/* Navbar Tablet/Laptop — prevent overlap in long translations (EU) */
-@media (min-width: 769px) and (max-width: 1100px) {
+/* Navbar hamburger — visible on tablets and small laptops (≤1100px) */
+@media (max-width: 1100px) {
   .nav-toggle {
     display: flex;
   }
@@ -198,8 +221,8 @@
     position: fixed;
     top: 0;
     right: -100%;
-    width: 78%;
-    max-width: 380px;
+    width: 80%;
+    max-width: 360px;
     height: 100vh;
     background: var(--color-bg);
     flex-direction: column;
@@ -207,7 +230,7 @@
     gap: var(--space-xl);
     padding: var(--space-3xl);
     transition: right var(--transition-base);
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.15);
     z-index: 1000;
   }
 
@@ -252,8 +275,8 @@
   }
 }
 
-/* Tablet — 769px to 1024px */
-@media (min-width: 769px) and (max-width: 1024px) {
+/* Tablet — 769px to 1100px */
+@media (min-width: 769px) and (max-width: 1100px) {
   :root {
     --fs-5xl: 3.5rem;
     --fs-4xl: 2.75rem;
