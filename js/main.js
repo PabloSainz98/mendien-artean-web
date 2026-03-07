@@ -271,15 +271,18 @@ function initBookingForm() {
     const name     = document.getElementById('b_name').value.trim();
     const email    = document.getElementById('b_email').value.trim();
     const phone    = document.getElementById('b_phone').value.trim();
+    const property = document.getElementById('b_property').value;
+    const propertyName = property === 'domo' ? 'Domo Geodésico' : 'Casa Rural';
     const guests   = document.getElementById('b_guests').value;
     const checkin  = document.getElementById('b_checkin').value;
     const checkout = document.getElementById('b_checkout').value;
     const message  = document.getElementById('b_message').value.trim();
 
-    const subject = `Solicitud de reserva: ${name} | ${checkin} - ${checkout}`;
+    const subject = `Solicitud de reserva (${propertyName}): ${name} | ${checkin} - ${checkout}`;
     const body = [
       'SOLICITUD DE RESERVA - MENDIEN ARTEAN',
       '-----------------------------------------',
+      `Alojamiento: ${propertyName}`,
       `Nombre:      ${name}`,
       `Email:       ${email}`,
       `Teléfono:    ${phone}`,
@@ -309,27 +312,73 @@ function initBookingForm() {
 }
 
 /* ==========================================
+   GALLERY — Tabs (Domo / Casa Rural)
+   ========================================== */
+function initGalleryTabs() {
+  const tabs = document.querySelectorAll('.gallery-tab');
+  const items = document.querySelectorAll('.gallery-item[data-property]');
+
+  if (!tabs.length) return;
+
+  function switchTab(tabName) {
+    // Actualizar tabs activas
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === tabName));
+
+    // Mostrar/ocultar items
+    let idx = 0;
+    items.forEach(item => {
+      if (item.dataset.property === tabName) {
+        item.style.display = '';
+        item.dataset.index = idx++;
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  // Click en tabs
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+  });
+
+  // Click en "Ver fotos" de las property cards
+  document.querySelectorAll('[data-gallery-tab]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchTab(btn.dataset.galleryTab);
+      const gallery = document.getElementById('gallery');
+      if (gallery) gallery.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+}
+
+/* ==========================================
    GALLERY — Lightbox
    ========================================== */
 function initGallery() {
-  const galleryItems = document.querySelectorAll('.gallery-item');
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
   const lightboxClose = document.getElementById('lightboxClose');
   const lightboxPrev = document.getElementById('lightboxPrev');
   const lightboxNext = document.getElementById('lightboxNext');
 
-  const images = Array.from(galleryItems).map(item => ({
-    src: item.querySelector('img').src,
-    alt: item.querySelector('img').alt
-  }));
-
+  let visibleImages = [];
   let currentIndex = 0;
 
+  function getVisibleImages() {
+    return Array.from(document.querySelectorAll('.gallery-item'))
+      .filter(item => item.style.display !== 'none')
+      .map(item => ({
+        src: item.querySelector('img').src,
+        alt: item.querySelector('img').alt
+      }));
+  }
+
   function openLightbox(index) {
+    visibleImages = getVisibleImages();
     currentIndex = index;
-    lightboxImg.src = images[index].src;
-    lightboxImg.alt = images[index].alt;
+    lightboxImg.src = visibleImages[index].src;
+    lightboxImg.alt = visibleImages[index].alt;
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
@@ -340,18 +389,25 @@ function initGallery() {
   }
 
   function navigate(direction) {
-    currentIndex = (currentIndex + direction + images.length) % images.length;
+    currentIndex = (currentIndex + direction + visibleImages.length) % visibleImages.length;
     lightboxImg.style.opacity = '0';
     setTimeout(() => {
-      lightboxImg.src = images[currentIndex].src;
-      lightboxImg.alt = images[currentIndex].alt;
+      lightboxImg.src = visibleImages[currentIndex].src;
+      lightboxImg.alt = visibleImages[currentIndex].alt;
       lightboxImg.style.opacity = '1';
     }, 200);
   }
 
-  galleryItems.forEach((item, index) => {
-    item.addEventListener('click', () => openLightbox(index));
-  });
+  // Delegamos el click al contenedor para que funcione con items dinámicos
+  const galleryGrid = document.getElementById('galleryGrid');
+  if (galleryGrid) {
+    galleryGrid.addEventListener('click', (e) => {
+      const item = e.target.closest('.gallery-item');
+      if (!item || item.style.display === 'none') return;
+      const idx = parseInt(item.dataset.index, 10);
+      openLightbox(idx);
+    });
+  }
 
   lightboxClose.addEventListener('click', closeLightbox);
   lightboxPrev.addEventListener('click', () => navigate(-1));

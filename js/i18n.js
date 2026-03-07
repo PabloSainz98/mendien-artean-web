@@ -5,7 +5,7 @@
 const translations = {
   es: {
     // Navbar
-    'nav.about': 'La Casa',
+    'nav.about': 'Alojamientos',
     'nav.services': 'Servicios',
     'nav.availability': 'Disponibilidad',
     'nav.activities': 'Actividades',
@@ -15,22 +15,38 @@ const translations = {
 
     // Hero
     'hero.badge': 'Igorre, Euskadi',
-    'hero.subtitle': 'Casa rural con encanto entre los parques naturales de Urkiola y Gorbeia.<br>Tu refugio de naturaleza en el corazón del País Vasco.',
+    'hero.subtitle': 'Domo geodésico y casa rural entre los parques naturales de Urkiola y Gorbeia.<br>Tu refugio de naturaleza en el corazón del País Vasco.',
     'hero.cta1': 'Reservar ahora',
-    'hero.cta2': 'Descubre la casa',
+    'hero.cta2': 'Descubre nuestros alojamientos',
     'hero.pricefrom': 'desde',
     'hero.pricenight': '/noche',
 
     // About
-    'about.title': 'Tu casa entre montañas',
-    'about.p1': '<strong>Mendien Artean</strong> es una acogedora casa rural independiente situada en el corazón del País Vasco, entre los impresionantes parques naturales de <strong>Urkiola</strong> y <strong>Gorbeia</strong>.',
-    'about.p2': 'Con 48m² de espacio bien aprovechado, jardín vallado y una terraza con vistas a la montaña, es el lugar perfecto para desconectar, ya sea en pareja, en familia o con tu mascota.',
-    'about.feat1': 'Hasta 4 huéspedes',
-    'about.feat2': '1 dormitorio + cuna',
+    'about.title': 'Tu refugio entre montañas',
+    'about.p1': '<strong>Mendien Artean</strong> es un complejo de agroturismo situado en el corazón del País Vasco, entre los impresionantes parques naturales de <strong>Urkiola</strong> y <strong>Gorbeia</strong>.',
+    'about.p2': 'Ofrecemos dos experiencias únicas: un espectacular domo geodésico con vistas panorámicas y una acogedora casa rural con jardín vallado.',
+    'about.feat1': 'Entre Urkiola y Gorbeia',
+    'about.feat2': '2 alojamientos',
     'about.feat3': 'Pet-friendly',
-    'about.feat4': 'Jardín vallado',
+    'about.feat4': 'Naturaleza y tranquilidad',
     'about.pricenote': 'Desde <strong>75€/noche</strong> · Reserva directa',
-    'about.bookdirect': 'Reservar ahora →',
+    'about.bookdirect': 'Ver alojamientos →',
+
+    // Properties
+    'properties.title': 'Nuestros Alojamientos',
+    'properties.subtitle': 'Dos experiencias únicas en plena naturaleza vasca',
+    'properties.featured': 'Destacado',
+    'properties.domo.title': 'Domo Geodésico',
+    'properties.domo.desc': 'Glamping de lujo con paneles panorámicos, jacuzzi privado y vistas al valle. Una experiencia única bajo las estrellas.',
+    'properties.domo.feat3': '🛁 Jacuzzi',
+    'properties.domo.feat4': '🐾 Mascotas',
+    'properties.casa.title': 'Casa Rural',
+    'properties.casa.desc': 'Casa independiente con jardín vallado, terraza con vistas a la montaña, cocina completa y todo el confort para familias.',
+    'properties.casa.feat3': '🌳 Jardín',
+    'properties.casa.feat4': '🐾 Mascotas',
+    'properties.pricefrom': 'desde',
+    'properties.pricenight': '/noche',
+    'properties.photos': 'Ver fotos →',
 
     // Services
     'services.title': 'Servicios',
@@ -47,6 +63,8 @@ const translations = {
     'svc.pets.desc': 'Jardín vallado perfecto para que tus mascotas disfruten',
     'svc.family.title': 'Familiar',
     'svc.family.desc': 'Cuna disponible, ropa de cama y toallas incluidas',
+    'svc.jacuzzi.title': 'Jacuzzi',
+    'svc.jacuzzi.desc': 'Jacuzzi privado al aire libre junto al domo con vistas al valle',
 
     // Availability
     'avail.title': 'Disponibilidad',
@@ -62,7 +80,8 @@ const translations = {
     'price.high': 'Temporada alta',
     'price.high.dates': 'Julio - Agosto, Puentes y Festivos',
     'price.night': '/noche',
-    'price.bookdirect': '✉️ Reservar ahora',
+    'price.bookdirect': '✉️ Directo',
+    'price.bookvia': 'Reservar alojamiento',
     'price.bookbooking': 'Booking.com',
     'price.bookairbnb': 'Airbnb',
 
@@ -72,6 +91,9 @@ const translations = {
     'booking.name': 'Nombre completo',
     'booking.email': 'Email',
     'booking.phone': 'Teléfono (WhatsApp)',
+    'booking.property': 'Alojamiento',
+    'booking.property.domo': 'Domo Geodésico',
+    'booking.property.casa': 'Casa Rural',
     'booking.guests': 'Huéspedes (Max 4)',
     'booking.checkin': 'Fecha de Entrada',
     'booking.checkout': 'Fecha de Salida',
@@ -115,7 +137,9 @@ const translations = {
 
     // Gallery
     'gallery.title': 'Galería',
-    'gallery.subtitle': 'Echa un vistazo a la casa y sus alrededores',
+    'gallery.subtitle': 'Echa un vistazo a nuestros alojamientos y su entorno',
+    'gallery.tab.domo': 'Domo',
+    'gallery.tab.casa': 'Casa Rural',
 
     // Reviews
     'reviews.title': 'Opiniones',
@@ -136,11 +160,11 @@ const translations = {
     'contact.directions.link': 'Ver en Google Maps →',
 
     // Footer
-    'footer.desc': 'Casa rural entre los parques naturales de Urkiola y Gorbeia. Tu refugio de naturaleza en el corazón del País Vasco.',
+    'footer.desc': 'Domo geodésico y casa rural entre los parques naturales de Urkiola y Gorbeia. Tu refugio de naturaleza en el corazón del País Vasco.',
     'footer.sections': 'Secciones',
     'footer.book': 'Reservar',
     'footer.rights': '© 2026 Mendien Artean. Todos los derechos reservados.',
-    'footer.house': 'La Casa',
+    'footer.house': 'Alojamientos',
     'footer.services': 'Servicios',
     'footer.availability': 'Disponibilidad',
     'footer.activities': 'Actividades',
@@ -151,7 +175,7 @@ const translations = {
   },
 
   en: {
-    'nav.about': 'The House',
+    'nav.about': 'Stays',
     'nav.services': 'Services',
     'nav.availability': 'Availability',
     'nav.activities': 'Activities',
@@ -160,21 +184,36 @@ const translations = {
     'nav.book': 'Book Now',
 
     'hero.badge': 'Igorre, Basque Country',
-    'hero.subtitle': 'Charming rural house between the natural parks of Urkiola and Gorbeia.<br>Your nature retreat in the heart of the Basque Country.',
+    'hero.subtitle': 'Geodesic dome and rural house between the natural parks of Urkiola and Gorbeia.<br>Your nature retreat in the heart of the Basque Country.',
     'hero.cta1': 'Book now',
-    'hero.cta2': 'Discover the house',
+    'hero.cta2': 'Discover our stays',
     'hero.pricefrom': 'from',
     'hero.pricenight': '/night',
 
-    'about.title': 'Your home in the mountains',
-    'about.p1': '<strong>Mendien Artean</strong> is a cozy independent rural house located in the heart of the Basque Country, between the stunning natural parks of <strong>Urkiola</strong> and <strong>Gorbeia</strong>.',
-    'about.p2': 'With 48m² of well-designed space, a fenced garden and a terrace overlooking the mountains, it\'s the perfect place to unwind: as a couple, with family, or with your pet.',
-    'about.feat1': 'Up to 4 guests',
-    'about.feat2': '1 bedroom + crib',
+    'about.title': 'Your mountain retreat',
+    'about.p1': '<strong>Mendien Artean</strong> is an agrotourism complex in the heart of the Basque Country, between the stunning natural parks of <strong>Urkiola</strong> and <strong>Gorbeia</strong>.',
+    'about.p2': 'We offer two unique experiences: a spectacular geodesic dome with panoramic views and a cozy rural house with a fenced garden.',
+    'about.feat1': 'Between Urkiola and Gorbeia',
+    'about.feat2': '2 stays',
     'about.feat3': 'Pet-friendly',
-    'about.feat4': 'Fenced garden',
+    'about.feat4': 'Nature and quiet',
     'about.pricenote': 'From <strong>€75/night</strong> · Direct booking',
-    'about.bookdirect': 'Book now →',
+    'about.bookdirect': 'View stays →',
+
+    'properties.title': 'Our Stays',
+    'properties.subtitle': 'Two unique experiences in the heart of Basque nature',
+    'properties.featured': 'Featured',
+    'properties.domo.title': 'Geodesic Dome',
+    'properties.domo.desc': 'Luxury glamping with panoramic windows, private hot tub and valley views. A unique stay under the stars.',
+    'properties.domo.feat3': '🛁 Hot tub',
+    'properties.domo.feat4': '🐾 Pets',
+    'properties.casa.title': 'Rural House',
+    'properties.casa.desc': 'Independent house with fenced garden, mountain-view terrace, full kitchen and all the comfort for families.',
+    'properties.casa.feat3': '🌳 Garden',
+    'properties.casa.feat4': '🐾 Pets',
+    'properties.pricefrom': 'from',
+    'properties.pricenight': '/night',
+    'properties.photos': 'View photos →',
 
     'services.title': 'Services',
     'services.subtitle': 'Everything you need for a comfortable and relaxing stay',
@@ -190,6 +229,8 @@ const translations = {
     'svc.pets.desc': 'Fenced garden perfect for your pets to enjoy',
     'svc.family.title': 'Family friendly',
     'svc.family.desc': 'Crib available, bed linen and towels included',
+    'svc.jacuzzi.title': 'Hot tub',
+    'svc.jacuzzi.desc': 'Private outdoor hot tub next to the dome with valley views',
 
     'avail.title': 'Availability',
     'avail.subtitle': 'Check availability and book your stay',
@@ -204,7 +245,8 @@ const translations = {
     'price.high': 'High season',
     'price.high.dates': 'July - August, Bank Holidays',
     'price.night': '/night',
-    'price.bookdirect': '✉️ Book now',
+    'price.bookdirect': '✉️ Direct',
+    'price.bookvia': 'Book your stay',
     'price.bookbooking': 'Booking.com',
     'price.bookairbnb': 'Airbnb',
 
@@ -213,6 +255,9 @@ const translations = {
     'booking.name': 'Full Name',
     'booking.email': 'Email Address',
     'booking.phone': 'Phone Number (WhatsApp)',
+    'booking.property': 'Stay',
+    'booking.property.domo': 'Geodesic Dome',
+    'booking.property.casa': 'Rural House',
     'booking.guests': 'Guests (Max 4)',
     'booking.checkin': 'Check-in Date',
     'booking.checkout': 'Check-out Date',
@@ -252,7 +297,9 @@ const translations = {
     'act.cycling.dist': '📍 From the doorstep',
 
     'gallery.title': 'Gallery',
-    'gallery.subtitle': 'Take a look at the house and its surroundings',
+    'gallery.subtitle': 'Take a look at our stays and surroundings',
+    'gallery.tab.domo': 'Dome',
+    'gallery.tab.casa': 'Rural House',
 
     'reviews.title': 'Reviews',
     'reviews.subtitle': 'What our guests say',
@@ -270,11 +317,11 @@ const translations = {
     'contact.directions': 'Directions',
     'contact.directions.link': 'View on Google Maps →',
 
-    'footer.desc': 'Rural house between the natural parks of Urkiola and Gorbeia. Your nature retreat in the heart of the Basque Country.',
+    'footer.desc': 'Geodesic dome and rural house between the natural parks of Urkiola and Gorbeia. Your nature retreat in the heart of the Basque Country.',
     'footer.sections': 'Sections',
     'footer.book': 'Book',
     'footer.rights': '© 2026 Mendien Artean. All rights reserved.',
-    'footer.house': 'The House',
+    'footer.house': 'Stays',
     'footer.services': 'Services',
     'footer.availability': 'Availability',
     'footer.activities': 'Activities',
@@ -285,7 +332,7 @@ const translations = {
   },
 
   eu: {
-    'nav.about': 'Etxea',
+    'nav.about': 'Ostatuak',
     'nav.services': 'Zerbitzuak',
     'nav.availability': 'Eskuragarri',
     'nav.activities': 'Jarduerak',
@@ -294,21 +341,36 @@ const translations = {
     'nav.book': 'Erreserbatu',
 
     'hero.badge': 'Igorre, Euskadi',
-    'hero.subtitle': 'Urkiola eta Gorbeia parke naturalen arteko landa-etxe xarmagarria.<br>Zure natura-babeslekua Euskal Herriaren bihotzean.',
+    'hero.subtitle': 'Urkiola eta Gorbeia parke naturalen artean dagoen domo geodesikoa eta landa-etxea.<br>Zure natura-babeslekua Euskal Herriaren bihotzean.',
     'hero.cta1': 'Orain erreserbatu',
-    'hero.cta2': 'Etxea ezagutu',
+    'hero.cta2': 'Ostatuak ezagutu',
     'hero.pricefrom': 'tik',
     'hero.pricenight': '/gau',
 
-    'about.title': 'Zure etxea mendien artean',
-    'about.p1': '<strong>Mendien Artean</strong> Euskal Herriko bihotzean dagoen landa-etxe independente eta goxoa da, <strong>Urkiola</strong> eta <strong>Gorbeia</strong> parke natural ikusgarrien artean.',
-    'about.p2': '48m²-ko espazio ondo aprobetxatuarekin, lorategi itxiarekin eta mendirako bista duen terrazarekin, deskonektatzeko leku ezin hobea da, bikotean, familian edo zure maskotarekin.',
-    'about.feat1': '4 gonbidatu arte',
-    'about.feat2': 'Logela 1 + seaska',
+    'about.title': 'Zure babeslekua mendien artean',
+    'about.p1': '<strong>Mendien Artean</strong> Euskal Herriko bihotzean dagoen agroturismo konplexua da, <strong>Urkiola</strong> eta <strong>Gorbeia</strong> parke natural ikusgarrien artean.',
+    'about.p2': 'Bi esperientzia berezi eskaintzen ditugu: bista panoramikoak dituen domo geodesiko ikusgarria eta lorategi itxia duen landa-etxe atsegina.',
+    'about.feat1': 'Urkiola eta Gorbeia artean',
+    'about.feat2': '2 ostatu',
     'about.feat3': 'Maskotak onartzen dira',
-    'about.feat4': 'Lorategi itxia',
+    'about.feat4': 'Natura eta lasaitasuna',
     'about.pricenote': '<strong>75€/gau</strong>tik · Zuzeneko erreserba',
-    'about.bookdirect': 'Orain erreserbatu →',
+    'about.bookdirect': 'Ostatuak ikusi →',
+
+    'properties.title': 'Gure ostatuak',
+    'properties.subtitle': 'Bi esperientzia bakar Euskal naturaren erdian',
+    'properties.featured': 'Nabarmendua',
+    'properties.domo.title': 'Domo geodesikoa',
+    'properties.domo.desc': 'Luxuzko glampinga leiho panoramikoekin, jacuzzi pribatuarekin eta haranera bista ikusgarriekin. Izarren azpiko esperientzia bakarra.',
+    'properties.domo.feat3': '🛁 Jacuzzia',
+    'properties.domo.feat4': '🐾 Maskotak',
+    'properties.casa.title': 'Landa-etxea',
+    'properties.casa.desc': 'Etxe independentea lorategi itxiarekin, mendira bistako terrazarekin, sukalde osoarekin eta familientzako erosotasun guztiekin.',
+    'properties.casa.feat3': '🌳 Lorategia',
+    'properties.casa.feat4': '🐾 Maskotak',
+    'properties.pricefrom': 'tik',
+    'properties.pricenight': '/gau',
+    'properties.photos': 'Argazkiak ikusi →',
 
     'services.title': 'Zerbitzuak',
     'services.subtitle': 'Egonaldi erosoa eta lasaia izateko behar duzun guztia',
@@ -324,6 +386,8 @@ const translations = {
     'svc.pets.desc': 'Lorategi itxia zure maskotek gozatzeko',
     'svc.family.title': 'Familiartzat',
     'svc.family.desc': 'Seaska eskuragarri, ohe arropa eta eskuoihalak barne',
+    'svc.jacuzzi.title': 'Jacuzzia',
+    'svc.jacuzzi.desc': 'Kanpoko jacuzzi pribatua domoaren ondoan, haranera bistarekin',
 
     'avail.title': 'Eskuragarritasuna',
     'avail.subtitle': 'Kontsultatu eskuragarritasuna eta zure egonaldia erreserbatu',
@@ -338,7 +402,8 @@ const translations = {
     'price.high': 'Goi sasoia',
     'price.high.dates': 'Uztaila - Abuztua, Zubi eta Jaiak',
     'price.night': '/gau',
-    'price.bookdirect': '✉️ Orain erreserbatu',
+    'price.bookdirect': '✉️ Zuzenekoa',
+    'price.bookvia': 'Ostatua erreserbatu',
     'price.bookbooking': 'Booking.com',
     'price.bookairbnb': 'Airbnb',
 
@@ -347,6 +412,9 @@ const translations = {
     'booking.name': 'Izen-abizenak',
     'booking.email': 'Emaila',
     'booking.phone': 'Telefonoa (WhatsApp)',
+    'booking.property': 'Ostatua',
+    'booking.property.domo': 'Domo geodesikoa',
+    'booking.property.casa': 'Landa-etxea',
     'booking.guests': 'Gonbidatuak (Max 4)',
     'booking.checkin': 'Sarrera data',
     'booking.checkout': 'Irteera data',
@@ -386,7 +454,9 @@ const translations = {
     'act.cycling.dist': '📍 Atetik bertatik',
 
     'gallery.title': 'Argazkiak',
-    'gallery.subtitle': 'Begiratu etxea eta bere inguruak',
+    'gallery.subtitle': 'Begiratu gure ostatuak eta ingurua',
+    'gallery.tab.domo': 'Domoa',
+    'gallery.tab.casa': 'Landa-etxea',
 
     'reviews.title': 'Iritziak',
     'reviews.subtitle': 'Gure gonbidatuek esaten dutena',
@@ -404,11 +474,11 @@ const translations = {
     'contact.directions': 'Nola iritsi',
     'contact.directions.link': 'Google Maps-en ikusi →',
 
-    'footer.desc': 'Landa-etxea Urkiola eta Gorbeia parke naturalen artean. Zure natura-babeslekua Euskal Herriaren bihotzean.',
+    'footer.desc': 'Domo geodesikoa eta landa-etxea Urkiola eta Gorbeia parke naturalen artean. Zure natura-babeslekua Euskal Herriaren bihotzean.',
     'footer.sections': 'Atalak',
     'footer.book': 'Erreserbatu',
     'footer.rights': '© 2026 Mendien Artean. Eskubide guztiak erreserbatuta.',
-    'footer.house': 'Etxea',
+    'footer.house': 'Ostatuak',
     'footer.services': 'Zerbitzuak',
     'footer.availability': 'Eskuragarritasuna',
     'footer.activities': 'Jarduerak',
@@ -469,7 +539,6 @@ function applyTranslations() {
     const key = el.getAttribute('data-i18n');
     const value = t(key);
     if (value) {
-      // Check if the content contains HTML
       if (value.includes('<')) {
         el.replaceChildren(sanitizeTranslationMarkup(value));
       } else {
