@@ -1,0 +1,44 @@
+# Netlify Headers — Security & Performance
+# https://docs.netlify.com/routing/headers/
+
+/*
+  # Clickjacking protection
+  X-Frame-Options: SAMEORIGIN
+
+  # MIME sniffing protection
+  X-Content-Type-Options: nosniff
+
+  # XSS filter (legacy browsers)
+  X-XSS-Protection: 1; mode=block
+
+  # Referrer policy — no leaking full URLs to third parties
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # Permissions — disable unnecessary browser APIs
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+
+  # Content Security Policy
+  # - Scripts: solo self + EmailJS CDN + inline del HTML (service worker)
+  # - Styles: self + Google Fonts + inline necesario para variables CSS
+  # - Fonts: self + Google Fonts gstatic
+  # - Frames: solo Google Maps
+  # - Conexiones: self + EmailJS API
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-src https://www.google.com; connect-src 'self' https://api.emailjs.com; worker-src 'self';
+
+  # HSTS — fuerza HTTPS (solo activar cuando el sitio esté en producción con HTTPS)
+  # Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+
+  # Cache control para assets estáticos
+  Cache-Control: public, max-age=3600
+
+/images/*
+  Cache-Control: public, max-age=604800, immutable
+
+/css/*
+  Cache-Control: public, max-age=86400
+
+/js/*
+  Cache-Control: public, max-age=86400
+
+/sw.js
+  Cache-Control: no-cache, no-store, must-revalidate

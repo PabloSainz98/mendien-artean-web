@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pablosainz98.github.io/mendien-artean-web/sitemap.xml

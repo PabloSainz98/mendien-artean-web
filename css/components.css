@@ -1171,3 +1171,199 @@
 .reviews-cta {
   text-align: center;
 }
+
+/* ==== HERO PRICE BADGE ==== */
+.hero-price {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  background: rgba(200, 149, 108, 0.25);
+  border: 1px solid rgba(200, 149, 108, 0.5);
+  backdrop-filter: blur(10px);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-xl);
+  color: var(--color-white);
+}
+
+.hero-price-from {
+  font-size: var(--fs-sm);
+  opacity: 0.85;
+}
+
+.hero-price-amount {
+  font-family: var(--font-heading);
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  color: var(--color-accent-light);
+}
+
+.hero-price-night {
+  font-size: var(--fs-sm);
+  opacity: 0.85;
+}
+
+/* ==== ABOUT PRICE NOTE ==== */
+.about-price-note {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+  padding: var(--space-lg);
+  background: linear-gradient(135deg, rgba(45, 80, 22, 0.06), rgba(200, 149, 108, 0.08));
+  border: 1px solid rgba(45, 80, 22, 0.15);
+  border-radius: var(--radius-lg);
+  font-size: var(--fs-sm);
+  color: var(--color-text-light);
+}
+
+/* ==== CALENDAR SYNC NOTE ==== */
+.calendar-sync-note {
+  text-align: center;
+  font-size: var(--fs-xs);
+  color: var(--color-text-light);
+  margin-top: var(--space-md);
+  margin-bottom: 0;
+}
+
+/* ==== FORM FEEDBACK ==== */
+.form-feedback {
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  margin-top: var(--space-md);
+}
+
+.form-success {
+  background: rgba(45, 80, 22, 0.1);
+  border: 1px solid rgba(45, 80, 22, 0.3);
+  color: var(--color-primary);
+}
+
+.form-error {
+  background: rgba(220, 53, 69, 0.08);
+  border: 1px solid rgba(220, 53, 69, 0.25);
+  color: #dc3545;
+}
+
+.btn-full {
+  width: 100%;
+}
+
+/* ==== REVIEW VERIFIED BADGE ==== */
+.review-platform {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.review-platform a {
+  color: var(--color-primary);
+  font-size: var(--fs-xs);
+  transition: color var(--transition-fast);
+}
+
+.review-platform a:hover {
+  color: var(--color-accent);
+}
+
+.review-verified {
+  font-size: var(--fs-xs);
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.review-date {
+  display: block;
+  font-size: var(--fs-xs);
+  color: var(--color-text-light);
+  margin-top: 2px;
+}
+
+/* ==== WHATSAPP FLOTANTE ==== */
+.whatsapp-float {
+  position: fixed;
+  bottom: var(--space-xl);
+  right: var(--space-xl);
+  z-index: 900;
+  width: 60px;
+  height: 60px;
+  background: #25D366;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  transition: all var(--transition-base);
+  text-decoration: none;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+}
+
+.whatsapp-float svg {
+  width: 32px;
+  height: 32px;
+  fill: #fff;
+}
+
+.whatsapp-tooltip {
+  position: absolute;
+  right: 72px;
+  background: var(--color-bg-dark);
+  color: var(--color-white);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-base);
+}
+
+.whatsapp-tooltip::after {
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-left-color: var(--color-bg-dark);
+}
+
+.whatsapp-float:hover .whatsapp-tooltip {
+  opacity: 1;
+}
+
+/* ==== FOOTER WHATSAPP BUTTON ==== */
+.btn-whatsapp-footer {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+  padding: var(--space-sm) var(--space-lg);
+  background: #25D366;
+  color: var(--color-white);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  transition: all var(--transition-base);
+  text-decoration: none;
+}
+
+.btn-whatsapp-footer:hover {
+  background: #1ebe5d;
+  transform: translateY(-1px);
+}
+
+/* ==== REVIEW AUTHOR UPDATES ==== */
+.review-author-info span {
+  font-size: var(--fs-xs);
+  color: var(--color-text-light);
+}

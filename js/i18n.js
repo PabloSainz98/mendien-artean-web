@@ -16,8 +16,10 @@ const translations = {
     // Hero
     'hero.badge': 'Igorre, Euskadi',
     'hero.subtitle': 'Casa rural con encanto entre los parques naturales de Urkiola y Gorbeia.<br>Tu refugio de naturaleza en el corazón del País Vasco.',
-    'hero.cta1': 'Ver disponibilidad',
+    'hero.cta1': 'Reserva directa — sin comisiones',
     'hero.cta2': 'Descubre la casa',
+    'hero.pricefrom': 'desde',
+    'hero.pricenight': '/noche',
 
     // About
     'about.title': 'Tu casa entre montañas',
@@ -27,6 +29,8 @@ const translations = {
     'about.feat2': '1 dormitorio + cuna',
     'about.feat3': 'Pet-friendly',
     'about.feat4': 'Jardín vallado',
+    'about.pricenote': 'Desde <strong>75€/noche</strong> · Reserva directa sin comisiones',
+    'about.bookdirect': 'Solicitar reserva →',
 
     // Services
     'services.title': 'Servicios',
@@ -49,6 +53,7 @@ const translations = {
     'avail.subtitle': 'Consulta la disponibilidad y reserva tu estancia',
     'avail.available': 'Disponible',
     'avail.booked': 'Reservado',
+    'avail.syncnote': '📅 Disponibilidad actualizada desde Booking.com y Airbnb',
     'price.title': 'Precios por noche',
     'price.low': 'Temporada baja',
     'price.low.dates': 'Enero — Marzo, Noviembre',
@@ -57,8 +62,9 @@ const translations = {
     'price.high': 'Temporada alta',
     'price.high.dates': 'Julio — Agosto, Puentes y Festivos',
     'price.night': '/noche',
-    'price.bookbooking': 'Reservar en Booking.com',
-    'price.bookairbnb': 'Reservar en Airbnb',
+    'price.bookdirect': '✉️ Reserva directa — sin comisiones',
+    'price.bookbooking': 'Booking.com',
+    'price.bookairbnb': 'Airbnb',
 
     // Booking Form
     'booking.title': 'Solicitar Reserva Directa',
@@ -71,7 +77,9 @@ const translations = {
     'booking.checkout': 'Fecha de Salida',
     'booking.message': 'Mensaje / Peticiones / Mascotas',
     'booking.submit': 'Solicitar Presupuesto sin Compromiso',
-    'booking.note': 'Nos pondremos en contacto contigo lo antes posible para confirmar disponibilidad y precio exacto.',
+    'booking.note': 'Nos pondremos en contacto contigo en menos de 24h para confirmar disponibilidad y precio exacto.',
+    'booking.success': '¡Solicitud enviada! Te contactamos en menos de 24h.',
+    'booking.error': 'Error al enviar. Escríbenos por WhatsApp o email directamente.',
 
     // Calendar weekdays
     'cal.mon': 'Lun', 'cal.tue': 'Mar', 'cal.wed': 'Mié',
@@ -113,6 +121,7 @@ const translations = {
     'reviews.title': 'Opiniones',
     'reviews.subtitle': 'Lo que dicen nuestros huéspedes',
     'reviews.cta': 'Ver todas las reseñas en Google',
+    'reviews.verified': '✓ Estancia verificada',
 
     // Contact
     'contact.title': 'Contacto',
@@ -137,6 +146,8 @@ const translations = {
     'footer.activities': 'Actividades',
     'footer.gallery': 'Galería',
     'footer.contact': 'Contacto',
+    'footer.direct': 'Reserva directa',
+    'whatsapp.tooltip': '¿Preguntas? Escríbenos',
   },
 
   en: {
@@ -150,8 +161,10 @@ const translations = {
 
     'hero.badge': 'Igorre, Basque Country',
     'hero.subtitle': 'Charming rural house between the natural parks of Urkiola and Gorbeia.<br>Your nature retreat in the heart of the Basque Country.',
-    'hero.cta1': 'Check availability',
+    'hero.cta1': 'Book direct — no fees',
     'hero.cta2': 'Discover the house',
+    'hero.pricefrom': 'from',
+    'hero.pricenight': '/night',
 
     'about.title': 'Your home in the mountains',
     'about.p1': '<strong>Mendien Artean</strong> is a cozy independent rural house located in the heart of the Basque Country, between the stunning natural parks of <strong>Urkiola</strong> and <strong>Gorbeia</strong>.',
@@ -160,6 +173,8 @@ const translations = {
     'about.feat2': '1 bedroom + crib',
     'about.feat3': 'Pet-friendly',
     'about.feat4': 'Fenced garden',
+    'about.pricenote': 'From <strong>€75/night</strong> · Book direct with no platform fees',
+    'about.bookdirect': 'Request booking →',
 
     'services.title': 'Services',
     'services.subtitle': 'Everything you need for a comfortable and relaxing stay',
@@ -180,6 +195,7 @@ const translations = {
     'avail.subtitle': 'Check availability and book your stay',
     'avail.available': 'Available',
     'avail.booked': 'Booked',
+    'avail.syncnote': '📅 Availability synced from Booking.com and Airbnb',
     'price.title': 'Prices per night',
     'price.low': 'Low season',
     'price.low.dates': 'January — March, November',
@@ -188,8 +204,9 @@ const translations = {
     'price.high': 'High season',
     'price.high.dates': 'July — August, Bank Holidays',
     'price.night': '/night',
-    'price.bookbooking': 'Book on Booking.com',
-    'price.bookairbnb': 'Book on Airbnb',
+    'price.bookdirect': '✉️ Book direct — no fees',
+    'price.bookbooking': 'Booking.com',
+    'price.bookairbnb': 'Airbnb',
 
     'booking.title': 'Direct Booking Request',
     'booking.subtitle': 'Book directly with us to avoid platform fees',
@@ -201,7 +218,9 @@ const translations = {
     'booking.checkout': 'Check-out Date',
     'booking.message': 'Message / Special Requests / Pets',
     'booking.submit': 'Request Quote Without Commitment',
-    'booking.note': 'We will contact you as soon as possible to confirm availability and exact pricing.',
+    'booking.note': 'We will contact you within 24 hours to confirm availability and exact pricing.',
+    'booking.success': 'Request sent! We\'ll be in touch within 24 hours.',
+    'booking.error': 'Failed to send. Please contact us via WhatsApp or email directly.',
 
     'cal.mon': 'Mon', 'cal.tue': 'Tue', 'cal.wed': 'Wed',
     'cal.thu': 'Thu', 'cal.fri': 'Fri', 'cal.sat': 'Sat', 'cal.sun': 'Sun',
@@ -238,6 +257,7 @@ const translations = {
     'reviews.title': 'Reviews',
     'reviews.subtitle': 'What our guests say',
     'reviews.cta': 'See all reviews on Google',
+    'reviews.verified': '✓ Verified stay',
 
     'contact.title': 'Contact',
     'contact.subtitle': 'Have a question? Don\'t hesitate to get in touch',
@@ -260,6 +280,8 @@ const translations = {
     'footer.activities': 'Activities',
     'footer.gallery': 'Gallery',
     'footer.contact': 'Contact',
+    'footer.direct': 'Book direct',
+    'whatsapp.tooltip': 'Questions? Message us',
   },
 
   eu: {
@@ -273,8 +295,10 @@ const translations = {
 
     'hero.badge': 'Igorre, Euskadi',
     'hero.subtitle': 'Urkiola eta Gorbeia parke naturalen arteko landa-etxe xarmagarria.<br>Zure natura-babeslekua Euskal Herriaren bihotzean.',
-    'hero.cta1': 'Eskuragarritasuna ikusi',
+    'hero.cta1': 'Zuzeneko erreserba — komisiorik gabe',
     'hero.cta2': 'Etxea ezagutu',
+    'hero.pricefrom': 'tik',
+    'hero.pricenight': '/gau',
 
     'about.title': 'Zure etxea mendien artean',
     'about.p1': '<strong>Mendien Artean</strong> Euskal Herriko bihotzean dagoen landa-etxe independente eta goxoa da, <strong>Urkiola</strong> eta <strong>Gorbeia</strong> parke natural ikusgarrien artean.',
@@ -283,6 +307,8 @@ const translations = {
     'about.feat2': 'Logela 1 + seaska',
     'about.feat3': 'Maskotak onartzen dira',
     'about.feat4': 'Lorategi itxia',
+    'about.pricenote': '<strong>75€/gau</strong>tik · Zuzeneko erreserba komisiorik gabe',
+    'about.bookdirect': 'Erreserba eskatu →',
 
     'services.title': 'Zerbitzuak',
     'services.subtitle': 'Egonaldi erosoa eta lasaia izateko behar duzun guztia',
@@ -303,6 +329,7 @@ const translations = {
     'avail.subtitle': 'Kontsultatu eskuragarritasuna eta zure egonaldia erreserbatu',
     'avail.available': 'Eskuragarri',
     'avail.booked': 'Erreserbatua',
+    'avail.syncnote': '📅 Eskuragarritasuna Booking.com eta Airbnb-tik eguneratuta',
     'price.title': 'Gaueko prezioak',
     'price.low': 'Sasoi baxua',
     'price.low.dates': 'Urtarrila — Martxoa, Azaroa',
@@ -311,8 +338,9 @@ const translations = {
     'price.high': 'Goi sasoia',
     'price.high.dates': 'Uztaila — Abuztua, Zubi eta Jaiak',
     'price.night': '/gau',
-    'price.bookbooking': 'Booking.com-en erreserbatu',
-    'price.bookairbnb': 'Airbnb-n erreserbatu',
+    'price.bookdirect': '✉️ Zuzeneko erreserba — komisiorik gabe',
+    'price.bookbooking': 'Booking.com',
+    'price.bookairbnb': 'Airbnb',
 
     'booking.title': 'Zuzeneko Erreserba Eskaera',
     'booking.subtitle': 'Erreserbatu zuzenean gurekin plataformen komisioak saihesteko',
@@ -324,7 +352,9 @@ const translations = {
     'booking.checkout': 'Irteera data',
     'booking.message': 'Mezua / Eskaerak / Maskotak',
     'booking.submit': 'Aurrekontua Eskatu Konpromisorik Gabe',
-    'booking.note': 'Ahalik eta lasterren jarriko gara zurekin harremanetan eskuragarritasuna eta prezio zehatza baieztatzeko.',
+    'booking.note': '24 ordutan jarriko gara zurekin harremanetan eskuragarritasuna eta prezio zehatza baieztatzeko.',
+    'booking.success': 'Eskaera bidali da! 24 ordutan jarriko gara zurekin harremanetan.',
+    'booking.error': 'Errorea bidaltzean. Jar zaitez gurekin harremanetan WhatsApp bidez.',
 
     'cal.mon': 'Al', 'cal.tue': 'As', 'cal.wed': 'Az',
     'cal.thu': 'Og', 'cal.fri': 'Or', 'cal.sat': 'Lr', 'cal.sun': 'Ig',
@@ -361,6 +391,7 @@ const translations = {
     'reviews.title': 'Iritziak',
     'reviews.subtitle': 'Gure gonbidatuek esaten dutena',
     'reviews.cta': 'Google-n iritzi guztiak ikusi',
+    'reviews.verified': '✓ Egonaldi egiaztatua',
 
     'contact.title': 'Kontaktua',
     'contact.subtitle': 'Galderarik baduzu? Ez izan zalantzarik gurekin harremanetan jartzeko',
@@ -383,6 +414,8 @@ const translations = {
     'footer.activities': 'Jarduerak',
     'footer.gallery': 'Argazkiak',
     'footer.contact': 'Kontaktua',
+    'footer.direct': 'Zuzeneko erreserba',
+    'whatsapp.tooltip': 'Galderak? Idatzi iezaguzu',
   }
 };
 

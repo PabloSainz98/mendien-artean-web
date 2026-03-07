@@ -1,0 +1,38 @@
+{
+  "name": "Mendien Artean — Agroturismo",
+  "short_name": "Mendien Artean",
+  "description": "Casa rural con jardín y terraza entre los parques naturales de Urkiola y Gorbeia. Hasta 4 huéspedes.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAFAF5",
+  "theme_color": "#2D5016",
+  "orientation": "portrait-primary",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏡</text></svg>",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "images/444547533.jpg",
+      "sizes": "1920x1080",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Mendien Artean — Vista exterior"
+    }
+  ],
+  "categories": ["travel", "lifestyle"],
+  "shortcuts": [
+    {
+      "name": "Reserva directa",
+      "short_name": "Reservar",
+      "description": "Solicitar reserva directa",
+      "url": "/#booking",
+      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📅</text></svg>", "sizes": "any" }]
+    }
+  ]
+}
