@@ -4,7 +4,7 @@
    Network-first para el HTML principal.
    ============================================ */
 
-const CACHE_NAME = 'mendien-artean-v1';
+const CACHE_NAME = 'mendien-artean-v2';
 
 // Assets a cachear en la instalación
 const STATIC_ASSETS = [
@@ -16,6 +16,8 @@ const STATIC_ASSETS = [
   '/js/i18n.js',
   '/js/main.js',
   '/manifest.json',
+  '/images/domo/domo-exterior-noche.jpg',
+  '/images/domo/domo-exterior-terraza.jpg',
   '/images/444547533.jpg',
   '/images/444547567.jpg',
 ];
@@ -64,7 +66,23 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Cache-first para CSS, JS, imágenes, fuentes
+  // Network-first para JS/CSS para evitar servir traducciones antiguas cacheadas
+  if (request.destination === 'script' || request.destination === 'style') {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          if (response.ok) {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+          }
+          return response;
+        })
+        .catch(() => caches.match(request))
+    );
+    return;
+  }
+
+  // Cache-first para imágenes, fuentes y resto de assets
   event.respondWith(
     caches.match(request).then((cached) => {
       if (cached) return cached;

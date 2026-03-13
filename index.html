@@ -19,6 +19,7 @@
   <meta name="twitter:title" content="UXARBEITI Baserria | Complejo rural en País Vasco">
   <meta name="twitter:description" content="Domo Gorbeia y Urkiola Etxea en una explotación familiar entre parques naturales.">
   <meta name="twitter:image" content="https://pablosainz98.github.io/mendien-artean-web/images/uxarbeiti-complejo.jpg">
+  <link rel="preload" as="image" href="images/uxarbeiti-complejo.jpg" fetchpriority="high">
 
   <!-- PWA -->
   <link rel="manifest" href="manifest.json">
@@ -76,6 +77,8 @@
       { "@type": "LocationFeatureSpecification", "name": "Mascotas permitidas", "value": true }
     ],
     "sameAs": [
+      "https://www.booking.com/hotel/es/domo-en-plena-naturaleza.es.html",
+      "https://www.airbnb.es/rooms/1550920029631784546",
       "https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html",
       "https://www.booking.com/hotel/es/domo-en-plena-naturaleza.es.html",
       "https://www.airbnb.es/rooms/26868295",
@@ -96,7 +99,7 @@
 
       <div class="nav-right">
         <div class="nav-links" id="navLinks">
-          <a href="#about" data-i18n="nav.about">El complejo</a>
+          <a href="#properties" data-i18n="nav.about">Alojamientos</a>
           <a href="#services" data-i18n="nav.services">Servicios</a>
           <a href="#availability" data-i18n="nav.availability">Disponibilidad</a>
           <a href="#activities" data-i18n="nav.activities">Actividades</a>
@@ -134,6 +137,7 @@
   <section class="hero" id="hero">
     <div class="hero-bg">
       <img src="images/uxarbeiti-complejo.jpg" alt="Vista principal de UXARBEITI Baserria rodeada de huertas y montañas" loading="eager" decoding="sync" width="1600" height="1200">
+      <img src="images/uxarbeiti-complejo.jpg" alt="Vista principal de UXARBEITI Baserria rodeada de huertas y montañas" loading="eager" decoding="async" fetchpriority="high" width="1600" height="1200">
     </div>
     <div class="hero-overlay"></div>
 
@@ -155,7 +159,7 @@
       </div>
       <div class="hero-ctas">
         <a href="#booking" class="btn btn-primary btn-lg" data-i18n="hero.cta1">Reservar ahora</a>
-        <a href="#about" class="btn btn-secondary btn-lg" data-i18n="hero.cta2">Descubre el complejo</a>
+        <a href="#properties" class="btn btn-secondary btn-lg" data-i18n="hero.cta2">Descubre nuestros alojamientos</a>
       </div>
     </div>
 
@@ -171,32 +175,32 @@
     <div class="container">
       <div class="about-grid">
         <div class="about-image reveal-left">
-          <img src="images/444547567.jpg" alt="Vista exterior de UXARBEITI Baserria al atardecer" loading="lazy" decoding="async" width="600" height="400">
+          <img src="images/domo/domo-exterior-terraza.jpg" alt="Vista panorámica del domo y las montañas desde Mendien Artean" loading="lazy" decoding="async" width="600" height="400">
         </div>
 
         <div class="about-content reveal-right">
-          <h2 data-i18n="about.title">Un complejo rural entre montañas</h2>
+          <h2 data-i18n="about.title">Tu refugio entre montañas</h2>
           <p data-i18n="about.p1">
-            <strong>UXARBEITI Baserria</strong> es un complejo rural familiar situado en el corazón del País Vasco,
+            <strong>UXARBEITI Baserria</strong> es un acogedor complejo rural situado en el corazón del País Vasco,
             entre los impresionantes parques naturales de <strong>Urkiola</strong> y <strong>Gorbeia</strong>.
           </p>
           <p data-i18n="about.p2">
-            El complejo reúne dos experiencias complementarias, <strong>Urkiola Etxea</strong> y <strong>Domo Gorbeia</strong>,
-            para desconectar con comodidad, paisaje y autenticidad rural.
+            El complejo cuenta con dos alojamientos: <strong>Domo Gorbeia</strong>, una experiencia glamping con vistas panorámicas,
+            y <strong>Urkiola Etxea</strong>, una casa rural independiente con jardín vallado y terraza.
           </p>
 
           <div class="about-features stagger-children">
             <div class="about-feature reveal">
-              <div class="icon">👥</div>
-              <span data-i18n="about.feat1">Dos alojamientos en un mismo complejo</span>
+              <div class="icon">🏔️</div>
+              <span data-i18n="about.feat1">Entre Urkiola y Gorbeia</span>
             </div>
             <div class="about-feature reveal">
-              <div class="icon">🏕️</div>
-              <span data-i18n="about.feat2">Domo Gorbeia + Urkiola Etxea</span>
+              <div class="icon">🏠</div>
+              <span data-i18n="about.feat2">2 alojamientos</span>
             </div>
             <div class="about-feature reveal">
-              <div class="icon">🌄</div>
-              <span data-i18n="about.feat3">Entre Urkiola y Gorbeia</span>
+              <div class="icon">🐾</div>
+              <span data-i18n="about.feat3">Pet-friendly</span>
             </div>
             <div class="about-feature reveal">
               <div class="icon">🍏</div>
@@ -204,14 +208,74 @@
             </div>
           </div>
 
-          <!-- Precio destacado en about -->
           <div class="about-price-note">
-            <span data-i18n="about.pricenote">Reserva directa de alojamientos y experiencias del complejo</span>
-            <a href="#booking" class="btn btn-primary" data-i18n="about.bookdirect">Solicitar reserva →</a>
+            <span data-i18n="about.pricenote">Desde <strong>75€/noche</strong> · Reserva directa</span>
+            <a href="#properties" class="btn btn-primary" data-i18n="about.bookdirect">Ver alojamientos →</a>
           </div>
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- ============ PROPERTIES ============ -->
+  <section class="properties section" id="properties">
+    <div class="container">
+      <div class="section-header">
+        <h2 data-i18n="properties.title">Nuestros Alojamientos</h2>
+        <p data-i18n="properties.subtitle">Dos experiencias únicas en plena naturaleza vasca</p>
+      </div>
+
+      <div class="properties-grid">
+        <!-- DOMO -->
+        <div class="property-card property-card--featured reveal is-selected" data-property-card="domo">
+          <div class="property-card-image">
+            <img src="images/domo/domo-exterior-noche.jpg" alt="Domo geodésico iluminado al atardecer" loading="lazy" decoding="async" width="600" height="400">
+            <span class="property-badge" data-i18n="properties.featured">Destacado</span>
+          </div>
+          <div class="property-card-content">
+            <h3 data-i18n="properties.domo.title">Domo Gorbeia</h3>
+            <p data-i18n="properties.domo.desc">Glamping de lujo con paneles panorámicos, jacuzzi privado y vistas al valle. Una experiencia única bajo las estrellas.</p>
+            <div class="property-card-features">
+              <span>📐 38m²</span>
+              <span>👥 3</span>
+              <span data-i18n="properties.domo.feat3">🛁 Jacuzzi</span>
+              <span data-i18n="properties.domo.feat4">🐾 Mascotas</span>
+            </div>
+            <div class="property-card-price">
+              <span data-i18n="properties.pricefrom">desde</span> <strong>75€</strong><span data-i18n="properties.pricenight">/noche</span>
+            </div>
+            <div class="property-card-actions">
+              <a href="#gallery" class="btn btn-primary" data-gallery-tab="domo" data-i18n="properties.photos">Ver fotos →</a>
+              <button type="button" class="btn btn-outline property-select-btn" data-select-property="domo" data-i18n="properties.select">Seleccionar</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- CASA RURAL -->
+        <div class="property-card reveal" data-property-card="casa">
+          <div class="property-card-image">
+            <img src="images/444547533.jpg" alt="Casa rural con terraza y jardín" loading="lazy" decoding="async" width="600" height="400">
+          </div>
+          <div class="property-card-content">
+            <h3 data-i18n="properties.casa.title">Urkiola Etxea</h3>
+            <p data-i18n="properties.casa.desc">Casa independiente con jardín vallado, terraza con vistas a la montaña, cocina completa y todo el confort para familias.</p>
+            <div class="property-card-features">
+              <span>📐 48m²</span>
+              <span>👥 4</span>
+              <span data-i18n="properties.casa.feat3">🌳 Jardín</span>
+              <span data-i18n="properties.casa.feat4">🐾 Mascotas</span>
+            </div>
+            <div class="property-card-price">
+              <span data-i18n="properties.pricefrom">desde</span> <strong>75€</strong><span data-i18n="properties.pricenight">/noche</span>
+            </div>
+            <div class="property-card-actions">
+                <a href="#gallery" class="btn btn-primary" data-gallery-tab="casa" data-i18n="properties.photos">Ver fotos →</a>
+                <button type="button" class="btn btn-outline property-select-btn" data-select-property="casa" data-i18n="properties.select">Seleccionar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
   </section>
 
   <!-- ============ UXARBEITI STORY ============ -->
@@ -312,6 +376,12 @@
           <h4 data-i18n="svc.family.title">Familiar</h4>
           <p data-i18n="svc.family.desc">Cuna disponible, ropa de cama y toallas incluidas</p>
         </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon">🛁</div>
+          <h4 data-i18n="svc.jacuzzi.title">Jacuzzi</h4>
+          <p data-i18n="svc.jacuzzi.desc">Jacuzzi privado al aire libre junto al domo con vistas al valle</p>
+        </div>
       </div>
     </div>
   </section>
@@ -364,45 +434,65 @@
           <div class="price-tier">
             <div>
               <div class="price-tier-name">🌸 <span data-i18n="price.low">Temporada baja</span></div>
-              <div class="price-tier-dates" data-i18n="price.low.dates">Enero - Marzo, Noviembre</div>
+              <div class="price-tier-dates" data-i18n="price.low.dates">Enero - Mayo, Octubre - Diciembre</div>
+            </div>
+            <div class="price-tier-amount">57€ <span data-i18n="price.night">/noche</span></div>
+          </div>
+
+          <div class="price-tier">
+            <div>
+              <div class="price-tier-name">☀️ <span data-i18n="price.summer">Verano</span></div>
+              <div class="price-tier-dates" data-i18n="price.summer.dates">Junio - Septiembre</div>
             </div>
             <div class="price-tier-amount">75€ <span data-i18n="price.night">/noche</span></div>
           </div>
 
-          <div class="price-tier">
-            <div>
-              <div class="price-tier-name">☀️ <span data-i18n="price.mid">Temporada media</span></div>
-              <div class="price-tier-dates" data-i18n="price.mid.dates">Abril - Junio, Septiembre - Octubre</div>
+          <div class="price-tier price-tier--extras">
+            <div class="price-tier-extra-line">
+              <span data-i18n="price.extra.person">Persona extra</span>
+              <strong>+10€ <span data-i18n="price.night">/noche</span></strong>
             </div>
-            <div class="price-tier-amount">95€ <span data-i18n="price.night">/noche</span></div>
+            <div class="price-tier-extra-line">
+              <span data-i18n="price.extra.pet">Mascota</span>
+              <strong>+10€ <span data-i18n="price.night">/noche</span></strong>
+            </div>
+            <div class="price-tier-extra-line">
+              <span data-i18n="price.extra.child">Niño (cuna)</span>
+              <strong>+5€ <span data-i18n="price.night">/noche</span></strong>
+            </div>
+            <div class="price-tier-extra-line">
+              <span data-i18n="price.extra.cleaning">Limpieza final</span>
+              <strong>+40€ <span data-i18n="price.stay">/estancia</span></strong>
+            </div>
           </div>
 
-          <div class="price-tier">
-            <div>
-              <div class="price-tier-name">🔥 <span data-i18n="price.high">Temporada alta</span></div>
-              <div class="price-tier-dates" data-i18n="price.high.dates">Julio - Agosto, Puentes y Festivos</div>
-            </div>
-            <div class="price-tier-amount">120€ <span data-i18n="price.night">/noche</span></div>
-          </div>
+          <h4 data-i18n="price.bookvia">Reservar alojamiento</h4>
 
-          <div class="pricing-book">
-            <a href="#booking" class="btn btn-primary btn-lg">
-              <span data-i18n="price.bookdirect">✉️ Reservar ahora</span>
-            </a>
-            <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="btn btn-outline btn-lg"
-               id="bookingBtn">
-              <span data-i18n="price.bookbooking">Booking.com</span>
-            </a>
-            <a href="https://www.airbnb.es/rooms/26868295"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="btn btn-outline btn-lg"
-               id="airbnbBtn">
-              <span data-i18n="price.bookairbnb">Airbnb</span>
-            </a>
+          <div class="pricing-property-links">
+            <div class="pricing-property is-active" data-pricing-property="domo">
+              <strong data-i18n="properties.domo.title">Domo Gorbeia</strong>
+              <div class="pricing-book">
+                <a href="#booking" class="btn btn-primary btn-sm">
+                  <span data-i18n="price.bookdirect">✉️ Directo</span>
+                </a>
+                <a href="https://www.booking.com/hotel/es/domo-en-plena-naturaleza.es.html"
+                   class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">Booking</a>
+                <a href="https://www.airbnb.es/rooms/1550920029631784546"
+                   class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">Airbnb</a>
+              </div>
+            </div>
+            <div class="pricing-property" data-pricing-property="casa">
+              <strong data-i18n="properties.casa.title">Urkiola Etxea</strong>
+              <div class="pricing-book">
+                <a href="#booking" class="btn btn-primary btn-sm">
+                  <span data-i18n="price.bookdirect">✉️ Directo</span>
+                </a>
+                <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html"
+                   class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">Booking</a>
+                <a href="https://www.airbnb.es/rooms/26868295"
+                   class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">Airbnb</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -436,12 +526,43 @@
               <input type="tel" id="b_phone" name="phone" required autocomplete="tel">
             </div>
             <div class="form-group">
-              <label for="b_guests" data-i18n="booking.guests">Huéspedes (Max 4)</label>
+              <label for="b_property" data-i18n="booking.property">Alojamiento</label>
+              <select id="b_property" name="property" required>
+                <option value="domo" data-i18n="booking.property.domo">Domo Gorbeia</option>
+                <option value="casa" data-i18n="booking.property.casa">Urkiola Etxea</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="b_guests" data-i18n="booking.guests">Personas</label>
               <select id="b_guests" name="guests" required>
                 <option value="1">1</option>
                 <option value="2" selected>2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="b_nights" data-i18n="booking.nights">Noches</label>
+              <input type="number" id="b_nights" name="nights" min="1" value="1" readonly>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="b_pets" data-i18n="booking.pets">¿Perros / Mascotas?</label>
+              <select id="b_pets" name="pets" required>
+                <option value="0" data-i18n="booking.no">No</option>
+                <option value="1" data-i18n="booking.yes">Sí</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="b_children" data-i18n="booking.children">¿Niños (cuna)?</label>
+              <select id="b_children" name="children" required>
+                <option value="0" data-i18n="booking.no">No</option>
+                <option value="1" data-i18n="booking.yes">Sí</option>
               </select>
             </div>
           </div>
@@ -460,6 +581,37 @@
           <div class="form-group">
             <label for="b_message" data-i18n="booking.message">Mensaje / Mascotas / Peticiones</label>
             <textarea id="b_message" name="message" rows="3"></textarea>
+          </div>
+
+          <div class="booking-price-breakdown" id="bookingPriceBreakdown" aria-live="polite">
+            <h4 data-i18n="booking.breakdown.title">Desglose estimado</h4>
+            <div class="breakdown-line">
+              <span data-i18n="booking.breakdown.seasonBase">Tarifa base por temporada</span>
+              <strong id="lineSeasonBase">57€</strong>
+            </div>
+            <div class="breakdown-line">
+              <span data-i18n="booking.breakdown.extraPeople">Personas extra</span>
+              <strong id="lineExtraPeople">0€</strong>
+            </div>
+            <div class="breakdown-line">
+              <span data-i18n="booking.breakdown.pets">Mascotas</span>
+              <strong id="linePets">0€</strong>
+            </div>
+            <div class="breakdown-line">
+              <span data-i18n="booking.breakdown.children">Niños (cuna)</span>
+              <strong id="lineChildren">0€</strong>
+            </div>
+            <div class="breakdown-line">
+              <span data-i18n="booking.breakdown.cleaning">Limpieza final</span>
+              <strong id="lineCleaning">40€</strong>
+            </div>
+            <div class="breakdown-total">
+              <span data-i18n="booking.breakdown.total">Total estimado</span>
+              <strong id="lineTotal">97€</strong>
+            </div>
+            <p class="breakdown-note" data-i18n="booking.breakdown.note">
+              El total final puede variar según fechas exactas y condiciones de reserva.
+            </p>
           </div>
 
           <div class="form-submit">
@@ -490,47 +642,71 @@
       </div>
 
       <div class="activities-grid stagger-children">
-        <div class="activity-card reveal">
+        <a class="activity-card reveal"
+           href="https://turismo.euskadi.eus/es/espacios-naturales/parque-natural-de-urkiola/webtur00-content/es/"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Abrir información del Parque Natural de Urkiola">
           <div class="activity-icon">⛰️</div>
           <h4 data-i18n="act.urkiola.title">Parque Natural de Urkiola</h4>
           <p data-i18n="act.urkiola.desc">Rutas de senderismo espectaculares, el emblemático santuario y vistas impresionantes del Anboto</p>
           <span class="activity-distance" data-i18n="act.urkiola.dist">📍 15 min en coche</span>
-        </div>
+        </a>
 
-        <div class="activity-card reveal">
+        <a class="activity-card reveal"
+           href="https://turismo.euskadi.eus/es/espacios-naturales/parque-natural-de-gorbeia/webtur00-content/es/"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Abrir información del Parque Natural de Gorbeia">
           <div class="activity-icon">🌲</div>
           <h4 data-i18n="act.gorbeia.title">Parque Natural de Gorbeia</h4>
           <p data-i18n="act.gorbeia.desc">El techo de Bizkaia con hayedos centenarios, cascadas y la icónica cruz de Gorbeia</p>
           <span class="activity-distance" data-i18n="act.gorbeia.dist">📍 20 min en coche</span>
-        </div>
+        </a>
 
-        <div class="activity-card reveal">
+        <a class="activity-card reveal"
+           href="https://www.tripadvisor.es/Attractions-g187454-Activities-Bilbao_Province_of_Vizcaya_Basque_Country.html"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Abrir actividades en Bilbao y Guggenheim">
           <div class="activity-icon">🏛️</div>
           <h4 data-i18n="act.bilbao.title">Bilbao y Guggenheim</h4>
           <p data-i18n="act.bilbao.desc">La vibrante capital vizcaína con el museo Guggenheim, pintxos y el Casco Viejo</p>
           <span class="activity-distance" data-i18n="act.bilbao.dist">📍 30 min en coche</span>
-        </div>
+        </a>
 
-        <div class="activity-card reveal">
+        <a class="activity-card reveal"
+           href="https://www.tripadvisor.es/Restaurants-g1069103-Igorre_Province_of_Vizcaya_Basque_Country.html"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Abrir recomendaciones de gastronomía vasca en Igorre">
           <div class="activity-icon">🍷</div>
           <h4 data-i18n="act.gastro.title">Gastronomía vasca</h4>
           <p data-i18n="act.gastro.desc">Sidrerías, asadores y la mejor gastronomía del mundo a pocos minutos</p>
           <span class="activity-distance" data-i18n="act.gastro.dist">📍 En los alrededores</span>
-        </div>
+        </a>
 
-        <div class="activity-card reveal">
+        <a class="activity-card reveal"
+           href="https://turismo.euskadi.eus/es/top10/espacios-naturales/reserva-de-la-biosfera-de-urdaibai/webtur00-recursostop/es/"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Abrir información de playas y Urdaibai">
           <div class="activity-icon">🏖️</div>
           <h4 data-i18n="act.beach.title">Playas de Bizkaia</h4>
           <p data-i18n="act.beach.desc">Playa de Bakio, Bermeo, Laga y la espectacular reserva de Urdaibai</p>
           <span class="activity-distance" data-i18n="act.beach.dist">📍 40 min en coche</span>
-        </div>
+        </a>
 
-        <div class="activity-card reveal">
+        <a class="activity-card reveal"
+           href="https://es.wikiloc.com/rutas/mountain-bike/espana/pais-vasco/igorre"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Abrir rutas de ciclismo y BTT en Igorre">
           <div class="activity-icon">🚴</div>
           <h4 data-i18n="act.cycling.title">Ciclismo y BTT</h4>
           <p data-i18n="act.cycling.desc">Rutas ciclistas por carretera y montaña entre paisajes verdes increíbles</p>
           <span class="activity-distance" data-i18n="act.cycling.dist">📍 Desde la puerta</span>
-        </div>
+        </a>
       </div>
     </div>
   </section>
@@ -580,35 +756,83 @@
     <div class="container">
       <div class="section-header">
         <h2 data-i18n="gallery.title">Galería</h2>
-        <p data-i18n="gallery.subtitle">Echa un vistazo a la casa y sus alrededores</p>
+        <p data-i18n="gallery.subtitle">Echa un vistazo a nuestros alojamientos y su entorno</p>
+      </div>
+
+      <div class="gallery-tabs">
+        <button class="gallery-tab active" data-tab="domo" data-i18n="gallery.tab.domo">Domo Gorbeia</button>
+        <button class="gallery-tab" data-tab="casa" data-i18n="gallery.tab.casa">Urkiola Etxea</button>
       </div>
 
       <div class="gallery-grid" id="galleryGrid">
-        <div class="gallery-item reveal" data-index="0">
+        <!-- DOMO (visible por defecto) -->
+        <div class="gallery-item reveal" data-property="domo" data-index="0">
+          <img src="images/domo/domo-interior-panoramica.jpg" alt="Interior del domo con vistas panorámicas al valle" loading="lazy" decoding="async" width="800" height="600">
+          <div class="gallery-zoom">🔍</div>
+        </div>
+        <div class="gallery-item reveal" data-property="domo" data-index="1">
+          <img src="images/domo/domo-exterior-noche.jpg" alt="Domo geodésico iluminado al atardecer" loading="lazy" decoding="async" width="800" height="600">
+          <div class="gallery-zoom">🔍</div>
+        </div>
+        <div class="gallery-item reveal" data-property="domo" data-index="2">
+          <img src="images/domo/domo-interior-cama.jpg" alt="Dormitorio del domo con vistas a la montaña" loading="lazy" decoding="async" width="800" height="600">
+          <div class="gallery-zoom">🔍</div>
+        </div>
+        <div class="gallery-item reveal" data-property="domo" data-index="3">
+          <img src="images/domo/domo-exterior-terraza.jpg" alt="Terraza del domo con vistas al atardecer" loading="lazy" decoding="async" width="800" height="600">
+          <div class="gallery-zoom">🔍</div>
+        </div>
+        <div class="gallery-item reveal" data-property="domo" data-index="4">
+          <img src="images/domo/domo-interior-atardecer.jpg" alt="Interior del domo con luz cálida del atardecer" loading="lazy" decoding="async" width="800" height="600">
+          <div class="gallery-zoom">🔍</div>
+        </div>
+        <div class="gallery-item reveal" data-property="domo" data-index="5">
+          <img src="images/domo/domo-cocineta.jpg" alt="Cocineta equipada del domo con iluminación LED" loading="lazy" decoding="async" width="800" height="600">
+          <div class="gallery-zoom">🔍</div>
+        </div>
+        <div class="gallery-item reveal" data-property="domo" data-index="6">
+          <img src="images/domo/domo-exterior-dia.jpg" alt="Exterior del domo de día con terraza y perro" loading="lazy" decoding="async" width="800" height="600">
+          <div class="gallery-zoom">🔍</div>
+        </div>
+        <div class="gallery-item reveal" data-property="domo" data-index="7">
+          <img src="images/domo/domo-noche-luna.jpg" alt="Domo de noche bajo la luna llena" loading="lazy" decoding="async" width="800" height="600">
+          <div class="gallery-zoom">🔍</div>
+        </div>
+        <div class="gallery-item reveal" data-property="domo" data-index="8">
+          <img src="images/domo/domo-exterior-aerea.jpg" alt="Vista aérea del domo con niebla en el valle" loading="lazy" decoding="async" width="800" height="600">
+          <div class="gallery-zoom">🔍</div>
+        </div>
+        <div class="gallery-item reveal" data-property="domo" data-index="9">
+          <img src="images/domo/domo-detalle-tocadiscos.jpg" alt="Detalle del tocadiscos vintage con vistas" loading="lazy" decoding="async" width="800" height="600">
+          <div class="gallery-zoom">🔍</div>
+        </div>
+
+        <!-- CASA RURAL (oculta inicialmente) -->
+        <div class="gallery-item reveal" data-property="casa" data-index="0" style="display:none">
           <img src="images/444547533.jpg" alt="Exterior de la casa con hamaca y terraza" loading="lazy" decoding="async" width="800" height="600">
           <div class="gallery-zoom">🔍</div>
         </div>
-        <div class="gallery-item reveal" data-index="1">
+        <div class="gallery-item reveal" data-property="casa" data-index="1" style="display:none">
           <img src="images/444547549.jpg" alt="Salón con sofá y televisión" loading="lazy" decoding="async" width="800" height="600">
           <div class="gallery-zoom">🔍</div>
         </div>
-        <div class="gallery-item reveal" data-index="2">
+        <div class="gallery-item reveal" data-property="casa" data-index="2" style="display:none">
           <img src="images/444547560.jpg" alt="Dormitorio con cama doble y cuna" loading="lazy" decoding="async" width="800" height="600">
           <div class="gallery-zoom">🔍</div>
         </div>
-        <div class="gallery-item reveal" data-index="3">
+        <div class="gallery-item reveal" data-property="casa" data-index="3" style="display:none">
           <img src="images/444547563.jpg" alt="Cocina equipada moderna" loading="lazy" decoding="async" width="800" height="600">
           <div class="gallery-zoom">🔍</div>
         </div>
-        <div class="gallery-item reveal" data-index="4">
+        <div class="gallery-item reveal" data-property="casa" data-index="4" style="display:none">
           <img src="images/444547565.jpg" alt="Dormitorio con cama doble" loading="lazy" decoding="async" width="800" height="600">
           <div class="gallery-zoom">🔍</div>
         </div>
-        <div class="gallery-item reveal" data-index="5">
+        <div class="gallery-item reveal" data-property="casa" data-index="5" style="display:none">
           <img src="images/444547567.jpg" alt="Vista exterior al atardecer" loading="lazy" decoding="async" width="800" height="600">
           <div class="gallery-zoom">🔍</div>
         </div>
-        <div class="gallery-item reveal" data-index="6">
+        <div class="gallery-item reveal" data-property="casa" data-index="6" style="display:none">
           <img src="images/444547573.jpg" alt="Baño completo" loading="lazy" decoding="async" width="800" height="600">
           <div class="gallery-zoom">🔍</div>
         </div>
@@ -643,8 +867,7 @@
             <div class="review-author-info">
               <strong>Alberto</strong>
               <span class="review-platform">
-                <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html#tab-reviews"
-                   target="_blank" rel="noopener noreferrer" aria-label="Ver reseña en Booking.com">Booking.com</a>
+                <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html#tab-reviews" aria-label="Ver reseña en Booking.com" target="_blank" rel="noopener noreferrer">Booking.com</a>
                 <span class="review-verified" data-i18n="reviews.verified">✓ Estancia verificada</span>
               </span>
               <time class="review-date" datetime="2025-08">Agosto 2025</time>
@@ -660,8 +883,7 @@
             <div class="review-author-info">
               <strong>María</strong>
               <span class="review-platform">
-                <a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7"
-                   target="_blank" rel="noopener noreferrer" aria-label="Ver reseña en Google">Google Maps</a>
+                <a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" aria-label="Ver reseña en Google" target="_blank" rel="noopener noreferrer">Google Maps</a>
                 <span class="review-verified" data-i18n="reviews.verified">✓ Estancia verificada</span>
               </span>
               <time class="review-date" datetime="2025-07">Julio 2025</time>
@@ -677,8 +899,7 @@
             <div class="review-author-info">
               <strong>Daniel</strong>
               <span class="review-platform">
-                <a href="https://www.airbnb.es/rooms/26868295"
-                   target="_blank" rel="noopener noreferrer" aria-label="Ver reseña en Airbnb">Airbnb</a>
+                <a href="https://www.airbnb.es/rooms/26868295" aria-label="Ver reseña en Airbnb" target="_blank" rel="noopener noreferrer">Airbnb</a>
                 <span class="review-verified" data-i18n="reviews.verified">✓ Estancia verificada</span>
               </span>
               <time class="review-date" datetime="2025-06">Junio 2025</time>
@@ -688,7 +909,7 @@
       </div>
 
       <div class="reviews-cta">
-        <a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" target="_blank" rel="noopener noreferrer" class="btn btn-outline" data-i18n="reviews.cta">Ver todas las reseñas en Google</a>
+        <a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" class="btn btn-outline" data-i18n="reviews.cta" target="_blank" rel="noopener noreferrer">Ver todas las reseñas en Google</a>
       </div>
     </div>
   </section>
@@ -728,8 +949,7 @@
               <div class="contact-detail-text">
                 <strong>WhatsApp</strong>
                 <span>
-                  <a href="#" data-wa data-wa-display
-                     target="_blank" rel="noopener noreferrer">+34 646 39 78 76</a>
+                  <a href="#" data-wa data-wa-display>+34 646 39 78 76</a>
                 </span>
               </div>
             </div>
@@ -739,8 +959,10 @@
               <div class="contact-detail-text">
                 <strong data-i18n="contact.reservas">Reservas</strong>
                 <span>
-                  <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" target="_blank" rel="noopener noreferrer">Booking.com</a> ·
-                  <a href="https://www.airbnb.es/rooms/26868295" target="_blank" rel="noopener noreferrer">Airbnb</a>
+                  <a href="https://www.booking.com/hotel/es/domo-en-plena-naturaleza.es.html" target="_blank" rel="noopener noreferrer">Booking Domo</a> ·
+                  <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" target="_blank" rel="noopener noreferrer">Booking Casa</a> ·
+                  <a href="https://www.airbnb.es/rooms/1550920029631784546" target="_blank" rel="noopener noreferrer">Airbnb Domo</a> ·
+                  <a href="https://www.airbnb.es/rooms/26868295" target="_blank" rel="noopener noreferrer">Airbnb Casa</a>
                 </span>
               </div>
             </div>
@@ -749,7 +971,7 @@
               <div class="icon">🗺️</div>
               <div class="contact-detail-text">
                 <strong data-i18n="contact.directions">Cómo llegar</strong>
-                <span><a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" target="_blank" rel="noopener noreferrer" data-i18n="contact.directions.link">Ver en Google Maps →</a></span>
+                <span><a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" data-i18n="contact.directions.link" target="_blank" rel="noopener noreferrer">Ver en Google Maps →</a></span>
               </div>
             </div>
           </div>
@@ -777,7 +999,6 @@
           <h3>UXARBEITI Baserria</h3>
           <p data-i18n="footer.desc">Complejo rural familiar entre los parques naturales de Urkiola y Gorbeia, con alojamiento y producto local.</p>
           <a href="#" data-wa
-             target="_blank" rel="noopener noreferrer"
              class="btn btn-whatsapp-footer"
              aria-label="Contactar por WhatsApp">
             💬 WhatsApp
@@ -787,7 +1008,7 @@
         <div class="footer-links">
           <h4 data-i18n="footer.sections">Secciones</h4>
           <ul>
-            <li><a href="#about" data-i18n="footer.house">El complejo</a></li>
+            <li><a href="#properties" data-i18n="footer.house">Alojamientos</a></li>
             <li><a href="#services" data-i18n="footer.services">Servicios</a></li>
             <li><a href="#availability" data-i18n="footer.availability">Disponibilidad</a></li>
             <li><a href="#activities" data-i18n="footer.activities">Actividades</a></li>
@@ -801,8 +1022,10 @@
           <h4 data-i18n="footer.book">Reservar</h4>
           <ul>
             <li><a href="#booking" data-i18n="footer.direct">Reserva directa</a></li>
-            <li><a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" target="_blank" rel="noopener noreferrer">Booking.com</a></li>
-            <li><a href="https://www.airbnb.es/rooms/26868295" target="_blank" rel="noopener noreferrer">Airbnb</a></li>
+            <li><a href="https://www.booking.com/hotel/es/domo-en-plena-naturaleza.es.html" target="_blank" rel="noopener noreferrer">Booking Domo</a></li>
+            <li><a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" target="_blank" rel="noopener noreferrer">Booking Casa</a></li>
+            <li><a href="https://www.airbnb.es/rooms/1550920029631784546" target="_blank" rel="noopener noreferrer">Airbnb Domo</a></li>
+            <li><a href="https://www.airbnb.es/rooms/26868295" target="_blank" rel="noopener noreferrer">Airbnb Casa</a></li>
             <li><a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" target="_blank" rel="noopener noreferrer">Google Maps</a></li>
           </ul>
         </div>
@@ -811,10 +1034,10 @@
       <div class="footer-bottom">
         <span data-i18n="footer.rights">© 2026 UXARBEITI Baserria. Todos los derechos reservados.</span>
         <div class="footer-social">
-          <a href="https://www.airbnb.es/rooms/26868295" target="_blank" rel="noopener noreferrer" aria-label="Airbnb" title="Airbnb">🏠</a>
-          <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" target="_blank" rel="noopener noreferrer" aria-label="Booking" title="Booking">📘</a>
-          <a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" target="_blank" rel="noopener noreferrer" aria-label="Maps" title="Google Maps">🗺️</a>
-          <a href="#" data-wa target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">💬</a>
+          <a href="https://www.airbnb.es/rooms/26868295" aria-label="Airbnb" title="Airbnb" target="_blank" rel="noopener noreferrer">🏠</a>
+          <a href="https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html" aria-label="Booking" title="Booking" target="_blank" rel="noopener noreferrer">📘</a>
+          <a href="https://maps.app.goo.gl/b3LKdnHyZYarbWeP7" aria-label="Maps" title="Google Maps" target="_blank" rel="noopener noreferrer">🗺️</a>
+          <a href="#" data-wa aria-label="WhatsApp" title="WhatsApp">💬</a>
         </div>
       </div>
     </div>
@@ -823,8 +1046,6 @@
   <!-- ============ WHATSAPP FLOTANTE ============ -->
   <a href="#" data-wa
      class="whatsapp-float"
-     target="_blank"
-     rel="noopener noreferrer"
      aria-label="Contactar por WhatsApp">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>

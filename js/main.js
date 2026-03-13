@@ -28,6 +28,75 @@ const BOOKED_DATES = [
   '2026-08-28', '2026-08-29', '2026-08-30', '2026-08-31',
 ];
 
+const LOW_SEASON_BASE_RATE = 57;
+const SUMMER_BASE_RATE = 75;
+const EXTRA_PERSON_RATE = 10;
+const PET_RATE = 10;
+const CHILD_RATE = 5;
+const CLEANING_FEE = 40;
+
+function parseDateInput(dateStr) {
+  if (!dateStr) return null;
+  const [year, month, day] = dateStr.split('-').map(Number);
+  if (!year || !month || !day) return null;
+  return new Date(year, month - 1, day);
+}
+
+function getNights(checkin, checkout) {
+  const checkinDate = parseDateInput(checkin);
+  const checkoutDate = parseDateInput(checkout);
+  if (!checkinDate || !checkoutDate) return 1;
+
+  const diff = checkoutDate.getTime() - checkinDate.getTime();
+  const nights = Math.round(diff / 86400000);
+  return Math.max(1, nights);
+}
+
+function getBaseRateBySeason(checkin) {
+  const checkinDate = parseDateInput(checkin);
+  const month = checkinDate ? checkinDate.getMonth() : new Date().getMonth();
+  const isLowSeason = month <= 4 || month >= 9; // Jan-May, Oct-Dec
+
+  return {
+    rate: isLowSeason ? LOW_SEASON_BASE_RATE : SUMMER_BASE_RATE,
+    season: isLowSeason ? 'low' : 'summer'
+  };
+}
+
+function calculateBookingEstimate({ checkin, checkout, guests, pets, children }) {
+  const nights = getNights(checkin, checkout);
+  const people = Math.max(1, Number.parseInt(guests, 10) || 1);
+  const hasPets = Number.parseInt(pets, 10) > 0 ? 1 : 0;
+  const hasChildren = Number.parseInt(children, 10) > 0 ? 1 : 0;
+  const extraPeople = Math.max(0, people - 1);
+
+  const { rate: baseRate, season } = getBaseRateBySeason(checkin);
+
+  const baseTotal = baseRate * nights;
+  const extraPeopleTotal = extraPeople * EXTRA_PERSON_RATE * nights;
+  const petsTotal = hasPets * PET_RATE * nights;
+  const childrenTotal = hasChildren * CHILD_RATE * nights;
+  const subtotal = baseTotal + extraPeopleTotal + petsTotal + childrenTotal;
+  const total = subtotal + CLEANING_FEE;
+
+  return {
+    season,
+    baseRate,
+    nights,
+    people,
+    extraPeople,
+    hasPets,
+    hasChildren,
+    baseTotal,
+    extraPeopleTotal,
+    petsTotal,
+    childrenTotal,
+    subtotal,
+    cleaningFee: CLEANING_FEE,
+    total
+  };
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   if (typeof initLanguageSwitcher === 'function') {
     initLanguageSwitcher();
@@ -35,12 +104,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initContactLinks();
   initNavbar();
-  initCalendar();
+  initGalleryTabs();
+  initPropertySelectors();
   initBookingForm();
-  initGallery();
-  initScrollReveal();
   initSmoothScroll();
   initDateConstraints();
+
+  // Defer non-critical initialization to keep the first render responsive.
+  const scheduleNonCriticalInit = (fn) => {
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(fn, { timeout: 1200 });
+      return;
+    }
+    window.setTimeout(fn, 0);
+  };
+
+  scheduleNonCriticalInit(() => {
+    initCalendar();
+    initGallery();
+    initScrollReveal();
+  });
 });
 
 /* ==========================================
@@ -51,14 +134,19 @@ function initNavbar() {
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
   const navOverlay = document.getElementById('navOverlay');
+  if (!navbar || !navToggle || !navLinks || !navOverlay) return;
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 80) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  });
+  let ticking = false;
+  const onScroll = () => {
+    if (ticking) return;
+    window.requestAnimationFrame(() => {
+      navbar.classList.toggle('scrolled', window.scrollY > 80);
+      ticking = false;
+    });
+    ticking = true;
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 
   navToggle.addEventListener('click', () => {
     navToggle.classList.toggle('active');
@@ -259,6 +347,68 @@ function initBookingForm() {
 
   if (!form) return;
 
+  const guestsInput = document.getElementById('b_guests');
+  const petsInput = document.getElementById('b_pets');
+  const childrenInput = document.getElementById('b_children');
+  const checkinInput = document.getElementById('b_checkin');
+  const checkoutInput = document.getElementById('b_checkout');
+  const nightsInput = document.getElementById('b_nights');
+
+  const lineSeasonBase = document.getElementById('lineSeasonBase');
+  const lineExtraPeople = document.getElementById('lineExtraPeople');
+  const linePets = document.getElementById('linePets');
+  const lineChildren = document.getElementById('lineChildren');
+  const lineCleaning = document.getElementById('lineCleaning');
+  const lineTotal = document.getElementById('lineTotal');
+
+  const i18n = (key, fallback) => {
+    if (typeof t === 'function') return t(key);
+    return fallback;
+  };
+
+  const updateEstimateUI = () => {
+    const estimate = calculateBookingEstimate({
+      checkin: checkinInput?.value || '',
+      checkout: checkoutInput?.value || '',
+      guests: guestsInput?.value || '1',
+      pets: petsInput?.value || '0',
+      children: childrenInput?.value || '0'
+    });
+
+    if (nightsInput) nightsInput.value = String(estimate.nights);
+
+    const seasonLabel = estimate.season === 'low'
+      ? i18n('booking.breakdown.season.low', 'Temporada baja')
+      : i18n('booking.breakdown.season.summer', 'Verano');
+
+    if (lineSeasonBase) {
+      lineSeasonBase.textContent = `${seasonLabel}: ${estimate.baseRate}€ x ${estimate.nights} = ${estimate.baseTotal}€`;
+    }
+    if (lineExtraPeople) {
+      lineExtraPeople.textContent = `${estimate.extraPeople} x ${EXTRA_PERSON_RATE}€ x ${estimate.nights} = ${estimate.extraPeopleTotal}€`;
+    }
+    if (linePets) {
+      linePets.textContent = `${estimate.hasPets} x ${PET_RATE}€ x ${estimate.nights} = ${estimate.petsTotal}€`;
+    }
+    if (lineChildren) {
+      lineChildren.textContent = `${estimate.hasChildren} x ${CHILD_RATE}€ x ${estimate.nights} = ${estimate.childrenTotal}€`;
+    }
+    if (lineCleaning) {
+      lineCleaning.textContent = `${estimate.cleaningFee}€`;
+    }
+    if (lineTotal) {
+      lineTotal.textContent = `${estimate.total}€`;
+    }
+
+    return estimate;
+  };
+
+  [guestsInput, petsInput, childrenInput, checkinInput, checkoutInput]
+    .filter(Boolean)
+    .forEach(el => el.addEventListener('change', updateEstimateUI));
+
+  updateEstimateUI();
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -270,21 +420,46 @@ function initBookingForm() {
     const name     = document.getElementById('b_name').value.trim();
     const email    = document.getElementById('b_email').value.trim();
     const phone    = document.getElementById('b_phone').value.trim();
-    const guests   = document.getElementById('b_guests').value;
+    const property = document.getElementById('b_property').value;
+    const propertyName = property === 'domo' ? 'Domo Gorbeia' : 'Urkiola Etxea';
+    const guests   = guestsInput ? guestsInput.value : '1';
+    const pets     = petsInput ? petsInput.value : '0';
+    const children = childrenInput ? childrenInput.value : '0';
     const checkin  = document.getElementById('b_checkin').value;
     const checkout = document.getElementById('b_checkout').value;
+    const nights   = nightsInput ? nightsInput.value : String(getNights(checkin, checkout));
     const message  = document.getElementById('b_message').value.trim();
+    const estimate = updateEstimateUI();
 
-    const subject = `Solicitud de reserva: ${name} | ${checkin} - ${checkout}`;
+    const petsLabel = Number.parseInt(pets, 10) > 0 ? i18n('booking.yes', 'Sí') : i18n('booking.no', 'No');
+    const childrenLabel = Number.parseInt(children, 10) > 0 ? i18n('booking.yes', 'Sí') : i18n('booking.no', 'No');
+    const seasonLabel = estimate.season === 'low'
+      ? i18n('booking.breakdown.season.low', 'Temporada baja')
+      : i18n('booking.breakdown.season.summer', 'Verano');
+
+    const subject = `Solicitud de reserva (${propertyName}): ${name} | ${checkin} - ${checkout} | ${estimate.total}€`;
     const body = [
       'SOLICITUD DE RESERVA - UXARBEITI BASERRIA',
       '-----------------------------------------',
+      `Alojamiento: ${propertyName}`,
       `Nombre:      ${name}`,
       `Email:       ${email}`,
       `Teléfono:    ${phone}`,
-      `Huéspedes:   ${guests}`,
+      `Personas:    ${guests}`,
+      `Noches:      ${nights}`,
+      `Mascotas:    ${petsLabel}`,
+      `Niños:       ${childrenLabel}`,
       `Entrada:     ${checkin}`,
       `Salida:      ${checkout}`,
+      '-----------------------------------------',
+      `Temporada:   ${seasonLabel}`,
+      `Base:        ${estimate.baseRate}€ x ${estimate.nights} = ${estimate.baseTotal}€`,
+      `Extras pers: ${estimate.extraPeopleTotal}€`,
+      `Mascotas:    ${estimate.petsTotal}€`,
+      `Niños:       ${estimate.childrenTotal}€`,
+      `Limpieza:    ${estimate.cleaningFee}€`,
+      `TOTAL EST.:  ${estimate.total}€`,
+      '-----------------------------------------',
       `Mensaje:     ${message || '(ninguno)'}`,
       '-----------------------------------------',
       'Enviado desde uxarbeiti.eus',
@@ -299,6 +474,7 @@ function initBookingForm() {
         if (successEl) successEl.style.display = 'block';
         if (errorEl) errorEl.style.display = 'none';
         form.reset();
+        updateEstimateUI();
         setTimeout(() => { if (successEl) successEl.style.display = 'none'; }, 6000);
       }, 500);
     } catch {
@@ -308,27 +484,134 @@ function initBookingForm() {
 }
 
 /* ==========================================
+   GALLERY — Tabs (Domo / Casa Rural)
+   ========================================== */
+function initGalleryTabs() {
+  const tabs = document.querySelectorAll('.gallery-tab');
+  const items = document.querySelectorAll('.gallery-item[data-property]');
+
+  if (!tabs.length) return;
+
+  function switchTab(tabName) {
+    // Actualizar tabs activas
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === tabName));
+
+    // Mostrar/ocultar items
+    let idx = 0;
+    items.forEach(item => {
+      if (item.dataset.property === tabName) {
+        item.style.display = '';
+        item.dataset.index = idx++;
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  window.switchGalleryTab = switchTab;
+
+  // Click en tabs
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+  });
+
+  // Click en "Ver fotos" de las property cards
+  document.querySelectorAll('[data-gallery-tab]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchTab(btn.dataset.galleryTab);
+      const gallery = document.getElementById('gallery');
+      if (gallery) gallery.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+}
+
+/* ==========================================
+   PROPERTY SELECTOR — choose stay from cards
+   ========================================== */
+function initPropertySelectors() {
+  const cards = document.querySelectorAll('.property-card[data-property-card]');
+  const selectButtons = document.querySelectorAll('.property-select-btn[data-select-property]');
+  const bookingSelect = document.getElementById('b_property');
+  const pricingBlocks = document.querySelectorAll('.pricing-property[data-pricing-property]');
+  const bookingSection = document.getElementById('booking');
+
+  if (!cards.length) return;
+
+  const setSelectedProperty = (property, options = {}) => {
+    const { syncBooking = true, syncGallery = false, scrollToBooking = false } = options;
+
+    cards.forEach(card => {
+      card.classList.toggle('is-selected', card.dataset.propertyCard === property);
+    });
+
+    pricingBlocks.forEach(block => {
+      block.classList.toggle('is-active', block.dataset.pricingProperty === property);
+    });
+
+    if (syncBooking && bookingSelect) {
+      bookingSelect.value = property;
+    }
+
+    if (syncGallery && typeof window.switchGalleryTab === 'function') {
+      window.switchGalleryTab(property);
+    }
+
+    if (scrollToBooking && bookingSection) {
+      const navHeight = document.getElementById('navbar')?.offsetHeight || 0;
+      const top = bookingSection.getBoundingClientRect().top + window.scrollY - navHeight;
+      window.scrollTo({ top, behavior: 'smooth' });
+      bookingSelect?.focus({ preventScroll: true });
+    }
+  };
+
+  selectButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      setSelectedProperty(btn.dataset.selectProperty, {
+        syncBooking: true,
+        syncGallery: true,
+        scrollToBooking: true
+      });
+    });
+  });
+
+  if (bookingSelect) {
+    bookingSelect.addEventListener('change', () => {
+      setSelectedProperty(bookingSelect.value, { syncBooking: false, syncGallery: false });
+    });
+  }
+
+  const initialProperty = bookingSelect?.value || 'domo';
+  setSelectedProperty(initialProperty, { syncBooking: true, syncGallery: false });
+}
+
+/* ==========================================
    GALLERY — Lightbox
    ========================================== */
 function initGallery() {
-  const galleryItems = document.querySelectorAll('.gallery-item');
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
   const lightboxClose = document.getElementById('lightboxClose');
   const lightboxPrev = document.getElementById('lightboxPrev');
   const lightboxNext = document.getElementById('lightboxNext');
 
-  const images = Array.from(galleryItems).map(item => ({
-    src: item.querySelector('img').src,
-    alt: item.querySelector('img').alt
-  }));
-
+  let visibleImages = [];
   let currentIndex = 0;
 
+  function getVisibleImages() {
+    return Array.from(document.querySelectorAll('.gallery-item'))
+      .filter(item => item.style.display !== 'none')
+      .map(item => ({
+        src: item.querySelector('img').src,
+        alt: item.querySelector('img').alt
+      }));
+  }
+
   function openLightbox(index) {
+    visibleImages = getVisibleImages();
     currentIndex = index;
-    lightboxImg.src = images[index].src;
-    lightboxImg.alt = images[index].alt;
+    lightboxImg.src = visibleImages[index].src;
+    lightboxImg.alt = visibleImages[index].alt;
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
@@ -339,18 +622,25 @@ function initGallery() {
   }
 
   function navigate(direction) {
-    currentIndex = (currentIndex + direction + images.length) % images.length;
+    currentIndex = (currentIndex + direction + visibleImages.length) % visibleImages.length;
     lightboxImg.style.opacity = '0';
     setTimeout(() => {
-      lightboxImg.src = images[currentIndex].src;
-      lightboxImg.alt = images[currentIndex].alt;
+      lightboxImg.src = visibleImages[currentIndex].src;
+      lightboxImg.alt = visibleImages[currentIndex].alt;
       lightboxImg.style.opacity = '1';
     }, 200);
   }
 
-  galleryItems.forEach((item, index) => {
-    item.addEventListener('click', () => openLightbox(index));
-  });
+  // Delegamos el click al contenedor para que funcione con items dinámicos
+  const galleryGrid = document.getElementById('galleryGrid');
+  if (galleryGrid) {
+    galleryGrid.addEventListener('click', (e) => {
+      const item = e.target.closest('.gallery-item');
+      if (!item || item.style.display === 'none') return;
+      const idx = parseInt(item.dataset.index, 10);
+      openLightbox(idx);
+    });
+  }
 
   lightboxClose.addEventListener('click', closeLightbox);
   lightboxPrev.addEventListener('click', () => navigate(-1));

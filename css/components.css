@@ -552,6 +552,60 @@
   border: 1px solid rgba(166, 28, 28, 0.25);
 }
 
+.booking-price-breakdown {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.booking-price-breakdown h4 {
+  font-size: var(--fs-lg);
+  color: var(--color-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.breakdown-line,
+.breakdown-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.breakdown-line {
+  font-size: var(--fs-sm);
+  color: var(--color-text-light);
+}
+
+.breakdown-line strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.breakdown-total {
+  margin-top: var(--space-sm);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--fs-base);
+  font-weight: 700;
+  color: var(--color-primary-dark);
+}
+
+.breakdown-total strong {
+  color: var(--color-primary);
+}
+
+.breakdown-note {
+  margin-top: var(--space-xs);
+  margin-bottom: 0;
+  font-size: var(--fs-xs);
+  color: var(--color-text-light);
+}
+
 @media (max-width: 768px) {
   .form-row {
     grid-template-columns: 1fr;
@@ -782,6 +836,26 @@
   border-bottom: none;
 }
 
+.price-tier--extras {
+  display: grid;
+  gap: var(--space-xs);
+  align-items: stretch;
+}
+
+.price-tier-extra-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-md);
+  font-size: var(--fs-sm);
+  color: var(--color-text-light);
+}
+
+.price-tier-extra-line strong {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
 .price-tier-name {
   font-weight: 600;
   color: var(--color-text);
@@ -805,15 +879,42 @@
   color: var(--color-text-light);
 }
 
-.pricing-book {
-  margin-top: var(--space-xl);
+.pricing-property-links {
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: var(--space-lg);
+  margin-top: var(--space-md);
+}
+
+.pricing-property {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  padding: var(--space-sm);
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.pricing-property strong {
+  font-size: var(--fs-sm);
+  color: var(--color-primary);
+}
+
+.pricing-property.is-active {
+  border-color: rgba(200, 149, 108, 0.55);
+  background: rgba(200, 149, 108, 0.08);
+}
+
+.pricing-book {
+  display: flex;
+  gap: var(--space-sm);
 }
 
 .pricing-book .btn {
-  width: 100%;
+  flex: 1;
+  text-align: center;
+  font-size: var(--fs-xs);
 }
 
 .booking-badge {
@@ -853,18 +954,26 @@
 }
 
 .activity-card {
+  display: block;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-lg);
   padding: var(--space-2xl);
   transition: all var(--transition-base);
   backdrop-filter: blur(10px);
+  color: inherit;
+  text-decoration: none;
 }
 
 .activity-card:hover {
   background: rgba(255, 255, 255, 0.1);
   transform: translateY(-3px);
   border-color: var(--color-accent);
+}
+
+.activity-card:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
 }
 
 .activity-icon {
@@ -946,9 +1055,158 @@
   font-weight: 600;
 }
 
+/* ==== PROPERTIES ==== */
+.properties-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xl);
+}
+
+.property-card {
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.property-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.property-card-image {
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+}
+
+.property-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-base);
+}
+
+.property-card:hover .property-card-image img {
+  transform: scale(1.05);
+}
+
+.property-badge {
+  position: absolute;
+  top: var(--space-md);
+  left: var(--space-md);
+  background: var(--color-accent);
+  color: var(--color-white);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.property-card-content {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.property-card-content h3 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-xl);
+  color: var(--color-primary);
+}
+
+.property-card-content p {
+  font-size: var(--fs-sm);
+  color: var(--color-text-light);
+  line-height: 1.6;
+}
+
+.property-card-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin: var(--space-xs) 0;
+}
+
+.property-card-features span {
+  font-size: var(--fs-xs);
+  background: var(--color-bg);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  color: var(--color-text);
+}
+
+.property-card-price {
+  font-size: var(--fs-sm);
+  color: var(--color-text-light);
+}
+
+.property-card-price strong {
+  font-size: var(--fs-xl);
+  color: var(--color-primary);
+}
+
+.property-card-content .btn {
+  align-self: flex-start;
+  margin-top: var(--space-xs);
+}
+
+.property-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-xs);
+}
+
+.property-card-actions .btn {
+  margin-top: 0;
+}
+
+.property-select-btn {
+  min-width: 140px;
+}
+
+.property-card.is-selected {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  box-shadow: 0 12px 30px rgba(166, 116, 67, 0.28);
+}
+
 /* ==== GALLERY ==== */
 .gallery {
   background: var(--color-bg-alt);
+}
+
+.gallery-tabs {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+}
+
+.gallery-tab {
+  padding: var(--space-sm) var(--space-lg);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-primary);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.gallery-tab:hover {
+  background: rgba(45, 80, 22, 0.08);
+}
+
+.gallery-tab.active {
+  background: var(--color-primary);
+  color: var(--color-white);
 }
 
 .gallery-grid {
