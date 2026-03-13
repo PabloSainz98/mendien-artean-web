@@ -375,25 +375,36 @@
           <div class="price-tier">
             <div>
               <div class="price-tier-name">🌸 <span data-i18n="price.low">Temporada baja</span></div>
-              <div class="price-tier-dates" data-i18n="price.low.dates">Enero - Marzo, Noviembre</div>
+              <div class="price-tier-dates" data-i18n="price.low.dates">Enero - Mayo, Octubre - Diciembre</div>
+            </div>
+            <div class="price-tier-amount">57€ <span data-i18n="price.night">/noche</span></div>
+          </div>
+
+          <div class="price-tier">
+            <div>
+              <div class="price-tier-name">☀️ <span data-i18n="price.summer">Verano</span></div>
+              <div class="price-tier-dates" data-i18n="price.summer.dates">Junio - Septiembre</div>
             </div>
             <div class="price-tier-amount">75€ <span data-i18n="price.night">/noche</span></div>
           </div>
 
-          <div class="price-tier">
-            <div>
-              <div class="price-tier-name">☀️ <span data-i18n="price.mid">Temporada media</span></div>
-              <div class="price-tier-dates" data-i18n="price.mid.dates">Abril - Junio, Septiembre - Octubre</div>
+          <div class="price-tier price-tier--extras">
+            <div class="price-tier-extra-line">
+              <span data-i18n="price.extra.person">Persona extra</span>
+              <strong>+10€ <span data-i18n="price.night">/noche</span></strong>
             </div>
-            <div class="price-tier-amount">95€ <span data-i18n="price.night">/noche</span></div>
-          </div>
-
-          <div class="price-tier">
-            <div>
-              <div class="price-tier-name">🔥 <span data-i18n="price.high">Temporada alta</span></div>
-              <div class="price-tier-dates" data-i18n="price.high.dates">Julio - Agosto, Puentes y Festivos</div>
+            <div class="price-tier-extra-line">
+              <span data-i18n="price.extra.pet">Mascota</span>
+              <strong>+10€ <span data-i18n="price.night">/noche</span></strong>
             </div>
-            <div class="price-tier-amount">120€ <span data-i18n="price.night">/noche</span></div>
+            <div class="price-tier-extra-line">
+              <span data-i18n="price.extra.child">Niño (cuna)</span>
+              <strong>+5€ <span data-i18n="price.night">/noche</span></strong>
+            </div>
+            <div class="price-tier-extra-line">
+              <span data-i18n="price.extra.cleaning">Limpieza final</span>
+              <strong>+40€ <span data-i18n="price.stay">/estancia</span></strong>
+            </div>
           </div>
 
           <h4 data-i18n="price.bookvia">Reservar alojamiento</h4>
@@ -466,12 +477,33 @@
 
           <div class="form-row">
             <div class="form-group">
-              <label for="b_guests" data-i18n="booking.guests">Huéspedes</label>
+              <label for="b_guests" data-i18n="booking.guests">Personas</label>
               <select id="b_guests" name="guests" required>
                 <option value="1">1</option>
                 <option value="2" selected>2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="b_nights" data-i18n="booking.nights">Noches</label>
+              <input type="number" id="b_nights" name="nights" min="1" value="1" readonly>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="b_pets" data-i18n="booking.pets">¿Perros / Mascotas?</label>
+              <select id="b_pets" name="pets" required>
+                <option value="0" data-i18n="booking.no">No</option>
+                <option value="1" data-i18n="booking.yes">Sí</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="b_children" data-i18n="booking.children">¿Niños (cuna)?</label>
+              <select id="b_children" name="children" required>
+                <option value="0" data-i18n="booking.no">No</option>
+                <option value="1" data-i18n="booking.yes">Sí</option>
               </select>
             </div>
           </div>
@@ -490,6 +522,37 @@
           <div class="form-group">
             <label for="b_message" data-i18n="booking.message">Mensaje / Mascotas / Peticiones</label>
             <textarea id="b_message" name="message" rows="3"></textarea>
+          </div>
+
+          <div class="booking-price-breakdown" id="bookingPriceBreakdown" aria-live="polite">
+            <h4 data-i18n="booking.breakdown.title">Desglose estimado</h4>
+            <div class="breakdown-line">
+              <span data-i18n="booking.breakdown.seasonBase">Tarifa base por temporada</span>
+              <strong id="lineSeasonBase">57€</strong>
+            </div>
+            <div class="breakdown-line">
+              <span data-i18n="booking.breakdown.extraPeople">Personas extra</span>
+              <strong id="lineExtraPeople">0€</strong>
+            </div>
+            <div class="breakdown-line">
+              <span data-i18n="booking.breakdown.pets">Mascotas</span>
+              <strong id="linePets">0€</strong>
+            </div>
+            <div class="breakdown-line">
+              <span data-i18n="booking.breakdown.children">Niños (cuna)</span>
+              <strong id="lineChildren">0€</strong>
+            </div>
+            <div class="breakdown-line">
+              <span data-i18n="booking.breakdown.cleaning">Limpieza final</span>
+              <strong id="lineCleaning">40€</strong>
+            </div>
+            <div class="breakdown-total">
+              <span data-i18n="booking.breakdown.total">Total estimado</span>
+              <strong id="lineTotal">97€</strong>
+            </div>
+            <p class="breakdown-note" data-i18n="booking.breakdown.note">
+              El total final puede variar según fechas exactas y condiciones de reserva.
+            </p>
           </div>
 
           <div class="form-submit">
