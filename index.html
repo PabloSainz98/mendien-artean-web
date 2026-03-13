@@ -19,6 +19,7 @@
   <meta name="twitter:title" content="Mendien Artean | Domo Geodésico y Casa Rural">
   <meta name="twitter:description" content="Domo geodésico y casa rural entre Urkiola y Gorbeia. Desde 75€/noche.">
   <meta name="twitter:image" content="https://pablosainz98.github.io/mendien-artean-web/images/domo/domo-exterior-noche.jpg">
+  <link rel="preload" as="image" href="images/domo/domo-exterior-noche.jpg" fetchpriority="high">
 
   <!-- PWA -->
   <link rel="manifest" href="manifest.json">
@@ -131,7 +132,7 @@
   <!-- ============ HERO ============ -->
   <section class="hero" id="hero">
     <div class="hero-bg">
-      <img src="images/domo/domo-exterior-noche.jpg" alt="Mendien Artean, domo geodésico y casa rural entre parques naturales en el País Vasco" loading="eager" decoding="sync" width="1920" height="1080">
+      <img src="images/domo/domo-exterior-noche.jpg" alt="Mendien Artean, domo geodésico y casa rural entre parques naturales en el País Vasco" loading="eager" decoding="async" fetchpriority="high" width="1920" height="1080">
     </div>
     <div class="hero-overlay"></div>
 
@@ -519,47 +520,71 @@
       </div>
 
       <div class="activities-grid stagger-children">
-        <div class="activity-card reveal">
+        <a class="activity-card reveal"
+           href="https://turismo.euskadi.eus/es/espacios-naturales/parque-natural-de-urkiola/webtur00-content/es/"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Abrir información del Parque Natural de Urkiola">
           <div class="activity-icon">⛰️</div>
           <h4 data-i18n="act.urkiola.title">Parque Natural de Urkiola</h4>
           <p data-i18n="act.urkiola.desc">Rutas de senderismo espectaculares, el emblemático santuario y vistas impresionantes del Anboto</p>
           <span class="activity-distance" data-i18n="act.urkiola.dist">📍 15 min en coche</span>
-        </div>
+        </a>
 
-        <div class="activity-card reveal">
+        <a class="activity-card reveal"
+           href="https://turismo.euskadi.eus/es/espacios-naturales/parque-natural-de-gorbeia/webtur00-content/es/"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Abrir información del Parque Natural de Gorbeia">
           <div class="activity-icon">🌲</div>
           <h4 data-i18n="act.gorbeia.title">Parque Natural de Gorbeia</h4>
           <p data-i18n="act.gorbeia.desc">El techo de Bizkaia con hayedos centenarios, cascadas y la icónica cruz de Gorbeia</p>
           <span class="activity-distance" data-i18n="act.gorbeia.dist">📍 20 min en coche</span>
-        </div>
+        </a>
 
-        <div class="activity-card reveal">
+        <a class="activity-card reveal"
+           href="https://www.tripadvisor.es/Attractions-g187454-Activities-Bilbao_Province_of_Vizcaya_Basque_Country.html"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Abrir actividades en Bilbao y Guggenheim">
           <div class="activity-icon">🏛️</div>
           <h4 data-i18n="act.bilbao.title">Bilbao y Guggenheim</h4>
           <p data-i18n="act.bilbao.desc">La vibrante capital vizcaína con el museo Guggenheim, pintxos y el Casco Viejo</p>
           <span class="activity-distance" data-i18n="act.bilbao.dist">📍 30 min en coche</span>
-        </div>
+        </a>
 
-        <div class="activity-card reveal">
+        <a class="activity-card reveal"
+           href="https://www.tripadvisor.es/Restaurants-g1069103-Igorre_Province_of_Vizcaya_Basque_Country.html"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Abrir recomendaciones de gastronomía vasca en Igorre">
           <div class="activity-icon">🍷</div>
           <h4 data-i18n="act.gastro.title">Gastronomía vasca</h4>
           <p data-i18n="act.gastro.desc">Sidrerías, asadores y la mejor gastronomía del mundo a pocos minutos</p>
           <span class="activity-distance" data-i18n="act.gastro.dist">📍 En los alrededores</span>
-        </div>
+        </a>
 
-        <div class="activity-card reveal">
+        <a class="activity-card reveal"
+           href="https://turismo.euskadi.eus/es/top10/espacios-naturales/reserva-de-la-biosfera-de-urdaibai/webtur00-recursostop/es/"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Abrir información de playas y Urdaibai">
           <div class="activity-icon">🏖️</div>
           <h4 data-i18n="act.beach.title">Playas de Bizkaia</h4>
           <p data-i18n="act.beach.desc">Playa de Bakio, Bermeo, Laga y la espectacular reserva de Urdaibai</p>
           <span class="activity-distance" data-i18n="act.beach.dist">📍 40 min en coche</span>
-        </div>
+        </a>
 
-        <div class="activity-card reveal">
+        <a class="activity-card reveal"
+           href="https://es.wikiloc.com/rutas/mountain-bike/espana/pais-vasco/igorre"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Abrir rutas de ciclismo y BTT en Igorre">
           <div class="activity-icon">🚴</div>
           <h4 data-i18n="act.cycling.title">Ciclismo y BTT</h4>
           <p data-i18n="act.cycling.desc">Rutas ciclistas por carretera y montaña entre paisajes verdes increíbles</p>
           <span class="activity-distance" data-i18n="act.cycling.dist">📍 Desde la puerta</span>
-        </div>
+        </a>
       </div>
     </div>
   </section>

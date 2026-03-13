@@ -35,14 +35,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initContactLinks();
   initNavbar();
-  initCalendar();
   initGalleryTabs();
   initPropertySelectors();
   initBookingForm();
-  initGallery();
-  initScrollReveal();
   initSmoothScroll();
   initDateConstraints();
+
+  // Defer non-critical initialization to keep the first render responsive.
+  const scheduleNonCriticalInit = (fn) => {
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(fn, { timeout: 1200 });
+      return;
+    }
+    window.setTimeout(fn, 0);
+  };
+
+  scheduleNonCriticalInit(() => {
+    initCalendar();
+    initGallery();
+    initScrollReveal();
+  });
 });
 
 /* ==========================================
@@ -53,14 +65,19 @@ function initNavbar() {
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
   const navOverlay = document.getElementById('navOverlay');
+  if (!navbar || !navToggle || !navLinks || !navOverlay) return;
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 80) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  });
+  let ticking = false;
+  const onScroll = () => {
+    if (ticking) return;
+    window.requestAnimationFrame(() => {
+      navbar.classList.toggle('scrolled', window.scrollY > 80);
+      ticking = false;
+    });
+    ticking = true;
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 
   navToggle.addEventListener('click', () => {
     navToggle.classList.toggle('active');

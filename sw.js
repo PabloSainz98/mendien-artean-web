@@ -16,6 +16,8 @@ const STATIC_ASSETS = [
   '/js/i18n.js',
   '/js/main.js',
   '/manifest.json',
+  '/images/domo/domo-exterior-noche.jpg',
+  '/images/domo/domo-exterior-terraza.jpg',
   '/images/444547533.jpg',
   '/images/444547567.jpg',
 ];
