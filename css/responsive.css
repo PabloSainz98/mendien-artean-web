@@ -100,6 +100,15 @@
     grid-template-columns: 1fr;
   }
 
+  .uxa-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .uxa-logos {
+    grid-template-columns: 1fr;
+  }
+
   /* Services Mobile */
   .services-grid {
     grid-template-columns: 1fr;
@@ -117,6 +126,14 @@
   /* Activities Mobile */
   .activities-grid {
     grid-template-columns: 1fr;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-card-featured {
+    grid-column: span 1;
   }
 
   /* Gallery Mobile */
@@ -289,6 +306,14 @@
   .gallery-grid {
     grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: 220px;
+  }
+
+  .uxa-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .footer-grid {
