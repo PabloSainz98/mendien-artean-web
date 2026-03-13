@@ -100,6 +100,19 @@
     grid-template-columns: 1fr;
   }
 
+  .uxa-grid,
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .uxa-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .products-main img {
+    height: 220px;
+  }
+
   /* Properties Mobile */
   .properties-grid {
     grid-template-columns: 1fr;
@@ -302,6 +315,11 @@
 
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .uxa-grid,
+  .products-grid {
+    grid-template-columns: 1fr;
   }
 
   .gallery-grid {

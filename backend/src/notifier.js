@@ -94,7 +94,7 @@ function createBookingNotifier(env = process.env) {
 
       const subject = `Nueva reserva web #${booking.id} - ${propertyName} - ${booking.checkin} a ${booking.checkout}`;
       const text = [
-        'NUEVA SOLICITUD DE RESERVA | MENDIEN ARTEAN',
+        'NUEVA SOLICITUD DE RESERVA | UXARBEITI BASERRIA',
         '=========================================',
         `ID:              ${booking.id}`,
         `Fecha envio:     ${booking.createdAt}`,
@@ -130,7 +130,7 @@ function createBookingNotifier(env = process.env) {
       const html = `
         <div style="font-family:Arial,sans-serif;line-height:1.45;color:#1f2937">
           <h2 style="margin:0 0 12px;color:#1f2937">Nueva solicitud de reserva</h2>
-          <p style="margin:0 0 18px;color:#4b5563">Mendien Artean · ID #${escapeHtml(booking.id)} · ${escapeHtml(booking.createdAt)}</p>
+          <p style="margin:0 0 18px;color:#4b5563">Uxarbeiti Baserria · ID #${escapeHtml(booking.id)} · ${escapeHtml(booking.createdAt)}</p>
 
           <table style="border-collapse:collapse;width:100%;margin:0 0 18px">
             <tr><td style="padding:6px 10px;border:1px solid #e5e7eb;font-weight:600">Alojamiento</td><td style="padding:6px 10px;border:1px solid #e5e7eb">${escapeHtml(propertyName)}</td></tr>

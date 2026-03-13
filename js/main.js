@@ -328,7 +328,7 @@ function initContactLinks() {
   const cfg = window.SITE_CONFIG;
   if (!cfg) return;
 
-  const waText = encodeURIComponent('Hola, me gustaría obtener más información sobre Mendien Artean');
+  const waText = encodeURIComponent('Hola, me gustaría obtener más información sobre Uxarbeiti Baserria');
   const waUrl  = `https://wa.me/${cfg.phone}?text=${waText}`;
 
   // Actualiza todos los enlaces de WhatsApp
