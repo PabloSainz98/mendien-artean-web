@@ -758,6 +758,16 @@
   font-size: var(--fs-xl);
 }
 
+.price-property-group + .price-property-group {
+  margin-top: var(--space-lg);
+}
+
+.price-property-group h4 {
+  margin: var(--space-sm) 0 var(--space-xs);
+  font-size: var(--fs-md);
+  color: var(--color-primary);
+}
+
 .price-tier {
   display: flex;
   justify-content: space-between;

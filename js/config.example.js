@@ -7,4 +7,5 @@ window.SITE_CONFIG = {
   phone: '34XXXXXXXXX',              // para wa.me (sin + ni espacios)
   phoneDisplay: '+34 XXX XXX XXX',   // texto visible en la web
   email: 'tucorreo@ejemplo.com',
+  apiBase: '/api',                   // endpoint backend para reservas
 };

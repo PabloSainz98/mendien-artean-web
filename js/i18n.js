@@ -29,7 +29,7 @@ const translations = {
     'about.feat2': '2 alojamientos',
     'about.feat3': 'Pet-friendly',
     'about.feat4': 'Naturaleza y tranquilidad',
-    'about.pricenote': 'Desde <strong>75€/noche</strong> · Reserva directa',
+    'about.pricenote': 'Desde <strong>57€/noche</strong> · Reserva directa',
     'about.bookdirect': 'Ver alojamientos →',
 
     // Properties
@@ -119,8 +119,8 @@ const translations = {
     'booking.breakdown.note': 'El total final puede variar según fechas exactas y condiciones de reserva.',
     'booking.breakdown.season.low': 'Temporada baja',
     'booking.breakdown.season.summer': 'Verano',
-    'booking.success': '✅ Tu cliente de correo se ha abierto con todos los datos. Envía el email para completar la solicitud.',
-    'booking.error': 'No se pudo abrir el cliente de correo. Contáctanos directamente por WhatsApp.',
+    'booking.success': '✅ Solicitud enviada correctamente. Te escribiremos en menos de 24h.',
+    'booking.error': 'No se pudo enviar la solicitud. Inténtalo de nuevo o contáctanos por WhatsApp.',
 
     // Calendar weekdays
     'cal.mon': 'Lun', 'cal.tue': 'Mar', 'cal.wed': 'Mié',
@@ -216,7 +216,7 @@ const translations = {
     'about.feat2': '2 stays',
     'about.feat3': 'Pet-friendly',
     'about.feat4': 'Nature and quiet',
-    'about.pricenote': 'From <strong>€75/night</strong> · Direct booking',
+    'about.pricenote': 'From <strong>€57/night</strong> · Direct booking',
     'about.bookdirect': 'View stays →',
 
     'properties.title': 'Our Stays',
@@ -302,8 +302,8 @@ const translations = {
     'booking.breakdown.note': 'Final price may vary depending on exact dates and booking conditions.',
     'booking.breakdown.season.low': 'Low season',
     'booking.breakdown.season.summer': 'Summer',
-    'booking.success': '✅ Your email client has opened with all the details. Send the email to complete your request.',
-    'booking.error': 'Could not open email client. Please contact us directly via WhatsApp.',
+    'booking.success': '✅ Request sent successfully. We will contact you within 24h.',
+    'booking.error': 'Could not send your request. Please try again or contact us via WhatsApp.',
 
     'cal.mon': 'Mon', 'cal.tue': 'Tue', 'cal.wed': 'Wed',
     'cal.thu': 'Thu', 'cal.fri': 'Fri', 'cal.sat': 'Sat', 'cal.sun': 'Sun',
@@ -392,7 +392,7 @@ const translations = {
     'about.feat2': '2 ostatu',
     'about.feat3': 'Maskotak onartzen dira',
     'about.feat4': 'Natura eta lasaitasuna',
-    'about.pricenote': '<strong>75€/gau</strong>tik · Zuzeneko erreserba',
+    'about.pricenote': '<strong>57€/gau</strong>tik · Zuzeneko erreserba',
     'about.bookdirect': 'Ostatuak ikusi →',
 
     'properties.title': 'Gure ostatuak',
@@ -478,8 +478,8 @@ const translations = {
     'booking.breakdown.note': 'Azken prezioa aldatu daiteke data zehatzen eta erreserba-baldintzen arabera.',
     'booking.breakdown.season.low': 'Sasoi baxua',
     'booking.breakdown.season.summer': 'Uda',
-    'booking.success': '✅ Zure posta-programa ireki da datu guztiekin. Bidali emaila eskaera osatzeko.',
-    'booking.error': 'Ezin izan da posta-programa ireki. Jarri gurekin harremanetan WhatsApp bidez.',
+    'booking.success': '✅ Eskaera ondo bidali da. 24 ordutan jarriko gara zurekin harremanetan.',
+    'booking.error': 'Ezin izan da eskaera bidali. Saiatu berriro edo jarri gurekin harremanetan WhatsApp bidez.',
 
     'cal.mon': 'Al', 'cal.tue': 'As', 'cal.wed': 'Az',
     'cal.thu': 'Og', 'cal.fri': 'Or', 'cal.sat': 'Lr', 'cal.sun': 'Ig',

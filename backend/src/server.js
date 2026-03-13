@@ -8,6 +8,8 @@ require('dotenv').config({ path: path.resolve(__dirname, '..', '.env') });
 
 const { createDatabase } = require('./db');
 const { validateBookingPayload } = require('./validation');
+const { calculatePricing } = require('./pricing');
+const { createBookingNotifier } = require('./notifier');
 
 const app = express();
 
@@ -25,6 +27,7 @@ const bookingsCsvPath = process.env.BOOKINGS_CSV_PATH
 
 const projectRoot = path.resolve(__dirname, '..', '..');
 const db = createDatabase(databasePath);
+const notifier = createBookingNotifier();
 
 app.disable('x-powered-by');
 app.set('trust proxy', trustProxy);
@@ -83,9 +86,21 @@ function buildBookingsCsv(items) {
     'name',
     'email',
     'phone',
+    'property',
     'guests',
+    'nights',
+    'pets',
+    'children',
     'checkin',
     'checkout',
+    'season',
+    'baseRate',
+    'baseTotal',
+    'extraPeopleTotal',
+    'petsTotal',
+    'childrenTotal',
+    'cleaningFee',
+    'totalEstimate',
     'status',
     'source',
     'createdAt',
@@ -101,9 +116,21 @@ function buildBookingsCsv(items) {
         item.name,
         item.email,
         item.phone,
+        item.property,
         item.guests,
+        item.nights,
+        item.pets,
+        item.children,
         item.checkin,
         item.checkout,
+        item.season,
+        item.baseRate,
+        item.baseTotal,
+        item.extraPeopleTotal,
+        item.petsTotal,
+        item.childrenTotal,
+        item.cleaningFee,
+        item.totalEstimate,
         item.status,
         item.source,
         item.createdAt,
@@ -149,7 +176,7 @@ app.get('/api/health', (_req, res) => {
   });
 });
 
-app.post('/api/booking-requests', rateLimit, (req, res) => {
+app.post('/api/booking-requests', rateLimit, async (req, res) => {
   const parsed = validateBookingPayload(req.body);
 
   if (!parsed.valid) {
@@ -162,8 +189,11 @@ app.post('/api/booking-requests', rateLimit, (req, res) => {
   }
 
   const ip = req.ip || req.socket.remoteAddress || 'unknown';
+  const pricing = calculatePricing(parsed.values);
+  const createdAt = new Date().toISOString();
   const requestId = db.insertRequest({
     ...parsed.values,
+    ...pricing,
     ipHash: hashIp(ip)
   });
 
@@ -173,7 +203,26 @@ app.post('/api/booking-requests', rateLimit, (req, res) => {
     console.error('CSV snapshot update failed:', error.message);
   }
 
-  return res.status(201).json({ ok: true, requestId });
+  let emailSent = false;
+  if (notifier.enabled) {
+    try {
+      const notificationResult = await notifier.sendBookingNotification({
+        id: requestId,
+        createdAt,
+        ...parsed.values,
+        ...pricing
+      });
+      emailSent = Boolean(notificationResult && notificationResult.sent);
+
+      if (!emailSent) {
+        console.error('Booking email notification skipped/failed:', notificationResult?.reason || 'unknown');
+      }
+    } catch (error) {
+      console.error('Booking email notification failed:', error.message);
+    }
+  }
+
+  return res.status(201).json({ ok: true, requestId, emailSent });
 });
 
 app.get('/api/admin/booking-requests', requireAdmin, (req, res) => {
@@ -206,4 +255,5 @@ app.use((_req, res) => {
 app.listen(port, host, () => {
   console.log(`Backend running at http://${host}:${port}`);
   console.log(`DB path: ${db.path}`);
+  console.log(`Email notifications: ${notifier.enabled ? 'enabled' : 'disabled'}`);
 });

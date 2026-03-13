@@ -30,10 +30,18 @@ const BOOKED_DATES = [
 
 const LOW_SEASON_BASE_RATE = 57;
 const SUMMER_BASE_RATE = 75;
+const DOMO_BASE_SURCHARGE = 100;
 const EXTRA_PERSON_RATE = 10;
 const PET_RATE = 10;
 const CHILD_RATE = 5;
 const CLEANING_FEE = 40;
+
+function getApiBase() {
+  const configured = window.SITE_CONFIG && typeof window.SITE_CONFIG.apiBase === 'string'
+    ? window.SITE_CONFIG.apiBase.trim()
+    : '';
+  return configured ? configured.replace(/\/+$/, '') : '/api';
+}
 
 function parseDateInput(dateStr) {
   if (!dateStr) return null;
@@ -52,25 +60,29 @@ function getNights(checkin, checkout) {
   return Math.max(1, nights);
 }
 
-function getBaseRateBySeason(checkin) {
+function getBaseRateBySeason(checkin, property = 'casa') {
   const checkinDate = parseDateInput(checkin);
   const month = checkinDate ? checkinDate.getMonth() : new Date().getMonth();
   const isLowSeason = month <= 4 || month >= 9; // Jan-May, Oct-Dec
+  const seasonBaseRate = isLowSeason ? LOW_SEASON_BASE_RATE : SUMMER_BASE_RATE;
+  const propertySurcharge = property === 'domo' ? DOMO_BASE_SURCHARGE : 0;
 
   return {
-    rate: isLowSeason ? LOW_SEASON_BASE_RATE : SUMMER_BASE_RATE,
+    rate: seasonBaseRate + propertySurcharge,
+    seasonBaseRate,
+    propertySurcharge,
     season: isLowSeason ? 'low' : 'summer'
   };
 }
 
-function calculateBookingEstimate({ checkin, checkout, guests, pets, children }) {
+function calculateBookingEstimate({ property, checkin, checkout, guests, pets, children }) {
   const nights = getNights(checkin, checkout);
   const people = Math.max(1, Number.parseInt(guests, 10) || 1);
   const hasPets = Number.parseInt(pets, 10) > 0 ? 1 : 0;
   const hasChildren = Number.parseInt(children, 10) > 0 ? 1 : 0;
   const extraPeople = Math.max(0, people - 1);
 
-  const { rate: baseRate, season } = getBaseRateBySeason(checkin);
+  const { rate: baseRate, season, seasonBaseRate, propertySurcharge } = getBaseRateBySeason(checkin, property);
 
   const baseTotal = baseRate * nights;
   const extraPeopleTotal = extraPeople * EXTRA_PERSON_RATE * nights;
@@ -81,7 +93,10 @@ function calculateBookingEstimate({ checkin, checkout, guests, pets, children })
 
   return {
     season,
+    property: property === 'domo' ? 'domo' : 'casa',
     baseRate,
+    seasonBaseRate,
+    propertySurcharge,
     nights,
     people,
     extraPeople,
@@ -336,17 +351,17 @@ function initContactLinks() {
 }
 
 /* ==========================================
-   BOOKING FORM — mailto: (sin registro, sin backend)
-   Al enviar, abre el cliente de correo del usuario
-   con todos los campos pre-rellenados.
+   BOOKING FORM — API backend (sin abrir mail cliente)
    ========================================== */
 function initBookingForm() {
   const form = document.getElementById('bookingForm');
   const successEl = document.getElementById('formSuccess');
   const errorEl = document.getElementById('formError');
+  const submitButton = document.getElementById('bookingSubmit');
 
   if (!form) return;
 
+  const propertyInput = document.getElementById('b_property');
   const guestsInput = document.getElementById('b_guests');
   const petsInput = document.getElementById('b_pets');
   const childrenInput = document.getElementById('b_children');
@@ -360,6 +375,8 @@ function initBookingForm() {
   const lineChildren = document.getElementById('lineChildren');
   const lineCleaning = document.getElementById('lineCleaning');
   const lineTotal = document.getElementById('lineTotal');
+  const apiBase = getApiBase();
+  let isSubmitting = false;
 
   const i18n = (key, fallback) => {
     if (typeof t === 'function') return t(key);
@@ -368,6 +385,7 @@ function initBookingForm() {
 
   const updateEstimateUI = () => {
     const estimate = calculateBookingEstimate({
+      property: propertyInput?.value || 'casa',
       checkin: checkinInput?.value || '',
       checkout: checkoutInput?.value || '',
       guests: guestsInput?.value || '1',
@@ -403,14 +421,18 @@ function initBookingForm() {
     return estimate;
   };
 
-  [guestsInput, petsInput, childrenInput, checkinInput, checkoutInput]
+  [propertyInput, guestsInput, petsInput, childrenInput, checkinInput, checkoutInput]
     .filter(Boolean)
-    .forEach(el => el.addEventListener('change', updateEstimateUI));
+    .forEach(el => {
+      el.addEventListener('change', updateEstimateUI);
+      el.addEventListener('input', updateEstimateUI);
+    });
 
   updateEstimateUI();
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (isSubmitting) return;
 
     if (!form.checkValidity()) {
       form.reportValidity();
@@ -420,65 +442,76 @@ function initBookingForm() {
     const name     = document.getElementById('b_name').value.trim();
     const email    = document.getElementById('b_email').value.trim();
     const phone    = document.getElementById('b_phone').value.trim();
-    const property = document.getElementById('b_property').value;
-    const propertyName = property === 'domo' ? 'Domo Gorbeia' : 'Urkiola Etxea';
+    const property = propertyInput ? propertyInput.value : 'casa';
     const guests   = guestsInput ? guestsInput.value : '1';
     const pets     = petsInput ? petsInput.value : '0';
     const children = childrenInput ? childrenInput.value : '0';
     const checkin  = document.getElementById('b_checkin').value;
     const checkout = document.getElementById('b_checkout').value;
-    const nights   = nightsInput ? nightsInput.value : String(getNights(checkin, checkout));
     const message  = document.getElementById('b_message').value.trim();
     const estimate = updateEstimateUI();
 
-    const petsLabel = Number.parseInt(pets, 10) > 0 ? i18n('booking.yes', 'Sí') : i18n('booking.no', 'No');
-    const childrenLabel = Number.parseInt(children, 10) > 0 ? i18n('booking.yes', 'Sí') : i18n('booking.no', 'No');
-    const seasonLabel = estimate.season === 'low'
-      ? i18n('booking.breakdown.season.low', 'Temporada baja')
-      : i18n('booking.breakdown.season.summer', 'Verano');
+    const payload = {
+      name,
+      email,
+      phone,
+      property,
+      guests: Number.parseInt(guests, 10) || 1,
+      pets: Number.parseInt(pets, 10) > 0 ? 1 : 0,
+      children: Number.parseInt(children, 10) > 0 ? 1 : 0,
+      nights: estimate.nights,
+      checkin,
+      checkout,
+      message,
+      pricing: {
+        season: estimate.season,
+        baseRate: estimate.baseRate,
+        baseTotal: estimate.baseTotal,
+        extraPeopleTotal: estimate.extraPeopleTotal,
+        petsTotal: estimate.petsTotal,
+        childrenTotal: estimate.childrenTotal,
+        cleaningFee: estimate.cleaningFee,
+        totalEstimate: estimate.total
+      }
+    };
 
-    const subject = `Solicitud de reserva (${propertyName}): ${name} | ${checkin} - ${checkout} | ${estimate.total}€`;
-    const body = [
-      'SOLICITUD DE RESERVA - MENDIEN ARTEAN',
-      '-----------------------------------------',
-      `Alojamiento: ${propertyName}`,
-      `Nombre:      ${name}`,
-      `Email:       ${email}`,
-      `Teléfono:    ${phone}`,
-      `Personas:    ${guests}`,
-      `Noches:      ${nights}`,
-      `Mascotas:    ${petsLabel}`,
-      `Niños:       ${childrenLabel}`,
-      `Entrada:     ${checkin}`,
-      `Salida:      ${checkout}`,
-      '-----------------------------------------',
-      `Temporada:   ${seasonLabel}`,
-      `Base:        ${estimate.baseRate}€ x ${estimate.nights} = ${estimate.baseTotal}€`,
-      `Extras pers: ${estimate.extraPeopleTotal}€`,
-      `Mascotas:    ${estimate.petsTotal}€`,
-      `Niños:       ${estimate.childrenTotal}€`,
-      `Limpieza:    ${estimate.cleaningFee}€`,
-      `TOTAL EST.:  ${estimate.total}€`,
-      '-----------------------------------------',
-      `Mensaje:     ${message || '(ninguno)'}`,
-      '-----------------------------------------',
-      'Enviado desde mendienartean.com',
-    ].join('\n');
-
-    const dest = (window.SITE_CONFIG && window.SITE_CONFIG.email) || '';
-    const mailtoUrl = `mailto:${dest}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    isSubmitting = true;
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.setAttribute('aria-busy', 'true');
+    }
+    if (successEl) successEl.style.display = 'none';
+    if (errorEl) errorEl.style.display = 'none';
 
     try {
-      window.location.href = mailtoUrl;
+      const response = await fetch(`${apiBase}/booking-requests`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const responseData = await response.json().catch(() => ({}));
+      if (!response.ok || !responseData.ok) {
+        throw new Error(responseData.error || 'Booking request failed');
+      }
+
+      if (successEl) successEl.style.display = 'block';
+      form.reset();
+      updateEstimateUI();
       setTimeout(() => {
-        if (successEl) successEl.style.display = 'block';
-        if (errorEl) errorEl.style.display = 'none';
-        form.reset();
-        updateEstimateUI();
-        setTimeout(() => { if (successEl) successEl.style.display = 'none'; }, 6000);
-      }, 500);
-    } catch {
+        if (successEl) successEl.style.display = 'none';
+      }, 6000);
+    } catch (error) {
+      console.error('Booking request failed:', error);
       if (errorEl) errorEl.style.display = 'block';
+    } finally {
+      isSubmitting = false;
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.removeAttribute('aria-busy');
+      }
     }
   });
 }
@@ -550,7 +583,11 @@ function initPropertySelectors() {
     });
 
     if (syncBooking && bookingSelect) {
+      const previousValue = bookingSelect.value;
       bookingSelect.value = property;
+      if (previousValue !== property) {
+        bookingSelect.dispatchEvent(new Event('change', { bubbles: true }));
+      }
     }
 
     if (syncGallery && typeof window.switchGalleryTab === 'function') {

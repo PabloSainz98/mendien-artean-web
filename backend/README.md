@@ -1,17 +1,19 @@
-# Backend propio (sin terceros)
+# Backend propio (sin terceros de formularios)
 
-Este backend reemplaza el envio por email del cliente con una API propia y base de datos local.
+Este backend recibe solicitudes de reserva desde la web, las guarda en base de datos local y puede enviar un email automatico de aviso.
 
 ## Stack
 
 - Node.js (>= 22)
 - Express
 - SQLite nativo de Node (`node:sqlite`)
+- Nodemailer (SMTP)
 
 ## Que hace
 
 - Sirve la web estatica (`/`, `/css`, `/js`, `/images`)
 - `POST /api/booking-requests` para guardar solicitudes de reserva
+- Notificacion por email al recibir reserva (si SMTP esta habilitado)
 - `GET /api/health` para monitorizacion
 - `GET /api/admin/booking-requests` para ver solicitudes (token de admin)
 - `GET /api/admin/booking-requests.csv` para exportar CSV compatible con Excel
@@ -34,7 +36,13 @@ Este backend reemplaza el envio por email del cliente con una API propia y base 
 cp backend/.env.example backend/.env
 ```
 
-2. Ajusta al menos `ADMIN_TOKEN`.
+2. Ajusta al menos:
+- `ADMIN_TOKEN`
+- `SMTP_ENABLED=true`
+- `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`
+- `SMTP_USER`, `SMTP_PASS`
+- `SMTP_FROM`
+- `BOOKING_NOTIFICATION_TO`
 
 ## Desarrollo local
 
