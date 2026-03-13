@@ -313,7 +313,7 @@ function initContactLinks() {
   const cfg = window.SITE_CONFIG;
   if (!cfg) return;
 
-  const waText = encodeURIComponent('Hola, me gustaría obtener más información sobre Mendien Artean');
+  const waText = encodeURIComponent('Hola, me gustaría obtener más información sobre UXARBEITI Baserria');
   const waUrl  = `https://wa.me/${cfg.phone}?text=${waText}`;
 
   // Actualiza todos los enlaces de WhatsApp
@@ -439,7 +439,7 @@ function initBookingForm() {
 
     const subject = `Solicitud de reserva (${propertyName}): ${name} | ${checkin} - ${checkout} | ${estimate.total}€`;
     const body = [
-      'SOLICITUD DE RESERVA - MENDIEN ARTEAN',
+      'SOLICITUD DE RESERVA - UXARBEITI BASERRIA',
       '-----------------------------------------',
       `Alojamiento: ${propertyName}`,
       `Nombre:      ${name}`,
@@ -462,7 +462,7 @@ function initBookingForm() {
       '-----------------------------------------',
       `Mensaje:     ${message || '(ninguno)'}`,
       '-----------------------------------------',
-      'Enviado desde mendienartean.com',
+      'Enviado desde uxarbeiti.eus',
     ].join('\n');
 
     const dest = (window.SITE_CONFIG && window.SITE_CONFIG.email) || '';
