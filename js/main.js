@@ -30,6 +30,7 @@ const BOOKED_DATES = [
 
 const LOW_SEASON_BASE_RATE = 57;
 const SUMMER_BASE_RATE = 75;
+const DOMO_BASE_SURCHARGE = 100;
 const EXTRA_PERSON_RATE = 10;
 const PET_RATE = 10;
 const CHILD_RATE = 5;
@@ -52,25 +53,29 @@ function getNights(checkin, checkout) {
   return Math.max(1, nights);
 }
 
-function getBaseRateBySeason(checkin) {
+function getBaseRateBySeason(checkin, property = 'casa') {
   const checkinDate = parseDateInput(checkin);
   const month = checkinDate ? checkinDate.getMonth() : new Date().getMonth();
   const isLowSeason = month <= 4 || month >= 9; // Jan-May, Oct-Dec
+  const seasonBaseRate = isLowSeason ? LOW_SEASON_BASE_RATE : SUMMER_BASE_RATE;
+  const propertySurcharge = property === 'domo' ? DOMO_BASE_SURCHARGE : 0;
 
   return {
-    rate: isLowSeason ? LOW_SEASON_BASE_RATE : SUMMER_BASE_RATE,
+    rate: seasonBaseRate + propertySurcharge,
+    seasonBaseRate,
+    propertySurcharge,
     season: isLowSeason ? 'low' : 'summer'
   };
 }
 
-function calculateBookingEstimate({ checkin, checkout, guests, pets, children }) {
+function calculateBookingEstimate({ property, checkin, checkout, guests, pets, children }) {
   const nights = getNights(checkin, checkout);
   const people = Math.max(1, Number.parseInt(guests, 10) || 1);
   const hasPets = Number.parseInt(pets, 10) > 0 ? 1 : 0;
   const hasChildren = Number.parseInt(children, 10) > 0 ? 1 : 0;
   const extraPeople = Math.max(0, people - 1);
 
-  const { rate: baseRate, season } = getBaseRateBySeason(checkin);
+  const { rate: baseRate, season, seasonBaseRate, propertySurcharge } = getBaseRateBySeason(checkin, property);
 
   const baseTotal = baseRate * nights;
   const extraPeopleTotal = extraPeople * EXTRA_PERSON_RATE * nights;
@@ -81,7 +86,10 @@ function calculateBookingEstimate({ checkin, checkout, guests, pets, children })
 
   return {
     season,
+    property: property === 'domo' ? 'domo' : 'casa',
     baseRate,
+    seasonBaseRate,
+    propertySurcharge,
     nights,
     people,
     extraPeople,
@@ -189,7 +197,7 @@ function initCalendar() {
     if (typeof t === 'function') {
       return Array.from({ length: 12 }, (_, i) => t(`month.${i}`));
     }
-    return ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+    return ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
   }
 
   function isBooked(year, month, day) {
@@ -314,7 +322,7 @@ function initContactLinks() {
   if (!cfg) return;
 
   const waText = encodeURIComponent('Hola, me gustaría obtener más información sobre UXARBEITI Baserria');
-  const waUrl  = `https://wa.me/${cfg.phone}?text=${waText}`;
+  const waUrl = `https://wa.me/${cfg.phone}?text=${waText}`;
 
   // Actualiza todos los enlaces de WhatsApp
   document.querySelectorAll('[data-wa]').forEach(el => {
@@ -347,6 +355,7 @@ function initBookingForm() {
 
   if (!form) return;
 
+  const propertyInput = document.getElementById('b_property');
   const guestsInput = document.getElementById('b_guests');
   const petsInput = document.getElementById('b_pets');
   const childrenInput = document.getElementById('b_children');
@@ -368,6 +377,7 @@ function initBookingForm() {
 
   const updateEstimateUI = () => {
     const estimate = calculateBookingEstimate({
+      property: propertyInput?.value || 'casa',
       checkin: checkinInput?.value || '',
       checkout: checkoutInput?.value || '',
       guests: guestsInput?.value || '1',
@@ -403,7 +413,7 @@ function initBookingForm() {
     return estimate;
   };
 
-  [guestsInput, petsInput, childrenInput, checkinInput, checkoutInput]
+  [propertyInput, guestsInput, petsInput, childrenInput, checkinInput, checkoutInput]
     .filter(Boolean)
     .forEach(el => el.addEventListener('change', updateEstimateUI));
 
@@ -417,18 +427,18 @@ function initBookingForm() {
       return;
     }
 
-    const name     = document.getElementById('b_name').value.trim();
-    const email    = document.getElementById('b_email').value.trim();
-    const phone    = document.getElementById('b_phone').value.trim();
+    const name = document.getElementById('b_name').value.trim();
+    const email = document.getElementById('b_email').value.trim();
+    const phone = document.getElementById('b_phone').value.trim();
     const property = document.getElementById('b_property').value;
     const propertyName = property === 'domo' ? 'Domo Gorbeia' : 'Urkiola Etxea';
-    const guests   = guestsInput ? guestsInput.value : '1';
-    const pets     = petsInput ? petsInput.value : '0';
+    const guests = guestsInput ? guestsInput.value : '1';
+    const pets = petsInput ? petsInput.value : '0';
     const children = childrenInput ? childrenInput.value : '0';
-    const checkin  = document.getElementById('b_checkin').value;
+    const checkin = document.getElementById('b_checkin').value;
     const checkout = document.getElementById('b_checkout').value;
-    const nights   = nightsInput ? nightsInput.value : String(getNights(checkin, checkout));
-    const message  = document.getElementById('b_message').value.trim();
+    const nights = nightsInput ? nightsInput.value : String(getNights(checkin, checkout));
+    const message = document.getElementById('b_message').value.trim();
     const estimate = updateEstimateUI();
 
     const petsLabel = Number.parseInt(pets, 10) > 0 ? i18n('booking.yes', 'Sí') : i18n('booking.no', 'No');
@@ -550,7 +560,11 @@ function initPropertySelectors() {
     });
 
     if (syncBooking && bookingSelect) {
+      const previousValue = bookingSelect.value;
       bookingSelect.value = property;
+      if (previousValue !== property) {
+        bookingSelect.dispatchEvent(new Event('change', { bubbles: true }));
+      }
     }
 
     if (syncGallery && typeof window.switchGalleryTab === 'function') {
