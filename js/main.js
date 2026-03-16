@@ -447,39 +447,109 @@ function initBookingForm() {
       ? i18n('booking.breakdown.season.low', 'Temporada baja')
       : i18n('booking.breakdown.season.summer', 'Verano');
 
-    const subject = `Solicitud de reserva (${propertyName}): ${name} | ${checkin} - ${checkout} | ${estimate.total}€`;
-    const body = [
-      'SOLICITUD DE RESERVA - UXARBEITI BASERRIA',
-      '-----------------------------------------',
-      `Alojamiento: ${propertyName}`,
-      `Nombre:      ${name}`,
-      `Email:       ${email}`,
-      `Teléfono:    ${phone}`,
-      `Personas:    ${guests}`,
-      `Noches:      ${nights}`,
-      `Mascotas:    ${petsLabel}`,
-      `Niños:       ${childrenLabel}`,
-      `Entrada:     ${checkin}`,
-      `Salida:      ${checkout}`,
-      '-----------------------------------------',
-      `Temporada:   ${seasonLabel}`,
-      `Base:        ${estimate.baseRate}€ x ${estimate.nights} = ${estimate.baseTotal}€`,
-      `Extras pers: ${estimate.extraPeopleTotal}€`,
-      `Mascotas:    ${estimate.petsTotal}€`,
-      `Niños:       ${estimate.childrenTotal}€`,
-      `Limpieza:    ${estimate.cleaningFee}€`,
-      `TOTAL EST.:  ${estimate.total}€`,
-      '-----------------------------------------',
-      `Mensaje:     ${message || '(ninguno)'}`,
-      '-----------------------------------------',
-      'Enviado desde uxarbeiti.eus',
-    ].join('\n');
+    const dest = (window.SITE_CONFIG && window.SITE_CONFIG.email) || 'pablosainz1998@gmail.com';
+    const subj = `Solicitud de reserva (${propertyName}): ${name} | ${checkin} - ${checkout} | ${estimate.total}€`;
 
-    const dest = (window.SITE_CONFIG && window.SITE_CONFIG.email) || '';
-    const mailtoUrl = `mailto:${dest}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    // EmailJS template parameters
+    const templateParams = {
+      to_email: dest,
+      subject: subj,
+      propertyName: propertyName,
+      name: name,
+      email: email,
+      phone: phone,
+      guests: guests,
+      nights: nights,
+      petsLabel: petsLabel,
+      childrenLabel: childrenLabel,
+      checkin: checkin,
+      checkout: checkout,
+      seasonLabel: seasonLabel,
+      baseRate: estimate.baseRate,
+      baseTotal: estimate.baseTotal,
+      extraPeopleTotal: estimate.extraPeopleTotal,
+      petsTotal: estimate.petsTotal,
+      childrenTotal: estimate.childrenTotal,
+      cleaningFee: estimate.cleaningFee,
+      total: estimate.total,
+      message: message || '(ninguno)'
+    };
 
-    try {
-      window.location.href = mailtoUrl;
+    // UI Feedback
+    const btn = form.querySelector('button[type="submit"]');
+    const originalBtnText = btn ? btn.textContent : '';
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = 'Enviando...';
+    }
+
+    if (successEl) successEl.style.display = 'none';
+    if (errorEl) errorEl.style.display = 'none';
+
+    // EmailJS sending
+    if (typeof emailjs !== 'undefined' && window.SITE_CONFIG?.emailjs_public_key) {
+      emailjs.init(window.SITE_CONFIG.emailjs_public_key);
+
+      emailjs.send(
+        window.SITE_CONFIG.emailjs_service_id,
+        window.SITE_CONFIG.emailjs_template_id,
+        templateParams
+      )
+        .then(() => {
+          if (successEl) {
+            successEl.textContent = '✅ Solicitud enviada correctamente. Te contactaremos pronto.';
+            successEl.style.display = 'block';
+          }
+          form.reset();
+          updateEstimateUI();
+        })
+        .catch((err) => {
+          console.error('EmailJS Error:', err);
+          if (errorEl) {
+            errorEl.textContent = '❌ Error al enviar. Por favor, contáctanos por WhatsApp.';
+            errorEl.style.display = 'block';
+          }
+        })
+        .finally(() => {
+          if (btn) {
+            btn.disabled = false;
+            btn.textContent = originalBtnText;
+          }
+        });
+    } else {
+      // Fallback a mailto si no hay EmailJS configurado
+      const body = [
+        'SOLICITUD DE RESERVA - UXARBEITI BASERRIA',
+        '-----------------------------------------',
+        `Alojamiento: ${propertyName}`,
+        `Nombre:      ${name}`,
+        `Email:       ${email}`,
+        `Teléfono:    ${phone}`,
+        `Personas:    ${guests}`,
+        `Noches:      ${nights}`,
+        `Mascotas:    ${petsLabel}`,
+        `Niños:       ${childrenLabel}`,
+        `Entrada:     ${checkin}`,
+        `Salida:      ${checkout}`,
+        '-----------------------------------------',
+        `Temporada:   ${seasonLabel}`,
+        `Base:        ${estimate.baseRate}€ x ${estimate.nights} = ${estimate.baseTotal}€`,
+        `Extras pers: ${estimate.extraPeopleTotal}€`,
+        `Mascotas:    ${estimate.petsTotal}€`,
+        `Niños:       ${estimate.childrenTotal}€`,
+        `Limpieza:    ${estimate.cleaningFee}€`,
+        `TOTAL EST.:  ${estimate.total}€`,
+        '-----------------------------------------',
+        `Mensaje:     ${message || '(ninguno)'}`,
+        '-----------------------------------------',
+        'Enviado desde uxarbeiti.eus',
+      ].join('\n');
+
+      window.location.href = `mailto:${dest}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`;
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = originalBtnText;
+      }
       setTimeout(() => {
         if (successEl) successEl.style.display = 'block';
         if (errorEl) errorEl.style.display = 'none';
@@ -487,8 +557,6 @@ function initBookingForm() {
         updateEstimateUI();
         setTimeout(() => { if (successEl) successEl.style.display = 'none'; }, 6000);
       }, 500);
-    } catch {
-      if (errorEl) errorEl.style.display = 'block';
     }
   });
 }
