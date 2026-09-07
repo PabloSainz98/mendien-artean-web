@@ -110,13 +110,11 @@ function createApp({
       }
     }
     outbox.kick();
-    res
-      .status(record.duplicate ? 200 : 201)
-      .json({
-        ok: true,
-        requestId: `UX-${String(record.id).padStart(6, '0')}`,
-        status: 'pending_confirmation',
-      });
+    res.status(record.duplicate ? 200 : 201).json({
+      ok: true,
+      requestId: `UX-${String(record.id).padStart(6, '0')}`,
+      status: 'pending_confirmation',
+    });
   });
   function requireAdmin(req, res, next) {
     if (

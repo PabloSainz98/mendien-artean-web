@@ -12,6 +12,11 @@ const base = {
   pets: 1,
 };
 
+test('today is an ISO date regardless of browser date ordering', () => {
+  assert.match(P.today(), /^\d{4}-\d{2}-\d{2}$/);
+  assert.ok(P.parseDate(P.today()));
+});
+
 test('user example: house 82/night plus 40 cleaning = 122', () => {
   const q = P.quote(base);
   assert.equal(q.total, 122);
