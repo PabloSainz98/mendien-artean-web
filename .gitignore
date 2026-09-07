@@ -2,4 +2,15 @@
 *.log
 node_modules/
 .env
+.env.*
+!.env.example
 js/config.js
+dist/
+backend/data/
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite-*
+coverage/
+test-results/

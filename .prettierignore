@@ -1,0 +1,7 @@
+dist/
+node_modules/
+backend/data/
+images/
+site/fonts/
+package-lock.json
+backend/.env
