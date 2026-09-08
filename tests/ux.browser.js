@@ -53,6 +53,44 @@ test(
     const blur = () => page.evaluate(() => document.activeElement?.blur());
 
     await t.test(
+      'gallery warms only the next photo after opening and respects data saving',
+      async () => {
+        for (const connection of [
+          { saveData: false, effectiveType: '4g' },
+          { saveData: true, effectiveType: '4g' },
+          { saveData: false, effectiveType: '2g' },
+        ]) {
+          await page.goto(base + 'domo-gorbeia.html');
+          await page.evaluate((connection) => {
+            Object.defineProperty(navigator, 'connection', {
+              configurable: true,
+              value: connection,
+            });
+            const NativeImage = window.Image;
+            window.warmedPhotos = [];
+            window.Image = class extends NativeImage {
+              constructor(...args) {
+                super(...args);
+                window.warmedPhotos.push(this);
+              }
+            };
+          }, connection);
+          assert.equal(await page.evaluate(() => window.warmedPhotos.length), 0);
+          await page.locator('.gallery-open').click();
+          const expected = connection.saveData || connection.effectiveType === '2g' ? 0 : 1;
+          assert.equal(await page.evaluate(() => window.warmedPhotos.length), expected);
+          await page.keyboard.press('ArrowRight');
+          assert.equal(await page.evaluate(() => window.warmedPhotos.length), expected * 2);
+          await page.keyboard.press('ArrowLeft');
+          assert.equal(await page.evaluate(() => window.warmedPhotos.length), expected * 2);
+          if (expected)
+            assert.equal(await page.evaluate(() => window.warmedPhotos[0].fetchPriority), 'low');
+          await page.keyboard.press('Escape');
+        }
+      },
+    );
+
+    await t.test(
       'language switches retain current stay criteria, never contact or consent',
       async () => {
         await page.setViewportSize({ width: 1440, height: 1000 });

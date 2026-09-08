@@ -4,6 +4,7 @@ const path = require('node:path');
 const crypto = require('node:crypto');
 const { pages, renderPage } = require('../site/templates');
 const { properties, business, locales } = require('../site/content');
+const { precompress } = require('./precompress');
 const root = path.resolve(__dirname, '..');
 const dist = path.join(root, 'dist');
 
@@ -105,8 +106,17 @@ function build() {
   );
   fs.writeFileSync(path.join(dist, '.nojekyll'), '');
   fs.copyFileSync(path.join(root, 'site/sw.js'), path.join(dist, 'sw.js'));
+  const compression = precompress(dist, [
+    ...Object.values(assets),
+    ...Object.keys(locales).flatMap((lang) =>
+      pages.map((page) => `${lang === 'es' ? '' : lang + '/'}${page}.html`),
+    ),
+  ]);
   console.log(
     `Built ${pages.length * Object.keys(locales).length} pages in dist/ (${media.size} original images).`,
+  );
+  console.log(
+    `Public text: ${compression.original} bytes, ${compression.brotli} Brotli, ${compression.gzip} gzip.`,
   );
   return { dist, assets };
 }

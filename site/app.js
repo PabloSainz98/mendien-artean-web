@@ -63,17 +63,31 @@
     const data = JSON.parse(galleryData.textContent);
     const dialog = $('#lightbox');
     let active = 0;
+    const warmed = new Set();
+    const preloadNext = () => {
+      const connection = navigator.connection;
+      if (connection?.saveData || /(^|-)2g$/.test(connection?.effectiveType)) return;
+      const src = data.photos[(active + 1) % data.photos.length];
+      if (warmed.has(src)) return;
+      warmed.add(src);
+      const photo = new Image();
+      photo.decoding = 'async';
+      photo.fetchPriority = 'low';
+      photo.src = src;
+    };
     const show = (index) => {
       active = (index + data.photos.length) % data.photos.length;
       $('figure img', dialog).src = data.photos[active];
       $('figure img', dialog).alt = data.captions[active];
       $('figcaption', dialog).textContent = data.captions[active];
       $('.photo-counter', dialog).textContent = `${active + 1} / ${data.photos.length}`;
+      if (dialog.open) preloadNext();
     };
     $$('[data-gallery-index]').forEach((button) =>
       button.addEventListener('click', () => {
         show(Number(button.dataset.galleryIndex));
         dialog.showModal();
+        preloadNext();
       }),
     );
     $$('[data-photo-step]').forEach((button) =>

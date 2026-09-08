@@ -11,6 +11,7 @@ const { buildBookingsCsv, exportBookingsCsv } = require('./csv');
 const { createAdmin } = require('./admin');
 const { configureProxy } = require('./proxy');
 const { startBackups } = require('./backups');
+const { precompressed, cacheControl } = require('./static');
 const pricing = require('../../shared/pricing');
 const { issues: legalIssues } = require('../../shared/legal');
 const backendRoot = path.resolve(__dirname, '..');
@@ -175,6 +176,7 @@ function createApp({
       .send(buildBookingsCsv(db.allRequests()));
   });
   app.use('/api', (_req, res) => res.status(404).json({ ok: false, error: 'not_found' }));
+  app.use(precompressed(publicDir));
   app.use(
     express.static(publicDir, {
       dotfiles: 'deny',
@@ -186,14 +188,7 @@ function createApp({
           res.set('X-Robots-Tag', 'noindex, nofollow');
           return;
         }
-        res.set(
-          'Cache-Control',
-          /\.[a-f0-9]{10}\.(css|js)$/.test(file)
-            ? 'public, max-age=31536000, immutable'
-            : file.endsWith('.html') || file.endsWith('sw.js')
-              ? 'no-cache'
-              : 'public, max-age=86400',
-        );
+        res.set('Cache-Control', cacheControl(file));
       },
     }),
   );
