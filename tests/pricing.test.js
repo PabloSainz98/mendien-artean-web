@@ -58,6 +58,26 @@ test('checkout date is not charged', () =>
     P.quote({ ...base, checkin: '2027-05-30', checkout: '2027-06-01' }).summerNights,
     0,
   ));
+test('high season includes summer and Christmas, with inclusive occupied-night boundaries', () => {
+  for (const [date, high] of [
+    ['2027-01-06', true],
+    ['2027-01-07', false],
+    ['2027-05-31', false],
+    ['2027-06-01', true],
+    ['2027-09-30', true],
+    ['2027-10-01', false],
+    ['2027-12-19', false],
+    ['2027-12-20', true],
+  ]) {
+    const q = P.quote({ ...base, checkin: date, checkout: P.addDays(date, 1) });
+    assert.equal(q.summerNights, high ? 1 : 0, date);
+    assert.equal(q.baseTotal, high ? 75 : 57, date);
+  }
+  const q = P.quote({ ...base, checkin: '2027-12-19', checkout: '2028-01-08' });
+  assert.equal(q.summerNights, 18);
+  assert.equal(q.lowNights, 2);
+  assert.equal(q.cleaning, 40);
+});
 test('DST changes do not change night count', () => {
   assert.equal(P.quote({ ...base, checkin: '2027-03-27', checkout: '2027-03-29' }).nights, 2);
   assert.equal(P.quote({ ...base, checkin: '2027-10-30', checkout: '2027-11-01' }).nights, 2);

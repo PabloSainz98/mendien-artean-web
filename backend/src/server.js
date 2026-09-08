@@ -8,6 +8,11 @@ const { createDatabase } = require('./db');
 const { validateBookingPayload } = require('./validation');
 const { createNotifier, startOutbox } = require('./notifier');
 const { buildBookingsCsv, exportBookingsCsv } = require('./csv');
+const { createAdmin } = require('./admin');
+const { configureProxy } = require('./proxy');
+const { startBackups } = require('./backups');
+const pricing = require('../../shared/pricing');
+const { issues: legalIssues } = require('../../shared/legal');
 const backendRoot = path.resolve(__dirname, '..');
 const digest = (value) => crypto.createHash('sha256').update(String(value)).digest();
 
@@ -18,6 +23,7 @@ function createApp({
   csvPath,
   publicDir = path.resolve(backendRoot, '../dist'),
   logger = console,
+  backups = null,
 } = {}) {
   if (!db) throw new Error('Database required');
   const app = express();
@@ -25,13 +31,13 @@ function createApp({
   const adminToken = env.ADMIN_TOKEN || '';
   if (adminToken && (adminToken.length < 32 || /change-this|replace|example/i.test(adminToken)))
     throw new Error('ADMIN_TOKEN must contain at least 32 random characters');
-  if (env.TRUST_PROXY === 'true')
-    throw new Error('Use a trusted proxy IP or loopback for TRUST_PROXY, never true');
   const publicOrigin = env.PUBLIC_ORIGIN ? new URL(env.PUBLIC_ORIGIN).origin : null;
-  const acceptsBookings =
-    notifier.enabled || (!production && env.ACCEPT_BOOKINGS_WITHOUT_EMAIL === 'true');
+  const acceptsBookings = () =>
+    env.BOOKING_REQUESTS_ENABLED !== 'false' &&
+    (notifier.enabled || (!production && env.ACCEPT_BOOKINGS_WITHOUT_EMAIL === 'true')) &&
+    (!production || Boolean(env.ADMIN_PASSWORD_HASH || adminToken)) &&
+    (env.BACKUP_REQUIRED !== 'true' || backups?.status().healthy === true);
   app.disable('x-powered-by');
-  app.set('trust proxy', env.TRUST_PROXY && env.TRUST_PROXY !== 'false' ? env.TRUST_PROXY : false);
   app.use(
     helmet({
       hsts: production,
@@ -53,20 +59,29 @@ function createApp({
       referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
     }),
   );
+  if (production && publicOrigin && env.CANONICAL_REDIRECT === 'true') {
+    app.use((req, res, next) => {
+      if (req.get('host') !== new URL(publicOrigin).host)
+        return res.redirect(308, publicOrigin + req.originalUrl);
+      next();
+    });
+  }
   app.use('/api', (_req, res, next) => {
     res.set('Cache-Control', 'no-store');
     next();
   });
+  configureProxy(app, env);
   const buckets = new Map();
   let lastCleanup = 0;
-  const maxRequests = Number(env.RATE_LIMIT_MAX || 20);
+  const maxRequests = Number(env.RATE_LIMIT_MAX || 120);
   function rateLimit(req, res, next) {
     const now = Date.now();
     if (now - lastCleanup > 60000) {
       for (const [key, bucket] of buckets) if (bucket.until <= now) buckets.delete(key);
       lastCleanup = now;
     }
-    const key = req.ip;
+    const bookingWrite = req.method === 'POST' && req.path === '/booking-requests';
+    const key = `${bookingWrite ? 'booking' : 'read'}:${req.ip}`;
     let bucket = buckets.get(key);
     if (!bucket || bucket.until <= now) {
       if (buckets.size >= 10000 && !buckets.has(key))
@@ -74,16 +89,50 @@ function createApp({
       bucket = { count: 0, until: now + 900000 };
       buckets.set(key, bucket);
     }
-    if (++bucket.count > maxRequests) {
+    if (++bucket.count > (bookingWrite ? Math.min(20, maxRequests) : maxRequests)) {
       res.set('Retry-After', String(Math.ceil((bucket.until - now) / 1000)));
       return res.status(429).json({ ok: false, error: 'rate' });
     }
     next();
   }
-  app.use('/api', rateLimit);
+  app.use('/api', (req, res, next) =>
+    req.path.startsWith('/admin/') ? next() : rateLimit(req, res, next),
+  );
   app.use(express.json({ limit: '12kb', strict: true }));
   const outbox = startOutbox(db, notifier, logger);
-  app.get('/api/health', (_req, res) => res.json({ ok: true, acceptsBookings }));
+  function changed() {
+    if (csvPath) {
+      try {
+        exportBookingsCsv(csvPath, db.allRequests());
+      } catch {
+        logger.error('CSV export failed. The request is safely stored in SQLite.');
+      }
+    }
+    outbox.kick();
+  }
+  const admin = createAdmin({ db, env, acceptsBookings: notifier.enabled, changed });
+  app.use('/api/admin', admin.router);
+  app.get('/api/admin/system', admin.requireAdmin, (req, res) =>
+    res.json({
+      ok: true,
+      acceptsBookings: acceptsBookings(),
+      emailEnabled: notifier.enabled,
+      legal: { complete: legalIssues().length === 0, missing: legalIssues() },
+      backups: backups?.status() || { enabled: false, healthy: false, lastSuccess: null },
+      connection: {
+        peer: req.socket.remoteAddress,
+        client: req.ip,
+        realIp: req.get('X-Real-IP') || null,
+        forwardedFor: req.get('X-Forwarded-For') || null,
+      },
+    }),
+  );
+  app.get('/api/availability', (req, res) => {
+    if (!Object.hasOwn(pricing.CAPACITY, req.query.property))
+      return res.status(400).json({ ok: false, error: 'property' });
+    res.json({ ok: true, ranges: db.availability(req.query.property) });
+  });
+  app.get('/api/health', (_req, res) => res.json({ ok: true, acceptsBookings: acceptsBookings() }));
   app.post('/api/booking-requests', (req, res) => {
     if (!req.is('application/json'))
       return res.status(415).json({ ok: false, error: 'json_required' });
@@ -98,35 +147,19 @@ function createApp({
       return res
         .status(result.error === 'changed' ? 409 : 400)
         .json({ ok: false, error: result.spam ? 'form' : result.error });
-    if (!acceptsBookings) return res.status(503).json({ ok: false, error: 'booking_unavailable' });
+    if (!acceptsBookings())
+      return res.status(503).json({ ok: false, error: 'booking_unavailable' });
     const data = result.data;
     const record = db.createRequest(data, key, digest(JSON.stringify(data)).toString('hex'));
     if (record.conflict) return res.status(409).json({ ok: false, error: 'idempotency_conflict' });
-    if (csvPath) {
-      try {
-        exportBookingsCsv(csvPath, db.allRequests());
-      } catch {
-        logger.error('CSV export failed. The request is safely stored in SQLite.');
-      }
-    }
-    outbox.kick();
+    changed();
     res.status(record.duplicate ? 200 : 201).json({
       ok: true,
       requestId: `UX-${String(record.id).padStart(6, '0')}`,
       status: 'pending_confirmation',
     });
   });
-  function requireAdmin(req, res, next) {
-    if (
-      !adminToken ||
-      !crypto.timingSafeEqual(
-        digest(req.get('Authorization') || ''),
-        digest(`Bearer ${adminToken}`),
-      )
-    )
-      return res.status(401).json({ ok: false, error: 'unauthorized' });
-    next();
-  }
+  const requireAdmin = admin.requireAdmin;
   app.get('/api/admin/booking-requests', requireAdmin, (req, res) => {
     const limit = Math.min(500, Math.max(1, Number.parseInt(req.query.limit, 10) || 100));
     const offset = Math.max(0, Number.parseInt(req.query.offset, 10) || 0);
@@ -148,6 +181,11 @@ function createApp({
       index: 'index.html',
       extensions: ['html'],
       setHeaders(res, file) {
+        if (file.includes(`${path.sep}gestion${path.sep}`)) {
+          res.set('Cache-Control', 'no-store');
+          res.set('X-Robots-Tag', 'noindex, nofollow');
+          return;
+        }
         res.set(
           'Cache-Control',
           /\.[a-f0-9]{10}\.(css|js)$/.test(file)
@@ -166,33 +204,65 @@ function createApp({
       .send('404 · UXARBEITI · Página no encontrada / Page not found / Orria ez da aurkitu'),
   );
   app.use((error, req, res, _next) => {
+    if (
+      [
+        'occupied',
+        'stale',
+        'transition',
+        'legacy',
+        'mail_busy',
+        'refund_exceeds_paid',
+        'idempotency_conflict',
+      ].includes(error.code)
+    )
+      return res.status(409).json({ ok: false, error: error.code });
+    if (error.code === 'not_found') return res.status(404).json({ ok: false, error: error.code });
     const status =
       error.type === 'entity.too.large' ? 413 : error.type === 'entity.parse.failed' ? 400 : 500;
     if (status === 500) logger.error('Request failed. No personal data logged.');
     res.status(status).json({ ok: false, error: status === 500 ? 'server_error' : 'invalid_body' });
   });
-  return { app, close: () => outbox.stop(), acceptsBookings };
+  return {
+    app,
+    close: () => outbox.stop(),
+    get acceptsBookings() {
+      return acceptsBookings();
+    },
+  };
 }
 
 if (require.main === module) {
-  require('dotenv').config({ path: path.join(backendRoot, '.env') });
+  require('dotenv').config({
+    path: process.env.UXARBEITI_ENV_PATH || path.join(backendRoot, '.env'),
+  });
   process.umask(0o077);
   const env = process.env;
-  const db = createDatabase(path.resolve(backendRoot, env.DATABASE_PATH || 'data/app.db'));
+  const databasePath = path.resolve(backendRoot, env.DATABASE_PATH || 'data/app.db');
+  const db = createDatabase(databasePath);
   const notifier = createNotifier(env);
   const csvPath = path.resolve(backendRoot, env.BOOKINGS_CSV_PATH || 'data/bookings.csv');
   const publicDir = path.resolve(backendRoot, '../dist');
   if (!fs.existsSync(path.join(publicDir, 'index.html')))
     throw new Error('Run npm run build before starting the server');
-  const runtime = createApp({ db, notifier, env, csvPath, publicDir });
-  const host = env.HOST || '127.0.0.1';
+  if (env.BACKUP_REQUIRED === 'true' && env.BACKUP_ENABLED !== 'true')
+    throw new Error('Required backups must be enabled');
+  const backups =
+    env.BACKUP_ENABLED === 'true'
+      ? startBackups({
+          source: databasePath,
+          directory: path.resolve(backendRoot, env.BACKUP_DIRECTORY || 'data/backups'),
+          keep: Number(env.BACKUP_KEEP || 14),
+        })
+      : null;
+  const runtime = createApp({ db, notifier, env, csvPath, publicDir, backups });
+  const host = env.HOST || env.IP || '127.0.0.1';
   const port = Number(env.PORT || 8787);
   const server = runtime.app.listen(port, host, () => {
     console.log(`UXARBEITI: http://${host}:${port}`);
     console.log(
       runtime.acceptsBookings
         ? `Booking requests enabled. SMTP ${notifier.enabled ? 'enabled' : 'disabled (explicit local/test mode)'}.`
-        : 'Booking requests disabled until SMTP is configured. The website and price calculator are available.',
+        : 'Booking requests unavailable until setup and backup checks pass. The website and price calculator are available.',
     );
   });
   let closing = false;
@@ -203,6 +273,7 @@ if (require.main === module) {
     timeout.unref();
     server.close(async () => {
       await runtime.close();
+      await backups?.stop();
       db.close();
       clearTimeout(timeout);
     });

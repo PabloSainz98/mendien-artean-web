@@ -39,6 +39,12 @@
     return date ? new Date(date.getTime() + days * DAY).toISOString().slice(0, 10) : '';
   }
 
+  function isHighSeason(date) {
+    const month = date.getUTCMonth() + 1;
+    const day = date.getUTCDate();
+    return (month >= 6 && month <= 9) || (month === 12 && day >= 20) || (month === 1 && day <= 6);
+  }
+
   function quote(input) {
     const { property, checkin, checkout, adults, children, pets } = input;
     if (!Object.hasOwn(CAPACITY, property)) throw new Error('property');
@@ -60,8 +66,7 @@
     let summerNights = 0;
     // Charge the season of each occupied night, never the checkout date.
     for (let time = start.getTime(); time < end.getTime(); time += DAY) {
-      const month = new Date(time).getUTCMonth();
-      if (month >= 5 && month <= 8) summerNights++;
+      if (isHighSeason(new Date(time))) summerNights++;
       else lowNights++;
     }
     const surcharge = property === 'domo' ? RATES.dome : 0;
@@ -89,5 +94,6 @@
       total: baseTotal + adultsTotal + childrenTotal + petsTotal + RATES.cleaning,
     };
   }
-  return { RATES, CAPACITY, parseDate, today, addDays, quote };
+  // Keep summerNights/summerRate keys compatible with previously stored quotes.
+  return { RATES, CAPACITY, parseDate, today, addDays, isHighSeason, quote };
 });

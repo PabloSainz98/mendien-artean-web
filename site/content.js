@@ -112,6 +112,23 @@ const locales = {
       availabilityNote:
         'Solicitud sujeta a disponibilidad y confirmación personal. No se realiza ningún cargo online.',
     },
+    chat: {
+      launcher: '¿Hablamos?',
+      title: 'Estamos al otro lado.',
+      intro:
+        'Pregúntanos por los alojamientos, los precios o cualquier detalle de tu visita. No necesitas hacer una reserva.',
+      question: 'Tu consulta (opcional)',
+      placeholder: '¿En qué podemos ayudarte?',
+      continue: 'Continuar en WhatsApp',
+      note: 'Se abrirá WhatsApp con un borrador. Tú decides cuándo enviarlo; aquí no se guarda ninguna solicitud.',
+      hello: 'Hola, me gustaría hacer una consulta sobre UXARBEITI.',
+      topics: ['Disponibilidad', 'Precios', 'Otra duda'],
+      messages: [
+        'Hola, me gustaría preguntar qué fechas tenéis disponibles en UXARBEITI.',
+        'Hola, me gustaría consultar los precios de los alojamientos de UXARBEITI.',
+        'Hola, tengo una duda sobre UXARBEITI. ¿Podéis ayudarme?',
+      ],
+    },
     home: {
       eyebrow: 'BIENVENIDO A UXARBEITI BASERRIA',
       title: 'La vida,\na otro ritmo.',
@@ -122,7 +139,7 @@ const locales = {
       storyEyebrow: 'NO ES SOLO DONDE DUERMES',
       storyTitle: 'Es lo que encuentras\nal despertar.',
       storyText:
-        'Entre Urkiola y Gorbeia, Uxarbeiti es un complejo rural y una explotación familiar que sigue viva. Urtza y sus padres cuidan de sus huertas, sus frutales y de quienes se acercan a conocer este rincón del País Vasco.',
+        'Somos una familia que vive y trabaja entre Urkiola y Gorbeia. Cuidamos nuestras huertas, nuestros frutales y a quienes venís a compartir la calma de Uxarbeiti, nuestro complejo rural en el valle de Arratia.',
       staysEyebrow: 'DOS ALOJAMIENTOS, UN MISMO HOGAR',
       staysTitle: 'Elige tu forma\nde desconectar.',
       staysText:
@@ -139,18 +156,22 @@ const locales = {
     story: {
       eyebrow: 'NUESTRAS RAÍCES',
       title: 'Una historia familiar.\nUna tierra compartida.',
-      intro: 'Antes de ser un lugar donde quedarse, Uxarbeiti ya era un lugar del que cuidar.',
+      intro:
+        'Antes de abrirte nuestras puertas, ya cuidábamos de esta tierra. Hoy queremos compartirla contigo.',
       heading: 'El caserío es nuestra casa.',
       paragraphs: [
-        'Uxarbeiti Baserria es la explotación familiar de Urtza Sarrionandia y sus padres, Edurtzeta Atutxa e Iñaki Sarrionandia. Ellos la crearon en los años 80; Urtza continuó el camino, con una ampliación en 2008 y otra de mayor tamaño en 2013.',
-        'Hoy la forman dos caseríos: Uxarbeiti e Iauribarrigoikoan Behekoa. Entre los parques naturales de Urkiola y Gorbeia, en el corazón del País Vasco, conviven el trabajo de la tierra y la hospitalidad de un pequeño complejo rural.',
-        'Domo Gorbeia y Urkiola Etxea son nuestras dos formas de darte la bienvenida. Dos alojamientos diferentes dentro del mismo complejo, con el paisaje de Arratia como punto de encuentro.',
+        'Somos Urtza Sarrionandia, Edurtzeta Atutxa e Iñaki Sarrionandia, la familia de Uxarbeiti Baserria. Comenzamos este camino en los años 80 con Edurtzeta e Iñaki; con Urtza lo continuamos y ampliamos en 2008 y, de nuevo, en 2013.',
+        'Hoy trabajamos en dos caseríos: Uxarbeiti e Iauribarrigoikoan Behekoa. Entre los parques naturales de Urkiola y Gorbeia, en el corazón del País Vasco, unimos el trabajo de la tierra con nuestra forma de recibirte.',
+        'Te damos la bienvenida en Domo Gorbeia y Urkiola Etxea: nuestros dos alojamientos, diferentes y dentro del mismo complejo. Compartimos contigo el paisaje de Arratia y nuestra manera de vivirlo.',
       ],
       timeline: [
-        ['Años 80', 'Edurtzeta e Iñaki ponen en marcha la explotación familiar.'],
-        ['2008', 'Urtza amplía el proyecto y continúa el trabajo de sus padres.'],
-        ['2013', 'Una nueva ampliación consolida el recorrido del caserío.'],
-        ['Hoy', 'Agricultura, productos propios y dos alojamientos para compartir el entorno.'],
+        ['Años 80', 'Comenzamos nuestra explotación familiar con Edurtzeta e Iñaki.'],
+        ['2008', 'Con Urtza, ampliamos el proyecto y seguimos cultivando el legado familiar.'],
+        ['2013', 'Ampliamos de nuevo nuestra explotación y seguimos creciendo como familia.'],
+        [
+          'Hoy',
+          'Cultivamos, elaboramos nuestros productos y te recibimos en nuestros dos alojamientos.',
+        ],
       ],
       landTitle: 'Una tierra que sigue dando.',
       landText:
@@ -168,7 +189,7 @@ const locales = {
       eyebrow: 'QUEDARSE EN UXARBEITI',
       title: 'Dos refugios.\nUn mismo paisaje.',
       intro:
-        'Cada alojamiento tiene su personalidad. Elige el que encaje contigo y descubre sus espacios, servicios y precios.',
+        'Te ofrecemos dos alojamientos con personalidad propia. Elige el que encaje contigo y descubre los espacios, servicios y precios que hemos preparado.',
       inside: 'Tu estancia, por dentro.',
       features: 'Lo que encontrarás',
       gallery: 'Un vistazo más de cerca.',
@@ -179,8 +200,8 @@ const locales = {
       capacityNote:
         'La capacidad incluye adultos y niños. Indica si necesitas cuna al solicitar la estancia.',
       rates: 'Precios sin sorpresas.',
-      low: 'Enero a mayo · octubre a diciembre',
-      summer: 'Junio a septiembre',
+      low: '7 enero–31 mayo · 1 octubre–19 diciembre',
+      summer: 'Alta: junio–septiembre · 20 diciembre–6 enero',
       extras: 'Adulto adicional: 10 €/noche · niño (cuna): 5 €/noche · mascota: 10 €/noche.',
       cleaning: 'Limpieza final: 40 € por estancia.',
       alternatives: 'También puedes encontrarnos en',
@@ -190,7 +211,7 @@ const locales = {
       domo: {
         type: 'DOMO GEODÉSICO',
         tagline: 'Dormir con el paisaje.',
-        desc: 'Luz, vistas al valle y un espacio que invita a bajar el ritmo. Una escapada diferente, con jacuzzi y terraza para mirar alrededor sin mirar el reloj.',
+        desc: 'Te recibimos en nuestro domo, abierto a la luz y a las vistas del valle. Hemos preparado un espacio con jacuzzi y terraza para que bajes el ritmo y disfrutes sin mirar el reloj.',
         short: 'Un refugio panorámico con jacuzzi, entre las copas y el cielo.',
         facts: ['38 m²', 'Hasta 3 personas', 'Jacuzzi'],
         features: [
@@ -219,7 +240,7 @@ const locales = {
       casa: {
         type: 'CASA RURAL',
         tagline: 'Sentirse como en casa.',
-        desc: 'Una casa acogedora, jardín y una terraza que invita a alargar las sobremesas. Espacio para compartir unos días tranquilos en familia, con amigos o con tu perro.',
+        desc: 'Te abrimos las puertas de nuestra casa rural, con jardín y terraza para alargar las sobremesas. Queremos que compartas unos días tranquilos con tu familia, tus amigos o tu perro.',
         short: 'Una casa con jardín y terraza para disfrutar sin prisas.',
         facts: ['48 m²', 'Hasta 4 personas', 'Jardín privado'],
         features: [
@@ -247,7 +268,7 @@ const locales = {
       eyebrow: 'EL CASERÍO TAMBIÉN SE SABOREA',
       title: 'De la huerta.\nDe temporada.\nDe aquí.',
       intro:
-        'Lo que cultivamos y elaboramos cuenta la misma historia que nuestros alojamientos: la de una familia y su tierra.',
+        'Lo que cultivamos y elaboramos cuenta la misma historia que nuestros alojamientos: la de nuestra familia y nuestra tierra.',
       groups: [
         [
           '01',
@@ -272,7 +293,7 @@ const locales = {
       ],
       catalogueTitle: 'Llévate un poco\nde Uxarbeiti.',
       catalogueText:
-        'Consulta la selección del caserío en BBK Azoka. Los precios y la disponibilidad se muestran allí; no vendemos directamente desde esta web.',
+        'Te mostramos nuestros productos en BBK Azoka, donde puedes consultar precios y disponibilidad. No vendemos directamente desde esta web.',
       visitText:
         '¿Vas a alojarte con nosotros? Pregúntanos por los productos de temporada al preparar tu visita.',
     },
@@ -280,7 +301,7 @@ const locales = {
       eyebrow: 'ARRATIA Y UN POCO MÁS ALLÁ',
       title: 'Sal a descubrir.\nVuelve a la calma.',
       intro:
-        'Una base entre Urkiola y Gorbeia para disfrutar del monte, la cultura y los sabores del País Vasco.',
+        'Te proponemos descubrir el monte, la cultura y los sabores del País Vasco desde nuestra casa, entre Urkiola y Gorbeia.',
       activities: [
         [
           'Monte',
@@ -349,7 +370,7 @@ const locales = {
       message: '¿Algo que debamos saber?',
       messagePlaceholder: 'Cuna, hora aproximada de llegada, alguna pregunta…',
       consent:
-        'He leído la política de privacidad y acepto que se usen mis datos para gestionar esta solicitud.',
+        'He leído la información de privacidad. Entiendo que enviar la solicitud no confirma la estancia.',
       privacy: 'Política de privacidad',
       submit: 'Enviar solicitud de estancia',
       sending: 'Enviando solicitud…',
@@ -358,7 +379,7 @@ const locales = {
       summary: 'Tu escapada',
       empty: 'Elige unas fechas para ver el desglose.',
       low: 'Noches de temporada baja',
-      summer: 'Noches de verano',
+      summer: 'Noches de temporada alta',
       extraAdults: 'Adultos adicionales',
       extraChildren: 'Niños (cuna)',
       extraPets: 'Mascotas',
@@ -366,13 +387,15 @@ const locales = {
       total: 'Total estimado',
       included: 'El precio base incluye 1 adulto. Limpieza una sola vez.',
       errors: {
+        privacy_changed:
+          'La información de privacidad ha cambiado. Recarga la página y revísala antes de enviar.',
         dates: 'Introduce dos fechas válidas.',
         nights: 'La estancia debe tener entre 1 y 60 noches.',
         capacity: 'El número de personas supera la capacidad del alojamiento.',
         pets: 'Indica entre 0 y 4 mascotas.',
         property: 'Selecciona un alojamiento.',
         past: 'La llegada no puede ser anterior a hoy ni posterior a dos años.',
-        form: 'Revisa los datos del formulario y acepta la política de privacidad.',
+        form: 'Revisa los datos y confirma que has leído la información de privacidad.',
         offline:
           'No hemos podido registrar tu solicitud. Tus datos siguen aquí. Puedes intentarlo de nuevo o contactar por WhatsApp.',
         rate: 'Has realizado demasiados intentos. Espera unos minutos y vuelve a intentarlo.',
@@ -387,33 +410,6 @@ const locales = {
       previousMonth: 'Mes anterior',
       nextMonth: 'Mes siguiente',
       selected: 'seleccionado',
-    },
-    privacy: {
-      eyebrow: 'TUS DATOS, CON CUIDADO',
-      title: 'Privacidad\ny reservas.',
-      intro: 'Solo pedimos los datos necesarios para responder a tu solicitud de estancia.',
-      sections: [
-        [
-          'Quién gestiona tus datos',
-          'El equipo de Uxarbeiti Baserria gestiona las consultas de alojamiento. Puedes escribir a pablosainz1998@gmail.com para consultar cómo usamos tus datos o solicitar acceso, corrección o eliminación.',
-        ],
-        [
-          'Qué guardamos y para qué',
-          'Nombre, correo, teléfono, fechas, alojamiento, composición del grupo y el mensaje que decidas enviar. Se guardan en el servidor del alojamiento y se envía una notificación al correo de gestión para atender tu solicitud. No compartas datos de salud, documentos de identidad ni información de pago en el mensaje.',
-        ],
-        [
-          'Solicitud, no confirmación',
-          'El envío no confirma la reserva ni realiza ningún cobro. El equipo te responderá para confirmar disponibilidad, condiciones de pago y cancelación.',
-        ],
-        [
-          'Conservación y proveedores',
-          'Las solicitudes se conservan mientras sean necesarias para su gestión y las obligaciones aplicables. El alojamiento web y el proveedor del correo intervienen en el tratamiento técnico. Contacta con el equipo para obtener sus datos y solicitar la eliminación de solicitudes que ya no sean necesarias.',
-        ],
-        [
-          'Cookies y enlaces externos',
-          'Esta web no incorpora analítica, publicidad ni mapas o calendarios de terceros embebidos. Los enlaces a WhatsApp, BBK Azoka, plataformas de reservas y otras webs abren servicios externos con sus propias políticas. No enviamos tu formulario a esos servicios.',
-        ],
-      ],
     },
   },
   en: {
@@ -462,6 +458,23 @@ const locales = {
       availabilityNote:
         'Subject to availability and personal confirmation. No online payment is taken.',
     },
+    chat: {
+      launcher: 'Shall we chat?',
+      title: 'We are here to help.',
+      intro:
+        'Ask us about the accommodation, prices or any detail of your visit. No booking request needed.',
+      question: 'Your question (optional)',
+      placeholder: 'How can we help?',
+      continue: 'Continue on WhatsApp',
+      note: 'WhatsApp will open with a draft. You choose when to send it; no request is saved here.',
+      hello: 'Hello, I would like to ask a question about UXARBEITI.',
+      topics: ['Availability', 'Prices', 'Another question'],
+      messages: [
+        'Hello, I would like to ask which dates are available at UXARBEITI.',
+        'Hello, I would like to ask about accommodation prices at UXARBEITI.',
+        'Hello, I have a question about UXARBEITI. Could you help me?',
+      ],
+    },
     home: {
       eyebrow: 'WELCOME TO UXARBEITI BASERRIA',
       title: 'Life,\nat a gentler pace.',
@@ -471,7 +484,7 @@ const locales = {
       storyEyebrow: 'MORE THAN A PLACE TO SLEEP',
       storyTitle: 'It’s what you find\nwhen you wake.',
       storyText:
-        'Between Urkiola and Gorbeia, Uxarbeiti is both a rural retreat and a working family farm. Urtza and her parents care for their orchards, their vegetable gardens and everyone who comes to discover this corner of the Basque Country.',
+        'We are a family living and working between Urkiola and Gorbeia. We care for our gardens, our orchards and everyone who comes to share the quiet of Uxarbeiti, our rural retreat in the Arratia valley.',
       staysEyebrow: 'TWO STAYS, ONE SHARED HOME',
       staysTitle: 'Find your way\nto switch off.',
       staysText:
@@ -488,18 +501,19 @@ const locales = {
     story: {
       eyebrow: 'OUR ROOTS',
       title: 'A family story.\nA shared landscape.',
-      intro: 'Before it was a place to stay, Uxarbeiti was a place to care for.',
+      intro:
+        'We cared for this land long before we opened our doors to guests. Now we want to share it with you.',
       heading: 'The farm is our home.',
       paragraphs: [
-        'Uxarbeiti Baserria is the family farm of Urtza Sarrionandia and her parents, Edurtzeta Atutxa and Iñaki Sarrionandia. They founded it in the 1980s; Urtza continued their work, expanding it in 2008 and again on a larger scale in 2013.',
-        'Today it brings together two farmhouses: Uxarbeiti and Iauribarrigoikoan Behekoa. Between the natural parks of Urkiola and Gorbeia, in the heart of the Basque Country, farming and rural hospitality live side by side.',
+        'We are Urtza Sarrionandia, Edurtzeta Atutxa and Iñaki Sarrionandia, the family behind Uxarbeiti Baserria. Our story began with Edurtzeta and Iñaki in the 1980s; with Urtza we continued that work and expanded our farm in 2008 and again in 2013.',
+        'Today we work across two farmhouses: Uxarbeiti and Iauribarrigoikoan Behekoa. Between Urkiola and Gorbeia, in the heart of the Basque Country, we bring together farming and our own way of welcoming you.',
         'Domo Gorbeia and Urkiola Etxea are our two ways of welcoming you. Two different stays within the same complex, with the Arratia landscape in common.',
       ],
       timeline: [
-        ['1980s', 'Edurtzeta and Iñaki establish the family farm.'],
-        ['2008', 'Urtza expands the project, continuing her parents’ work.'],
-        ['2013', 'A larger expansion marks another chapter in the farm’s story.'],
-        ['Today', 'Agriculture, farm produce and two places to share the landscape.'],
+        ['1980s', 'We start our family farm with Edurtzeta and Iñaki.'],
+        ['2008', 'With Urtza, we expand and continue our family’s work.'],
+        ['2013', 'We expand our farm again and begin another chapter together.'],
+        ['Today', 'We grow, make our own produce and welcome you to our two stays.'],
       ],
       landTitle: 'Land that keeps on giving.',
       landText:
@@ -517,7 +531,7 @@ const locales = {
       eyebrow: 'STAY AT UXARBEITI',
       title: 'Two retreats.\nOne landscape.',
       intro:
-        'Each stay has its own character. Find your favourite and discover its spaces, amenities and prices.',
+        'We offer you two stays with their own character. Find your favourite and discover the spaces, amenities and prices we have prepared.',
       inside: 'Step inside your stay.',
       features: 'Make yourself at home',
       gallery: 'Take a closer look.',
@@ -527,8 +541,8 @@ const locales = {
       pets: 'Pets welcome, with a supplement',
       capacityNote: 'Capacity includes adults and children. Let us know if you need a cot.',
       rates: 'Prices with no surprises.',
-      low: 'January to May · October to December',
-      summer: 'June to September',
+      low: '7 January–31 May · 1 October–19 December',
+      summer: 'High: June–September · 20 December–6 January',
       extras: 'Extra adult: €10/night · child (cot): €5/night · pet: €10/night.',
       cleaning: 'Final cleaning: €40 per stay.',
       alternatives: 'You can also find us on',
@@ -538,7 +552,7 @@ const locales = {
       domo: {
         type: 'GEODESIC DOME',
         tagline: 'Sleep beside the landscape.',
-        desc: 'Light, valley views and a space that invites you to slow down. A different kind of escape, with a hot tub and a terrace made for looking around rather than watching the clock.',
+        desc: 'We welcome you to our dome, filled with light and valley views. We have prepared a space with a hot tub and terrace so you can slow down and enjoy the moment.',
         short: 'A panoramic retreat with a hot tub, between the trees and the sky.',
         facts: ['38 m²', 'Up to 3 guests', 'Hot tub'],
         features: [
@@ -567,7 +581,7 @@ const locales = {
       casa: {
         type: 'COUNTRY HOUSE',
         tagline: 'Make yourself at home.',
-        desc: 'A welcoming house, a garden and a terrace for long, unhurried lunches. A place to share a few quiet days with family, friends or your dog.',
+        desc: 'We open the doors of our country house to you, with a garden and a terrace for unhurried lunches. We want you to enjoy quiet days with family, friends or your dog.',
         short: 'A house with a garden and terrace, made for unhurried days.',
         facts: ['48 m²', 'Up to 4 guests', 'Private garden'],
         features: [
@@ -595,7 +609,7 @@ const locales = {
       eyebrow: 'A TASTE OF THE FARM',
       title: 'From the garden.\nIn season.\nFrom here.',
       intro:
-        'What we grow and make tells the same story as our stays: a family and the land they care for.',
+        'What we grow and make tells the same story as our stays: our family and the land we care for.',
       groups: [
         [
           '01',
@@ -616,7 +630,7 @@ const locales = {
       ],
       catalogueTitle: 'Take a little\nof Uxarbeiti home.',
       catalogueText:
-        'Explore the farm’s selection on BBK Azoka. Prices and availability are listed there; we do not sell directly through this website.',
+        'We share our produce on BBK Azoka, where you can check prices and availability. We do not sell directly through this website.',
       visitText: 'Staying with us? Ask about seasonal produce when planning your visit.',
     },
     surroundings: {
@@ -692,7 +706,7 @@ const locales = {
       message: 'Anything we should know?',
       messagePlaceholder: 'A cot, estimated arrival time, a question…',
       consent:
-        'I have read the privacy policy and agree to my details being used to handle this request.',
+        'I have read the privacy information. I understand that submitting a request does not confirm a stay.',
       privacy: 'Privacy policy',
       submit: 'Send stay request',
       sending: 'Sending request…',
@@ -700,7 +714,7 @@ const locales = {
       summary: 'Your escape',
       empty: 'Choose your dates to see the breakdown.',
       low: 'Low-season nights',
-      summer: 'Summer nights',
+      summer: 'High-season nights',
       extraAdults: 'Additional adults',
       extraChildren: 'Children (cot)',
       extraPets: 'Pets',
@@ -708,13 +722,15 @@ const locales = {
       total: 'Estimated total',
       included: 'Base price includes 1 adult. Cleaning is charged once.',
       errors: {
+        privacy_changed:
+          'The privacy information has changed. Reload this page and review it before sending.',
         dates: 'Enter two valid dates.',
         nights: 'Your stay must be between 1 and 60 nights.',
         capacity: 'Your group exceeds the accommodation capacity.',
         pets: 'Enter between 0 and 4 pets.',
         property: 'Choose your accommodation.',
         past: 'Arrival must be between today and two years from now.',
-        form: 'Check your details and accept the privacy policy.',
+        form: 'Check your details and confirm you have read the privacy information.',
         offline:
           'We could not register your request. Your details are still here. Please try again or contact us on WhatsApp.',
         rate: 'Too many attempts. Please wait a few minutes and try again.',
@@ -728,33 +744,6 @@ const locales = {
       previousMonth: 'Previous month',
       nextMonth: 'Next month',
       selected: 'selected',
-    },
-    privacy: {
-      eyebrow: 'YOUR DATA, HANDLED WITH CARE',
-      title: 'Privacy\nand requests.',
-      intro: 'We only ask for the information needed to respond to your stay request.',
-      sections: [
-        [
-          'Who handles your data',
-          'The Uxarbeiti Baserria team handles accommodation enquiries. Email pablosainz1998@gmail.com to ask about your data or request access, correction or deletion.',
-        ],
-        [
-          'What we store and why',
-          'Your name, email, phone, dates, accommodation, group details and any message you send. These are stored on the accommodation server and a notification is sent to the management email to handle your request. Do not include health information, identity documents or payment details in your message.',
-        ],
-        [
-          'A request, not a confirmation',
-          'Sending the form does not confirm a booking or take payment. The team will reply to confirm availability, payment and cancellation terms.',
-        ],
-        [
-          'Retention and providers',
-          'Requests are kept as needed to manage them and meet applicable obligations. Hosting and email providers take part in technical processing. Contact the team for their details or to request deletion of enquiries no longer needed.',
-        ],
-        [
-          'Cookies and external links',
-          'This website uses no analytics, advertising, or embedded third-party maps or calendars. Links to WhatsApp, BBK Azoka, booking platforms and other websites open external services with their own policies. We do not send your form to those services.',
-        ],
-      ],
     },
   },
   eu: {
@@ -795,13 +784,30 @@ const locales = {
       whatsapp: 'WhatsApp bidez hitz egin',
       location: 'Igorre · Arratia · Bizkaia',
       farm: 'Baserria · Ostatuak · Baratzea',
-      footer: 'Familia bat, lur bat, harrera egiteko modu bat.',
+      footer: 'Familia bat, lurra eta harrera egiteko modu bat.',
       footerNote: 'Baserriak bere erritmoa du. Hemen zuretzako lekua ere badago.',
       rights: 'UXARBEITI Baserria. Eskubide guztiak erreserbatuta.',
       pricingNote:
-        'Heldu batentzako oinarrizko prezioa. Gehigarriak eta egonaldiko 40 €-ko garbiketa bidali aurretik xehatzen dira.',
+        'Heldu batentzako oinarrizko prezioa. Gehigarrien eta egonaldiko 40 €-ko garbiketaren xehetasunak eskaera bidali aurretik ikusiko dituzu.',
       availabilityNote:
-        'Eskaria erabilgarritasunaren eta gure baieztapenaren mende dago. Ez da online kobratzen.',
+        'Eskaera jasotakoan, datak libre dauden egiaztatu eta erantzungo dizugu. Erreserba gure baieztapenaren mende dago. Ez da ordainketarik egiten webgunean.',
+    },
+    chat: {
+      launcher: 'Hitz egingo dugu?',
+      title: 'Zuri laguntzeko gaude.',
+      intro:
+        'Galdetu ostatuei, prezioei edo zure bisitari buruz. Ez duzu erreserba-eskaerarik egin behar.',
+      question: 'Zure galdera (aukerakoa)',
+      placeholder: 'Zertan lagun diezazukegu?',
+      continue: 'WhatsApp bidez jarraitu',
+      note: 'WhatsApp irekiko da prestatutako mezuarekin. Zuk erabakiko duzu noiz bidali; hemen ez da eskaerarik gordetzen.',
+      hello: 'Kaixo, UXARBEITIri buruzko galdera bat egin nahi nuke.',
+      topics: ['Data libreak', 'Prezioak', 'Beste galdera bat'],
+      messages: [
+        'Kaixo, UXARBEITIn zer data dituzuen libre jakin nahi nuke.',
+        'Kaixo, UXARBEITIko ostatuen prezioei buruz galdetu nahi nuke.',
+        'Kaixo, UXARBEITIri buruzko galdera bat dut. Lagunduko didazue?',
+      ],
     },
     home: {
       eyebrow: 'ONGI ETORRI UXARBEITI BASERRIRA',
@@ -813,10 +819,10 @@ const locales = {
       storyEyebrow: 'LO EGITEKO LEKU BAT BAINO GEHIAGO',
       storyTitle: 'Esnatzean aurkitzen\nduzuna da.',
       storyText:
-        'Urkiola eta Gorbeia artean, Uxarbeiti landa-ostatuen gunea eta bizirik dirauen familia-ustiategia da. Urtzak eta bere gurasoek baratzeak, fruta-arbolak eta Euskal Herriko txoko hau ezagutzera datozenak zaintzen dituzte.',
+        'Urkiola eta Gorbeia artean bizi eta lan egiten duen familia gara. Gure baratzeak eta fruta-arbolak zaintzen ditugu, eta Uxarbeitiko lasaitasuna gurekin partekatzera zatoztenoi harrera egiten dizuegu.',
       staysEyebrow: 'BI OSTATU, ETXE BERA',
-      staysTitle: 'Aukeratu zure\natseden hartzeko modua.',
-      staysText: 'Domo baten geometriaren azpian edo landa-etxe baten babesean. Natura beti gertu.',
+      staysTitle: 'Aukeratu nola\nhartu atseden.',
+      staysText: 'Domo baten barruan edo landa-etxe baten goxoan. Natura beti gertu.',
       produceEyebrow: 'GURE LURRETIK',
       produceTitle: 'Gauza onek\nbadute beren sasoia.',
       produceText:
@@ -829,28 +835,32 @@ const locales = {
     story: {
       eyebrow: 'GURE SUSTRAIAK',
       title: 'Familia baten historia.\nLur partekatua.',
-      intro: 'Ostatu hartzeko leku bat izan baino lehen, zaintzeko leku bat zen Uxarbeiti.',
+      intro:
+        'Bisitariei ateak ireki aurretik ere, lur hau zaintzen genuen. Orain zurekin partekatu nahi dugu.',
       heading: 'Baserria gure etxea da.',
       paragraphs: [
-        'Uxarbeiti Baserria Urtza Sarrionandiaren eta bere gurasoen, Edurtzeta Atutxaren eta Iñaki Sarrionandiaren, familia-ustiategia da. Gurasoek 80ko hamarkadan sortu zuten; Urtzak bideari jarraitu zion, 2008an handitze bat eginez eta 2013an beste handiago bat.',
-        'Gaur egun bi baserrik osatzen dute: Uxarbeitik eta Iauribarrigoikoan Behekoak. Urkiola eta Gorbeiako parke naturalen artean, Euskal Herriaren bihotzean, lurraren lana eta landa-ostatuen harrera batera bizi dira.',
-        'Domo Gorbeia eta Urkiola Etxea dira zuri ongietorria egiteko gure bi moduak. Gune bereko bi ostatu desberdin, Arratiako paisaia elkargune dutenak.',
+        'Urtza Sarrionandia, Edurtzeta Atutxa eta Iñaki Sarrionandia gara, Uxarbeiti Baserriko familia. Edurtzetarekin eta Iñakirekin hasi genuen bidea 80ko hamarkadan; Urtzarekin lan horri jarraipena eman genion eta ustiategia handitu genuen 2008an eta berriro 2013an.',
+        'Gaur egun bi baserritan egiten dugu lan: Uxarbeiti baserrian eta Iauribarrigoikoan Behekoa baserrian. Urkiolako eta Gorbeiako parke naturalen artean, Euskal Herriaren bihotzean, baserriko lana eta zuri harrera egiteko gure modua uztartzen ditugu.',
+        'Domo Gorbeia eta Urkiola Etxea dira gurean ostatu hartzeko bi aukerak. Gune bereko bi ostatu desberdin, Arratiako paisaiaz gozatzeko.',
       ],
       timeline: [
-        ['80ko hamarkada', 'Edurtzetak eta Iñakik familia-ustiategia sortzen dute.'],
-        ['2008', 'Urtzak proiektua handitzen du, gurasoen lanari jarraituz.'],
-        ['2013', 'Handitze berri batek baserriaren ibilbidea sendotzen du.'],
-        ['Gaur egun', 'Nekazaritza, etxeko produktuak eta ingurua partekatzeko bi ostatu.'],
+        ['80ko hamarkada', 'Edurtzetarekin eta Iñakirekin hasi genuen gure familia-ustiategia.'],
+        ['2008', 'Urtzarekin proiektua handitu genuen, familiaren lanari jarraituz.'],
+        ['2013', 'Gure ustiategia berriro handitu eta bidean aurrera egin genuen.'],
+        [
+          'Gaur egun',
+          'Lurra lantzen dugu, etxeko produktuak egiten ditugu eta gure bi ostatuetan harrera egiten dizugu.',
+        ],
       ],
       landTitle: 'Emaitzak ematen jarraitzen duen lurra.',
       landText:
-        'Sasoiko fruta eta barazkiak lantzen ditugu, geure kontserbak egiten ditugu eta oiloak zaintzen ditugu. Gure produktuak BBKren azoketara iristen dira, eta arrautzak Amorebietako eta Arratiako saltokietara.',
+        'Sasoiko fruta eta barazkiak ekoizten ditugu, etxeko kontserbak egiten ditugu eta oiloak zaintzen ditugu. Gure produktuak BBKren azoketan saltzen ditugu, eta arrautzak Amorebietako eta Arratiako saltokietan.',
       recognition:
         'Bizkaiko eta Gipuzkoako azoketan aitortutako ibilbidea, besteak beste, Deban, Elgoibarren eta BBKn.',
       stats: [
-        ['5.000 m²', 'kanpoko baratze'],
-        ['1 ha', 'sagarrondo'],
-        ['1,8 ha', 'kiwi'],
+        ['5.000 m²', 'aire zabaleko baratzea'],
+        ['1 ha', 'sagastia'],
+        ['1,8 ha', 'kiwi-saila'],
         ['250', 'oilo'],
       ],
     },
@@ -858,8 +868,8 @@ const locales = {
       eyebrow: 'UXARBEITIN OSTATU HARTU',
       title: 'Bi babesleku.\nPaisaia bera.',
       intro:
-        'Ostatu bakoitzak bere nortasuna du. Aukeratu zuretzat egokiena eta ezagutu bere espazioak, zerbitzuak eta prezioak.',
-      inside: 'Zure ostatua, barrutik.',
+        'Nortasun propioa duten bi ostatu eskaintzen dizkizugu. Aukeratu zuretzat egokiena eta ezagutu prestatu ditugun espazioak, zerbitzuak eta prezioak.',
+      inside: 'Ezagutu ostatua barrutik.',
       features: 'Zer aurkituko duzu',
       gallery: 'Begirada hurbilago bat.',
       practical: 'Etorri aurretik',
@@ -867,10 +877,10 @@ const locales = {
       departure: 'Irteera 11:00ak baino lehen',
       pets: 'Maskotak ongi etorriak dira, gehigarri batekin',
       capacityNote:
-        'Edukierak helduak eta haurrak barne hartzen ditu. Sehaska behar baduzu, adierazi eskaria egitean.',
+        'Gehieneko pertsona-kopuruan helduak eta haurrak sartzen dira. Sehaska behar baduzu, adierazi eskaera egitean.',
       rates: 'Prezioak, ezustekorik gabe.',
-      low: 'Urtarriletik maiatzera · urritik abendura',
-      summer: 'Ekainetik irailera',
+      low: 'Urtarrilaren 7tik maiatzaren 31ra · urriaren 1etik abenduaren 19ra',
+      summer: 'Ekainetik irailera · abenduaren 20tik urtarrilaren 6ra',
       extras: 'Heldu gehigarria: 10 €/gau · haurra (sehaska): 5 €/gau · maskota: 10 €/gau.',
       cleaning: 'Azken garbiketa: 40 € egonaldiko.',
       alternatives: 'Hemen ere aurkituko gaituzu',
@@ -879,8 +889,8 @@ const locales = {
     properties: {
       domo: {
         type: 'DOMO GEODESIKOA',
-        tagline: 'Paisaiaren ondoan lo egin.',
-        desc: 'Argia, haranerako bistak eta erritmoa moteltzera gonbidatzen duen espazioa. Ihesaldi desberdina, jacuzziarekin eta erlojuari baino inguruari begiratzeko terrazarekin.',
+        tagline: 'Paisaiari begira lo egin.',
+        desc: 'Argiz eta haraneko ikuspegiz betetako gure domoan egingo dizugu harrera. Jacuzzia eta terraza prestatu ditugu, lasai egon eta uneaz goza dezazun.',
         short: 'Jacuzzidun babesleku panoramikoa, zuhaitzen eta zeruaren artean.',
         facts: ['38 m²', 'Gehienez 3 lagun', 'Jacuzzia'],
         features: [
@@ -888,7 +898,7 @@ const locales = {
           'Bista panoramikoak dituen terraza',
           'Sukaldetxoa eta Nespresso kafe-makina',
           'Aire girotua',
-          'Disko-jogailu vintagea eta telebista',
+          'Garai bateko disko-jogailua eta telebista',
           'WiFi',
           'Logela bat',
           'Maskotak onartzen dira',
@@ -899,7 +909,7 @@ const locales = {
           'Ohea eta atseden-gunea',
           'Terraza eta mendiak',
           'Sukaldetxo hornitua',
-          'Disko-jogailua leiho ondoan',
+          'Disko-jogailua leihoaren ondoan',
           'Domoa egunez',
           'Ilunabarreko argia barruan',
           'Domoaren aireko ikuspegia',
@@ -907,15 +917,15 @@ const locales = {
         ],
       },
       casa: {
-        type: 'LANDA ETXEA',
+        type: 'LANDA-ETXEA',
         tagline: 'Etxean bezala sentitu.',
-        desc: 'Etxe atsegina, lorategia eta bazkalondo luzeetarako terraza. Familiarekin, lagunekin edo zure txakurrarekin egun lasai batzuk partekatzeko lekua.',
+        desc: 'Gure landa-etxeko ateak irekitzen dizkizugu, lorategiarekin eta bazkalondo luzeetarako terrazarekin. Familiarekin, lagunekin edo zure txakurrarekin egun lasaiak igarotzea nahi dugu.',
         short: 'Lorategia eta terraza dituen etxea, presarik gabe gozatzeko.',
         facts: ['48 m²', 'Gehienez 4 lagun', 'Lorategi pribatua'],
         features: [
           'Lorategi hesitua',
           'Terraza eta barbakoa',
-          'Sukaldea labearekin eta mikrouhin-labearekin',
+          'Labea eta mikrouhin-labea dituen sukaldea',
           'Ontzi-garbigailua, hozkailua eta kafe-makina',
           'Logela bat eta sehaska eskatuz gero',
           'WiFi',
@@ -937,7 +947,7 @@ const locales = {
       eyebrow: 'BASERRIA DASTATU ERE EGITEN DA',
       title: 'Baratzetik.\nSasoikoa.\nHemengoa.',
       intro:
-        'Landatzen eta egiten dugunak gure ostatuek bezalako historia kontatzen du: familia batena eta bere lurrarena.',
+        'Landatzen eta egiten dugunak gure ostatuek bezalako historia kontatzen du: gure familiarena eta gure lurrarena.',
       groups: [
         [
           '01',
@@ -958,7 +968,7 @@ const locales = {
       ],
       catalogueTitle: 'Eraman Uxarbeitiko\nzatitxo bat etxera.',
       catalogueText:
-        'Ikusi baserriko produktuen aukeraketa BBK Azokan. Prezioak eta erabilgarritasuna han agertzen dira; web honetan ez dugu zuzenean saltzen.',
+        'Gure produktuak BBK Azokan erakusten dizkizugu. Han kontsulta ditzakezu prezioak eta zer dagoen salgai; webgune honetan ez dugu zuzenean saltzen.',
       visitText:
         'Gurean ostatu hartuko duzu? Galdetu sasoiko produktuei buruz zure bisita prestatzean.',
     },
@@ -966,7 +976,7 @@ const locales = {
       eyebrow: 'ARRATIA ETA PIXKA BAT HARAGO',
       title: 'Irten ezagutzera.\nItzuli lasaitasunera.',
       intro:
-        'Urkiola eta Gorbeia arteko abiapuntua, Euskal Herriko mendiaz, kulturaz eta zaporeez gozatzeko.',
+        'Urkiola eta Gorbeia arteko abiapuntua, Euskal Herriko mendiez, kulturaz eta zaporeez gozatzeko.',
       activities: [
         [
           'Mendia',
@@ -1014,9 +1024,9 @@ const locales = {
       eyebrow: 'ZURE HURRENGO IHESALDIA',
       title: 'Hasi zeure burua\nhemen irudikatzen.',
       intro:
-        'Aukeratu ostatua, datak eta norekin zatozen. Prezioa ikusiko duzu eskaria bidali aurretik.',
+        'Aukeratu ostatua eta datak, eta adierazi zenbat lagun etorriko zareten. Prezioa ikusiko duzu eskaera bidali aurretik.',
       step1: 'Zure egonaldia',
-      step2: 'Nor dator',
+      step2: 'Zenbat lagun zatozte?',
       step3: 'Nola jarri zurekin harremanetan',
       property: 'Ostatua',
       checkin: 'Sarrera',
@@ -1025,79 +1035,56 @@ const locales = {
       adults: 'Helduak',
       children: 'Haurrak (sehaska)',
       pets: 'Maskotak',
-      capacity: 'Gehieneko edukiera, helduak eta haurrak:',
+      capacity: 'Gehienez, helduak eta haurrak kontuan hartuta:',
       childHelp: '5 € haur eta gau bakoitzeko. Sehaska behar baduzu, adierazi mezuan.',
-      datesHelp: 'Aukeratu sarrera eta irteera. Datek ez dute erabilgarritasuna baieztatzen.',
+      datesHelp:
+        'Hautatu iritsiera-eguna eta, ondoren, irteera-eguna egutegi berean. Erreserba guk baieztatu behar dugu.',
       name: 'Izen-abizenak',
       email: 'Helbide elektronikoa',
       phone: 'Telefonoa',
-      message: 'Jakin beharko genukeen zerbait?',
+      message: 'Zerbait jakinarazi nahi diguzu?',
       messagePlaceholder: 'Sehaska, iristeko ordua, galderaren bat…',
       consent:
-        'Pribatutasun-politika irakurri dut eta nire datuak eskari hau kudeatzeko erabiltzea onartzen dut.',
+        'Pribatutasun-informazioa irakurri dut. Badakit eskaera bidaltzeak ez duela egonaldia baieztatzen.',
       privacy: 'Pribatutasun-politika',
-      submit: 'Egonaldi-eskaria bidali',
-      sending: 'Eskaria bidaltzen…',
-      noPayment: 'Online ordainketarik gabe. Erabilgarritasuna baieztatzeko erantzungo dizugu.',
+      submit: 'Erreserba-eskaera bidali',
+      sending: 'Eskaera bidaltzen…',
+      noPayment:
+        'Ez da ordainketarik egiten webgunean. Datak libre dauden egiaztatu eta erantzungo dizugu.',
       summary: 'Zure ihesaldia',
       empty: 'Aukeratu datak prezioaren xehetasunak ikusteko.',
       low: 'Behe-denboraldiko gauak',
-      summer: 'Udako gauak',
+      summer: 'Goi-denboraldiko gauak',
       extraAdults: 'Heldu gehigarriak',
       extraChildren: 'Haurrak (sehaska)',
       extraPets: 'Maskotak',
       cleaning: 'Azken garbiketa',
-      total: 'Zenbatetsitako guztizkoa',
+      total: 'Guztira, gutxi gorabehera',
       included:
         'Oinarrizko prezioak heldu bat hartzen du barne. Garbiketa behin bakarrik kobratzen da.',
       errors: {
+        privacy_changed:
+          'Pribatutasun-informazioa aldatu da. Kargatu orria berriro eta irakurri bidali aurretik.',
         dates: 'Sartu baliozko bi data.',
-        nights: 'Egonaldiak 1 eta 60 gau artekoa izan behar du.',
+        nights: 'Egonaldiak gutxienez gau bat eta gehienez 60 gau izan behar ditu.',
         capacity: 'Pertsona-kopuruak ostatuaren edukiera gainditzen du.',
-        pets: 'Adierazi 0 eta 4 maskota artean.',
+        pets: 'Maskota-kopuruak 0 eta 4 artekoa izan behar du.',
         property: 'Aukeratu ostatua.',
-        past: 'Sarrera gaurtik bi urte barrura bitartekoa izan behar da.',
+        past: 'Iritsiera-data gaurtik hasi eta bi urteko epearen barruan egon behar da.',
         form: 'Berrikusi datuak eta onartu pribatutasun-politika.',
         offline:
-          'Ezin izan dugu eskaria erregistratu. Zure datuak hemen daude oraindik. Saiatu berriro edo idatzi WhatsApp bidez.',
+          'Ezin izan dugu eskaera gorde. Idatzitako datuak orrian dituzu oraindik. Saiatu berriro edo idatzi WhatsApp bidez.',
         rate: 'Saiakera gehiegi egin dituzu. Itxaron minutu batzuk eta saiatu berriro.',
         changed: 'Tarifa aldatu egin da. Eguneratu orria uneko prezioa ikusteko, bidali aurretik.',
       },
-      successTitle: 'Eskaria jaso dugu.',
+      successTitle: 'Eskaera jaso dugu.',
       success:
-        'Zure eskaria gorde dugu. Erabilgarritasuna eta hurrengo pausoak baieztatzeko jarriko gara zurekin harremanetan. Oraindik ez da baieztatutako erreserba.',
+        'Zure eskaera gorde dugu. Datak libre dauden egiaztatu eta hurrengo urratsak azaltzeko jarriko gara zurekin harremanetan. Erreserba oraindik ez dago baieztatuta.',
       reference: 'Zure erreferentzia',
       newRequest: 'Beste egonaldi bat prestatu',
       previousMonth: 'Aurreko hilabetea',
       nextMonth: 'Hurrengo hilabetea',
       selected: 'hautatuta',
-    },
-    privacy: {
-      eyebrow: 'ZURE DATUAK, ARRETAZ',
-      title: 'Pribatutasuna\neta eskariak.',
-      intro: 'Zure egonaldi-eskariari erantzuteko beharrezko datuak baino ez ditugu eskatzen.',
-      sections: [
-        [
-          'Nork kudeatzen ditu zure datuak',
-          'Uxarbeiti Baserriko taldeak kudeatzen ditu ostatu-kontsultak. Idatzi pablosainz1998@gmail.com helbidera datuen erabileraz galdetzeko edo datuak eskuratzeko, zuzentzeko edo ezabatzeko eskatzeko.',
-        ],
-        [
-          'Zer gordetzen dugu eta zertarako',
-          'Izena, helbide elektronikoa, telefonoa, datak, ostatua, taldearen osaera eta bidalitako mezua. Ostatuaren zerbitzarian gordetzen dira, eta kudeaketa-postara jakinarazpena bidaltzen da eskaria artatzeko. Ez bidali osasun-daturik, nortasun-agiririk edo ordainketa-daturik mezuan.',
-        ],
-        [
-          'Eskaria, ez baieztapena',
-          'Formularioa bidaltzeak ez du erreserba baieztatzen eta ez du kobrantzarik egiten. Taldeak erantzungo dizu erabilgarritasuna, ordainketa eta ezeztapen-baldintzak baieztatzeko.',
-        ],
-        [
-          'Kontserbazioa eta hornitzaileak',
-          'Eskariak kudeatzeko eta aplikatu beharreko betebeharretarako beharrezkoa den bitartean gordetzen dira. Web-ostatuko eta posta elektronikoko hornitzaileek tratamendu teknikoan parte hartzen dute. Jarri taldearekin harremanetan haien datuak jasotzeko edo beharrezkoak ez diren eskariak ezabatzeko eskatzeko.',
-        ],
-        [
-          'Cookieak eta kanpoko estekak',
-          'Web honek ez du analitika, publizitate edo hirugarrenen mapa edo egutegi txertaturik erabiltzen. WhatsApp, BBK Azoka, erreserba-plataformak eta beste webgune batzuk beren politikak dituzten kanpoko zerbitzuak dira. Ez diegu zure formularioa bidaltzen.',
-        ],
-      ],
     },
   },
 };
@@ -1120,8 +1107,25 @@ const calendarLabels = {
       'diciembre',
     ],
     weekdays: ['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá', 'Do'],
+    datePlaceholder: 'Elegir fecha',
+    dateTitle: '¿Cuándo te apetece venir?',
+    pickArrival: '1. Elige el día de entrada',
+    pickDeparture: '2. Ahora elige el día de salida',
+    manualDates: 'Escribir las fechas a mano',
+    dateDone: 'Aplicar fechas',
+    dateClear: 'Borrar fechas',
+    datesHelp:
+      'Elige entrada y salida en el mismo calendario. Después podrás modificar cualquiera de las dos fechas.',
+    whatsappRequest: 'Consultar esta estancia por WhatsApp',
+    whatsappHelp:
+      'No necesitas completar el formulario ni elegir fechas. Incluiremos solo los detalles de la estancia que hayas indicado, sin tu nombre, correo o teléfono. Tú envías el mensaje en WhatsApp; aquí no se guarda una reserva.',
+    whatsappIntro: 'Hola, me gustaría consultar una estancia en UXARBEITI:',
+    whatsappFlexible: 'Todavía no tengo las fechas cerradas.',
+    whatsappNote:
+      'Consulta informativa, no es una reserva confirmada. Fechas y precio pendientes de confirmar con el alojamiento.',
+    occupied: 'Estas fechas ya están ocupadas. Elige otra estancia.',
     unavailable:
-      'El envío automático no está disponible en esta vista. Puedes calcular tu estancia y contactar con nosotros por WhatsApp; este formulario no enviará datos hasta que el backend esté conectado.',
+      'Ahora no podemos recibir solicitudes desde el formulario. Puedes consultar precios y escribirnos por WhatsApp, también sin fechas.',
   },
   en: {
     months: [
@@ -1139,8 +1143,25 @@ const calendarLabels = {
       'December',
     ],
     weekdays: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
+    datePlaceholder: 'Choose a date',
+    dateTitle: 'When would you like to visit?',
+    pickArrival: '1. Choose your arrival day',
+    pickDeparture: '2. Now choose your departure day',
+    manualDates: 'Enter dates manually',
+    dateDone: 'Apply dates',
+    dateClear: 'Clear dates',
+    datesHelp:
+      'Choose arrival and departure in the same calendar. You can change either date afterwards.',
+    whatsappRequest: 'Ask about this stay on WhatsApp',
+    whatsappHelp:
+      'No need to complete the form or choose dates. We include only the stay details you have entered, not your name, email or phone. You send the message in WhatsApp; no booking is saved here.',
+    whatsappIntro: 'Hello, I would like to ask about a stay at UXARBEITI:',
+    whatsappFlexible: 'My dates are not fixed yet.',
+    whatsappNote:
+      'This is an enquiry, not a confirmed booking. Dates and prices must be confirmed by the accommodation.',
+    occupied: 'These dates are already occupied. Please choose another stay.',
     unavailable:
-      'Automatic requests are not available in this preview. You can calculate your stay and contact us on WhatsApp; this form will not send data until the backend is connected.',
+      'We cannot currently accept requests through the form. You can check prices and contact us on WhatsApp, even without dates.',
   },
   eu: {
     months: [
@@ -1158,8 +1179,23 @@ const calendarLabels = {
       'abendua',
     ],
     weekdays: ['Al', 'As', 'Az', 'Og', 'Or', 'La', 'Ig'],
+    datePlaceholder: 'Aukeratu data',
+    dateTitle: 'Noiz etorri nahi duzu?',
+    pickArrival: '1. Aukeratu iritsiera-eguna',
+    pickDeparture: '2. Orain, aukeratu irteera-eguna',
+    manualDates: 'Datak eskuz idatzi',
+    dateDone: 'Datak aplikatu',
+    dateClear: 'Datak ezabatu',
+    whatsappRequest: 'Egonaldi honi buruz galdetu WhatsApp bidez',
+    whatsappHelp:
+      'Ez duzu formularioa bete edo datak aukeratu behar. Adierazitako egonaldiaren xehetasunak soilik sartuko ditugu mezuan, ez zure izena, helbide elektronikoa edo telefonoa. Zuk bidaliko duzu mezua WhatsApp bidez; hemen ez da erreserbarik gordetzen.',
+    whatsappIntro: 'Kaixo, UXARBEITIn egonaldia egiteko informazioa nahi nuke:',
+    whatsappFlexible: 'Oraindik ez ditut datak zehaztu.',
+    whatsappNote:
+      'Informazioa eskatzeko mezua da, ez baieztatutako erreserba. Datak eta prezioa ostatuarekin baieztatu behar dira.',
+    occupied: 'Ostatua ez dago libre data horietan. Aukeratu beste data batzuk.',
     unavailable:
-      'Bidalketa automatikoa ez dago erabilgarri ikuspegi honetan. Egonaldiaren prezioa kalkula dezakezu eta WhatsApp bidez gurekin harremanetan jar zaitezke; formularioak ez du daturik bidaliko backend-a konektatu arte.',
+      'Une honetan ezin dugu eskaerarik jaso formularioaren bidez. Prezioak kontsultatu eta WhatsApp bidez idatz diezagukezu, datak zehaztu gabe ere.',
   },
 };
 for (const lang of Object.keys(locales)) Object.assign(locales[lang].booking, calendarLabels[lang]);

@@ -22,7 +22,7 @@ test('Spanish, English and Basque have complete matching content structures', ()
     for (const key of Object.keys(properties))
       assert.equal(locales[lang].properties[key].photoLabels.length, properties[key].photos.length);
 });
-test('all 27 pages render, have one H1 and resolve local assets/links at root and project subpaths', () => {
+test('all generated pages render, have one H1 and resolve local assets/links at root and project subpaths', () => {
   for (const lang of Object.keys(locales))
     for (const page of pages) {
       const filename = path.join(dist, lang === 'es' ? '' : lang, `${page}.html`);

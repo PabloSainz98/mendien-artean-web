@@ -15,7 +15,11 @@ const watchers = ['site', 'shared'].map((dir) =>
     clearTimeout(timer);
     timer = setTimeout(() => {
       Object.keys(require.cache)
-        .filter((key) => key.includes(`${path.sep}site${path.sep}`))
+        .filter((key) =>
+          ['site', 'shared'].some((dir) =>
+            key.startsWith(path.join(__dirname, '..', dir) + path.sep),
+          ),
+        )
         .forEach((key) => delete require.cache[key]);
       delete require.cache[require.resolve('./build')];
       try {

@@ -1,6 +1,7 @@
 'use strict';
 const fs = require('node:fs');
 const path = require('node:path');
+const { financials } = require('./management');
 
 function csvEscape(value) {
   let text = value == null ? '' : String(value);
@@ -14,6 +15,7 @@ function buildBookingsCsv(items) {
     'id',
     'created_at',
     'status',
+    'source',
     'property',
     'name',
     'email',
@@ -30,11 +32,25 @@ function buildBookingsCsv(items) {
     'message',
     'language',
     'notification_status',
+    'guest_notification_status',
+    'agreed_total',
+    'deposit_due',
+    'paid',
+    'balance',
   ];
   const rows = [fields];
   for (const item of items) {
     const quote = item.quote_json ? JSON.parse(item.quote_json) : {};
-    const row = { ...item, total: quote.total, cleaning: quote.cleaning };
+    const f = financials(item);
+    const row = {
+      ...item,
+      total: quote.total,
+      cleaning: quote.cleaning,
+      agreed_total: f.totalCents === null ? '' : f.totalCents / 100,
+      deposit_due: f.depositDueCents / 100,
+      paid: f.paidCents / 100,
+      balance: f.balanceCents === null ? '' : f.balanceCents / 100,
+    };
     rows.push(fields.map((field) => row[field]));
   }
   return '\uFEFF' + rows.map((row) => row.map(csvEscape).join(';')).join('\r\n') + '\r\n';

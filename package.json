@@ -9,7 +9,7 @@
     "qs": "^6.16.0"
   },
   "engines": {
-    "node": ">=22.13"
+    "node": ">=22.16"
   },
   "scripts": {
     "build": "node scripts/build.js",
@@ -19,7 +19,11 @@
     "test:browser": "node --test tests/browser.browser.js",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "check": "npm run build && npm test"
+    "check": "npm run build && npm test",
+    "admin:password": "node scripts/admin-password.js",
+    "check:legal": "node scripts/check-legal.js",
+    "release:check": "npm run check:legal && npm run check",
+    "backup": "node scripts/backup.js"
   },
   "devDependencies": {
     "playwright": "^1.63.0",

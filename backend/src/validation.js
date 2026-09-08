@@ -1,5 +1,6 @@
 'use strict';
 const pricing = require('../../shared/pricing');
+const { version: privacyVersion, publishedVersion, issues } = require('../../shared/legal');
 const normalized = (value) => (typeof value === 'string' ? value.trim() : '');
 
 function validateBookingPayload(body, today = pricing.today()) {
@@ -17,8 +18,14 @@ function validateBookingPayload(body, today = pricing.today()) {
     phone: normalized(body.phone),
     message: normalized(body.message),
     language: ['es', 'en', 'eu'].includes(body.language) ? body.language : 'es',
-    consentVersion: '2026-09-07',
+    consentVersion: body.privacyVersion === undefined ? 'legacy-unversioned' : body.privacyVersion,
   };
+  if (
+    body.privacyVersion !== undefined &&
+    body.privacyVersion !== privacyVersion &&
+    !(issues().length > 0 && body.privacyVersion === publishedVersion)
+  )
+    return { ok: false, error: 'privacy_changed' };
   if (
     body.consent !== true ||
     data.name.length < 2 ||

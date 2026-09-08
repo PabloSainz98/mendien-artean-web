@@ -8,6 +8,12 @@ const root = path.resolve(__dirname, '..');
 const dist = path.join(root, 'dist');
 
 function build() {
+  if (!['draft', 'published'].includes(process.env.LEGAL_PAGES || 'draft'))
+    throw new Error('Invalid LEGAL_PAGES mode');
+  if (process.env.REQUIRE_LEGAL_READY === 'true') {
+    const { issues } = require('../shared/legal');
+    if (issues().length) throw new Error('Legal information incomplete. Run npm run check:legal.');
+  }
   const siteUrl = new URL(
     process.env.SITE_URL || 'https://pablosainz98.github.io/mendien-artean-web/',
   );
@@ -21,6 +27,12 @@ function build() {
     throw new Error('Invalid SITE_URL');
   siteUrl.pathname = siteUrl.pathname.replace(/\/?$/, '/');
   fs.mkdirSync(path.join(dist, 'assets'), { recursive: true });
+  if (process.env.LEGAL_PAGES === 'published') {
+    // Switching from a local draft build must never leave unpublished pages behind.
+    for (const lang of ['', 'en', 'eu'])
+      for (const page of ['aviso-legal', 'condiciones', 'cookies'])
+        fs.rmSync(path.join(dist, lang, `${page}.html`), { force: true });
+  }
   const assets = {};
   for (const [key, source, extension] of [
     ['css', 'site/styles.css', 'css'],
@@ -34,6 +46,8 @@ function build() {
     fs.writeFileSync(path.join(dist, assets[key]), content);
   }
   fs.cpSync(path.join(root, 'site/fonts'), path.join(dist, 'assets/fonts'), { recursive: true });
+  fs.cpSync(path.join(root, 'site/management'), path.join(dist, 'gestion'), { recursive: true });
+  fs.copyFileSync(path.join(root, 'shared/pricing.js'), path.join(dist, 'gestion/pricing.js'));
   // Only publish explicitly referenced media, never the repository or original photo archive.
   const media = new Set([
     business.hero,
@@ -65,7 +79,7 @@ function build() {
   );
   fs.writeFileSync(
     path.join(dist, 'robots.txt'),
-    `User-agent: *\nDisallow: /api/\nSitemap: ${siteUrl.href}sitemap.xml\n`,
+    `User-agent: *\nDisallow: /api/\nDisallow: /gestion/\nSitemap: ${siteUrl.href}sitemap.xml\n`,
   );
   fs.writeFileSync(
     path.join(dist, 'manifest.webmanifest'),
