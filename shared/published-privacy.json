@@ -1,0 +1,83 @@
+{
+  "es": {
+    "title": "Privacidad \ny reservas.",
+    "intro": "Solo pedimos los datos necesarios para responder a tu solicitud de estancia.",
+    "sections": [
+      [
+        "Quién gestiona tus datos",
+        "El equipo de Uxarbeiti Baserria gestiona las consultas de alojamiento. Puedes escribir a pablosainz1998@gmail.com para consultar cómo usamos tus datos o solicitar acceso, corrección o eliminación."
+      ],
+      [
+        "Qué guardamos y para qué",
+        "Nombre, correo, teléfono, fechas, alojamiento, composición del grupo y el mensaje que decidas enviar. Se guardan en el servidor del alojamiento y se envía una notificación al correo de gestión para atender tu solicitud. No compartas datos de salud, documentos de identidad ni información de pago en el mensaje."
+      ],
+      [
+        "Solicitud, no confirmación",
+        "El envío no confirma la reserva ni realiza ningún cobro. El equipo te responderá para confirmar disponibilidad, condiciones de pago y cancelación."
+      ],
+      [
+        "Conservación y proveedores",
+        "Las solicitudes se conservan mientras sean necesarias para su gestión y las obligaciones aplicables. El alojamiento web y el proveedor del correo intervienen en el tratamiento técnico. Contacta con el equipo para obtener sus datos y solicitar la eliminación de solicitudes que ya no sean necesarias."
+      ],
+      [
+        "Cookies y enlaces externos",
+        "Esta web no incorpora analítica, publicidad ni mapas o calendarios de terceros embebidos. Los enlaces a WhatsApp, BBK Azoka, plataformas de reservas y otras webs abren servicios externos con sus propias políticas. El panel de consultas no carga WhatsApp ni guarda mensajes en nuestro servidor. Solo al continuar hacia WhatsApp se abre un borrador con tu consulta o con los detalles de estancia disponibles, sin incorporar los datos de contacto del formulario. Tú decides si envías el mensaje. El panel privado utiliza una cookie de sesión necesaria, no publicitaria."
+      ]
+    ],
+    "consent": "He leído la política de privacidad y acepto que se usen mis datos para gestionar esta solicitud."
+  },
+  "en": {
+    "title": "Privacy \nand requests.",
+    "intro": "We only ask for the information needed to respond to your stay request.",
+    "sections": [
+      [
+        "Who handles your data",
+        "The Uxarbeiti Baserria team handles accommodation enquiries. Email pablosainz1998@gmail.com to ask about your data or request access, correction or deletion."
+      ],
+      [
+        "What we store and why",
+        "Your name, email, phone, dates, accommodation, group details and any message you send. These are stored on the accommodation server and a notification is sent to the management email to handle your request. Do not include health information, identity documents or payment details in your message."
+      ],
+      [
+        "A request, not a confirmation",
+        "Sending the form does not confirm a booking or take payment. The team will reply to confirm availability, payment and cancellation terms."
+      ],
+      [
+        "Retention and providers",
+        "Requests are kept as needed to manage them and meet applicable obligations. Hosting and email providers take part in technical processing. Contact the team for their details or to request deletion of enquiries no longer needed."
+      ],
+      [
+        "Cookies and external links",
+        "This website uses no analytics, advertising, or embedded third-party maps or calendars. Links to WhatsApp, BBK Azoka, booking platforms and other websites open external services with their own policies. The enquiry panel does not load WhatsApp or save messages on our server. Only when you continue to WhatsApp does a draft open with your question or available stay details, without the contact details from the booking form. You decide whether to send it. The private management panel uses a necessary session cookie, not an advertising cookie."
+      ]
+    ],
+    "consent": "I have read the privacy policy and agree to my details being used to handle this request."
+  },
+  "eu": {
+    "title": "Pribatutasuna \neta eskaerak.",
+    "intro": "Zure erreserba-eskaerari erantzuteko beharrezko datuak baino ez ditugu eskatzen.",
+    "sections": [
+      [
+        "Nork kudeatzen ditu zure datuak",
+        "Uxarbeiti Baserriko taldeak kudeatzen ditu ostatu-kontsultak. Idatzi pablosainz1998@gmail.com helbidera datuen erabileraz galdetzeko edo datuak eskuratzeko, zuzentzeko edo ezabatzeko eskatzeko."
+      ],
+      [
+        "Zer gordetzen dugu eta zertarako",
+        "Izena, helbide elektronikoa, telefonoa, datak, ostatua, taldearen osaera eta bidalitako mezua gordetzen ditugu, ostatuaren zerbitzarian. Eskaera kudeatzeko, jakinarazpena bidaltzen dugu taldearen posta elektronikora. Ez bidali osasun-daturik, nortasun-agiririk edo ordainketa-daturik mezuan."
+      ],
+      [
+        "Eskaera ez da baieztapena",
+        "Formularioa bidaltzeak ez du erreserba baieztatzen eta ez dakar ordainketarik. Taldeak erantzungo dizu datak libre dauden jakinarazteko eta ordainketa- eta ezeztapen-baldintzak azaltzeko."
+      ],
+      [
+        "Datuak gordetzea eta hornitzaileak",
+        "Eskaerak kudeatzeko eta dagozkion betebeharrak betetzeko behar diren bitartean gordetzen ditugu datuak. Web-ostatuko eta posta elektronikoko hornitzaileek tratamendu teknikoan parte hartzen dute. Jarri taldearekin harremanetan hornitzaile horiei buruzko informazioa jasotzeko edo beharrezkoak ez diren eskaerak ezabatzeko eskatzeko."
+      ],
+      [
+        "Cookieak eta kanpoko estekak",
+        "Webgune honek ez du analitikarik, publizitaterik edo hirugarrenen mapa edo egutegi txertaturik erabiltzen. WhatsApp, BBK Azoka, erreserba-plataformak eta beste webgune batzuk beren politikak dituzten kanpoko zerbitzuak dira. Kontsulta-panelak ez du WhatsApp kargatzen eta ez du mezurik gordetzen gure zerbitzarian. WhatsApp bidez jarraitzea aukeratzean soilik irekitzen da zure galdera edo egonaldiaren xehetasunak dituen zirriborroa, formularioko kontaktu-datuak gehitu gabe. Zuk erabakitzen duzu mezua bidali ala ez. Kudeaketa-panel pribatuak saioa mantentzeko cookie bat erabiltzen du, ez publizitaterako."
+      ]
+    ],
+    "consent": "Pribatutasun-politika irakurri dut eta nire datuak eskaera hau kudeatzeko erabiltzea onartzen dut."
+  }
+}

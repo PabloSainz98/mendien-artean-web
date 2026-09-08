@@ -1,0 +1,20 @@
+{
+  "version": "2026-09-08",
+  "holder": "",
+  "taxId": "",
+  "address": "",
+  "privacyEmail": "reservas@uxarbeiti.eus",
+  "commercialRegistry": "",
+  "registrations": { "casa": "", "domo": "" },
+  "categories": { "casa": "", "domo": "" },
+  "policies": {
+    "payment": { "es": "", "en": "", "eu": "" },
+    "cancellation": { "es": "", "en": "", "eu": "" },
+    "houseRules": { "es": "", "en": "", "eu": "" },
+    "retention": { "es": "", "en": "", "eu": "" },
+    "providers": { "es": "", "en": "", "eu": "" }
+  },
+  "pricesIncludeTaxes": null,
+  "reviewedOn": "",
+  "approvedForPublication": false
+}

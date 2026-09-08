@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Reservas · UXARBEITI</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./pricing.js" defer></script>
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <header class="top">
+      <a href="../">UXARBEITI <span>Baserria</span></a
+      ><span>Gestión de reservas</span><button id="logout" hidden>Salir</button>
+    </header>
+    <main>
+      <div id="notice" role="status" tabindex="-1" hidden></div>
+      <section id="login-view" class="login panel">
+        <p class="eyebrow">Solo para el equipo</p>
+        <h1>Todo listo para recibir.</h1>
+        <p>
+          Revisa solicitudes, confirma estancias y guarda las fechas que llegan por otros canales.
+        </p>
+        <form id="login-form">
+          <label
+            >Contraseña<input
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              required
+              maxlength="128" /></label
+          ><button class="primary">Entrar a las reservas</button>
+        </form>
+        <p class="muted">
+          La sesión dura 8 horas. Si todavía no tienes contraseña, la persona que ha instalado la
+          web debe configurarla.
+        </p>
+      </section>
+      <div id="dashboard" hidden>
+        <div class="heading">
+          <div>
+            <p class="eyebrow">La casa, al día</p>
+            <h1>Próximas estancias.</h1>
+          </div>
+          <div class="actions">
+            <button id="refresh">Actualizar</button
+            ><button id="export">Descargar Excel (CSV)</button>
+          </div>
+        </div>
+        <p id="mail-warning" class="warning" hidden>
+          El correo automático no está configurado. Puedes gestionar fechas, pero tendrás que avisar
+          personalmente a los huéspedes.
+        </p>
+        <p id="system-status" class="muted" role="status"></p>
+        <p id="legal-status" class="warning" hidden>
+          La revisión legal está pendiente. No publiques borradores ni confirmes condiciones que no
+          hayas acordado. Consulta la lista de cumplimiento con la persona que mantiene la web.
+        </p>
+        <p class="muted">
+          Una solicitud no ocupa fechas hasta que la confirmas. Booking y Airbnb no están
+          sincronizados: registra sus fechas en «Bloquear fechas» para evitar reservas solapadas.
+        </p>
+        <nav class="tabs" aria-label="Gestión">
+          <button data-view="requests" aria-pressed="true">Solicitudes y reservas</button
+          ><button data-view="calendar" aria-pressed="false">Calendario y llegadas</button
+          ><button data-view="manual" aria-pressed="false">Añadir reserva</button
+          ><button data-view="blocks" aria-pressed="false">Bloquear fechas</button>
+        </nav>
+        <section id="calendar-view" hidden>
+          <div class="panel">
+            <div class="heading">
+              <div>
+                <p class="eyebrow">Los dos alojamientos, de un vistazo</p>
+                <h2>Calendario de estancias.</h2>
+              </div>
+              <label
+                >Mes<input id="calendar-month" type="month" min="2000-01" max="2099-11"
+              /></label>
+            </div>
+            <p id="calendar-status" role="status" class="muted"></p>
+            <p class="muted">
+              Verde: estancia confirmada. Rayado: bloqueo. La salida no ocupa noche. Pulsa una
+              estancia para gestionarla o una fecha libre para preparar una solicitud. Las
+              solicitudes pendientes no aparecen como ocupadas.
+            </p>
+            <div
+              id="occupancy"
+              class="calendar-scroll"
+              tabindex="0"
+              role="region"
+              aria-label="Ocupación mensual de ambos alojamientos"
+            ></div>
+          </div>
+          <section class="panel arrivals">
+            <h2>En los próximos 30 días.</h2>
+            <div id="upcoming" class="grid"></div>
+          </section>
+        </section>
+        <section id="requests-view">
+          <div class="list-heading">
+            <label
+              >Mostrar<select id="filter">
+                <option value="new">Pendientes</option>
+                <option value="confirmed">Confirmadas</option>
+                <option value="all">Todas</option>
+                <option value="rejected">Rechazadas</option>
+                <option value="cancelled">Canceladas</option>
+              </select></label
+            >
+            <p id="count" class="muted"></p>
+          </div>
+          <div id="requests" class="requests"></div>
+          <button id="more" hidden>Cargar más solicitudes</button>
+        </section>
+        <section id="manual-view" class="panel" hidden>
+          <p class="eyebrow">WhatsApp, teléfono u otro canal</p>
+          <h2>Una estancia nueva.</h2>
+          <p>
+            Primero guarda la solicitud. Después podrás confirmarla. Si no tienes su correo, avisa
+            al huésped personalmente.
+          </p>
+          <form id="manual-form">
+            <div class="grid">
+              <label
+                >Alojamiento<select name="property">
+                  <option value="casa">Urkiola Etxea</option>
+                  <option value="domo">Domo Gorbeia</option>
+                </select></label
+              ><label
+                >Canal<select name="source">
+                  <option value="whatsapp">WhatsApp</option>
+                  <option value="phone">Teléfono</option>
+                  <option value="platform">Otro canal</option>
+                </select></label
+              ><label>Llegada<input type="date" name="checkin" required /></label
+              ><label>Salida<input type="date" name="checkout" required /></label>
+            </div>
+            <div class="grid three">
+              <label
+                >Adultos<input
+                  type="number"
+                  name="adults"
+                  min="1"
+                  max="4"
+                  value="2"
+                  required /></label
+              ><label
+                >Niños (cuna)<input
+                  type="number"
+                  name="children"
+                  min="0"
+                  max="3"
+                  value="0"
+                  required /></label
+              ><label
+                >Mascotas<input type="number" name="pets" min="0" max="4" value="0" required
+              /></label>
+            </div>
+            <p id="manual-quote" class="quote" aria-live="polite">
+              Selecciona las fechas para calcular el precio.
+            </p>
+            <div class="grid">
+              <label
+                >Nombre<input
+                  name="name"
+                  required
+                  minlength="2"
+                  maxlength="120"
+                  autocomplete="off" /></label
+              ><label
+                >Teléfono con prefijo (+34…)<input
+                  type="tel"
+                  name="phone"
+                  required
+                  maxlength="30"
+                  autocomplete="off" /></label
+              ><label
+                >Correo (opcional)<input
+                  type="email"
+                  name="email"
+                  maxlength="200"
+                  autocomplete="off" /></label
+              ><label
+                >Idioma del huésped<select name="language">
+                  <option value="es">Español</option>
+                  <option value="en">Inglés</option>
+                  <option value="eu">Euskera</option>
+                </select></label
+              >
+            </div>
+            <label>Notas<textarea name="message" maxlength="1500" rows="3"></textarea></label>
+            <p class="muted">
+              Introduce solo los datos necesarios y asegúrate de que el huésped sabe que los
+              usaremos para gestionar su estancia. Se aplican las tarifas de esta web, no las de
+              otras plataformas.
+            </p>
+            <button class="primary">Guardar solicitud</button>
+          </form>
+        </section>
+        <section id="blocks-view" class="panel" hidden>
+          <p class="eyebrow">Calendario bajo control</p>
+          <h2>Fechas no disponibles.</h2>
+          <p>
+            Para reservas de Booking, Airbnb o cierres del alojamiento. La fecha de salida queda
+            libre para una nueva llegada. No se envía ningún correo al crear un bloqueo.
+          </p>
+          <form id="block-form">
+            <div class="grid">
+              <label
+                >Alojamiento<select name="property">
+                  <option value="casa">Urkiola Etxea</option>
+                  <option value="domo">Domo Gorbeia</option>
+                </select></label
+              ><label
+                >Motivo (sin datos personales)<input
+                  name="note"
+                  maxlength="200"
+                  placeholder="Booking, Airbnb, mantenimiento…" /></label
+              ><label
+                >Llegada / primer día cerrado<input type="date" name="checkin" required /></label
+              ><label
+                >Salida / vuelve a estar disponible<input type="date" name="checkout" required
+              /></label>
+            </div>
+            <button class="primary">Bloquear fechas</button>
+          </form>
+          <div id="blocks" class="block-list"></div>
+        </section>
+      </div>
+    </main>
+    <dialog id="decision-dialog">
+      <form method="dialog"><button class="close" aria-label="Cerrar">×</button></form>
+      <p class="eyebrow">Revisa antes de continuar</p>
+      <h2 id="decision-title"></h2>
+      <p id="decision-summary"></p>
+      <label class="checkbox"
+        ><input type="checkbox" id="notify-guest" />Enviar un correo al huésped con esta
+        decisión</label
+      >
+      <p id="decision-help" class="muted"></p>
+      <div class="actions">
+        <button id="decision-back">Volver</button
+        ><button id="decision-confirm" class="primary">Confirmar acción</button>
+      </div>
+    </dialog>
+    <dialog id="booking-dialog" aria-labelledby="booking-dialog-title" class="booking-dialog">
+      <form method="dialog"><button class="close" aria-label="Cerrar ficha">×</button></form>
+      <p class="eyebrow">Ficha privada de la estancia</p>
+      <h2 id="booking-dialog-title"></h2>
+      <p id="booking-dialog-error" role="alert" class="warning" hidden></p>
+      <p id="booking-finances" class="quote"></p>
+      <details id="edit-details">
+        <summary>Editar estancia y precio acordado</summary>
+        <form id="edit-form"></form>
+      </details>
+      <section>
+        <h3>Pagos y devoluciones</h3>
+        <p class="muted">
+          Registro interno: no cobra, devuelve dinero ni emite facturas. Anota solo movimientos
+          realizados. No guardes números de tarjeta, IBAN ni documentos de identidad.
+        </p>
+        <form id="payment-form">
+          <div class="grid">
+            <label
+              >Movimiento<select name="kind">
+                <option value="payment">Cobro recibido</option>
+                <option value="refund">Devolución realizada</option>
+              </select></label
+            >
+            <label
+              >Importe (€)<input
+                name="amount"
+                type="number"
+                min="0.01"
+                max="1000000"
+                step="0.01"
+                required
+            /></label>
+            <label>Fecha<input name="date" type="date" required /></label>
+            <label
+              >Medio<select name="method">
+                <option value="transfer">Transferencia</option>
+                <option value="cash">Efectivo</option>
+                <option value="card">Tarjeta (cobrada fuera de la web)</option>
+                <option value="other">Otro</option>
+              </select></label
+            >
+          </div>
+          <label
+            >Concepto (sin datos sensibles)<input
+              name="note"
+              maxlength="300"
+              placeholder="Señal, resto de la estancia, devolución…"
+          /></label>
+          <button class="primary">Registrar movimiento</button>
+        </form>
+        <div id="payment-history"></div>
+      </section>
+      <details>
+        <summary>Historial de cambios</summary>
+        <div id="booking-history"></div>
+      </details>
+    </dialog>
+  </body>
+</html>

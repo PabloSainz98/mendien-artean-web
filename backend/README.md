@@ -1,67 +1,20 @@
-# Backend propio (sin terceros)
+# Backend UXARBEITI
 
-Este backend reemplaza el envio por email del cliente con una API propia y base de datos local.
+La guía vigente está en [README.md](../README.md) y [docs/OPERACION.md](../docs/OPERACION.md).
 
-## Stack
+Desde la raíz del repositorio:
 
-- Node.js (>= 22)
-- Express
-- SQLite nativo de Node (`node:sqlite`)
-
-## Que hace
-
-- Sirve la web estatica (`/`, `/css`, `/js`, `/images`)
-- `POST /api/booking-requests` para guardar solicitudes de reserva
-- `GET /api/health` para monitorizacion
-- `GET /api/admin/booking-requests` para ver solicitudes (token de admin)
-- `GET /api/admin/booking-requests.csv` para exportar CSV compatible con Excel
-- Genera automaticamente `bookings.csv` al recibir nuevas reservas
-
-## Seguridad incluida
-
-- Headers de seguridad con `helmet`
-- API sin `x-powered-by`
-- Validacion server-side de todos los campos
-- Rate limiting en memoria por IP
-- Honeypot anti-bots
-- Hash de IP en base de datos (no IP en claro)
-
-## Configuracion
-
-1. Copia variables:
-
-```bash
-cp backend/.env.example backend/.env
+```sh
+npm ci
+npm run build
+npm start
 ```
 
-2. Ajusta al menos `ADMIN_TOKEN`.
+Node.js >= 22.13. SQLite integrado, Express y Nodemailer. El servidor publica exclusivamente `dist/`; nunca el repositorio completo.
 
-## Desarrollo local
+- `POST /api/booking-requests`: solicitud con precio recalculado, consentimiento e idempotencia.
+- `GET /api/health`: disponibilidad técnica, sin datos privados.
+- `GET /api/admin/booking-requests`: listado paginado protegido por bearer token.
+- `GET /api/admin/booking-requests.csv`: descarga protegida compatible con Excel.
 
-```bash
-cd backend
-npm install
-npm run dev
-```
-
-Abre la web en [http://localhost:8787](http://localhost:8787)
-
-## Produccion (sin coste de terceros)
-
-- Ejecutar este backend en tu propio servidor/VPS.
-- Poner Nginx o Caddy delante con HTTPS.
-- Hacer backup diario de `backend/data/app.db`.
-
-## Consultar solicitudes (admin)
-
-```bash
-curl -H "Authorization: Bearer TU_TOKEN" "http://localhost:8787/api/admin/booking-requests?limit=100"
-```
-
-## Exportar para Excel
-
-```bash
-curl -H "Authorization: Bearer TU_TOKEN" \
-  "http://localhost:8787/api/admin/booking-requests.csv" \
-  -o booking-requests.csv
-```
+No existe un endpoint público de huéspedes ni disponibilidad sincronizada. Una solicitud no bloquea fechas ni confirma una reserva. Sin SMTP configurado, el envío queda deshabilitado salvo modo explícito de prueba local.

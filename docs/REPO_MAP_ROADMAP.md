@@ -1,149 +1,76 @@
-# Mapa del Repositorio y Roadmap
+# Mapa y siguiente etapa de UXARBEITI
 
-Fecha de corte: 7 de marzo de 2026  
-Rama actual: `feature/phase2-pro`  
-PR activo: https://github.com/PabloSainz98/mendien-artean-web/pull/2
+## Estado del rediseño
 
-## 1) Objetivo del documento
+La versión anterior era una sola página con CSS y traducciones ejecutadas en el navegador. Incluía referencias antiguas a Mendien Artean, datos de calendario de ejemplo y un formulario EmailJS/mailto que no aprovechaba el backend SQLite.
 
-Este documento resume:
+La nueva versión se construye desde `site/` hacia `dist/`. Las 13 páginas se generan en español (raíz), inglés (`en/`) y euskera (`eu/`). Se conserva Node + SQLite en un solo servidor, sin incorporar servicios de calendario ni un CMS remoto.
 
-- Que existe hoy en el repositorio.
-- Que esta funcionando ya en frontend y backend.
-- Que falta para una solucion de reservas propia, segura y facil de mantener.
-- Hacia donde se propone evolucionar por fases.
+La ampliación del panel, la revisión editorial en primera persona y «Cómo llegar» están **publicados desde el 8 de septiembre de 2026 a las 18:13 CEST**. Los borradores legales siguen fuera de producción. El despliegue parcial conserva la información de privacidad anterior; no supone que la revisión jurídica esté completada. Estado y copia verificada en [HOSTING_ALWAYSDATA.md](HOSTING_ALWAYSDATA.md).
 
-## 2) Stack actual
+## Implementado
 
-- Frontend: HTML + CSS + JavaScript vanilla (sin framework).
-- Backend propio: Node.js + Express + SQLite nativo (`node:sqlite`).
-- Sin servicios de terceros para envio del formulario.
-- Sin coste extra de SaaS en el flujo principal actual.
+- UXARBEITI como identidad principal; Domo Gorbeia y Urkiola Etxea como alojamientos independientes.
+- Portada con la foto del complejo y uso del logo original.
+- Historia familiar de Urtza Sarrionandia, Edurtzeta Atutxa e Iñaki Sarrionandia; etapas de los años 80, 2008 y 2013.
+- Dos caseríos, agricultura, superficies de cultivo, gallinas y productos propios.
+- Productos enlazados al catálogo de BBK Azoka, sin checkout ni stock ficticios.
+- Enlaces de entorno facilitados por el propietario, con apertura externa explícita.
+- Galerías independientes y accesibles, selector de alojamiento, selección de fechas y presupuesto desglosado.
+- Cálculo por noche y temporada compartido entre cliente y servidor.
+- Persistencia, idempotencia, notificación SMTP duradera y exportación CSV privada.
+- Panel `/gestion/`: contraseña scrypt, sesiones privadas, aceptación/rechazo/cancelación con aviso al huésped, alta de solicitudes manuales y bloqueos de fechas.
+- Doble reserva evitada dentro de esta web con comprobación transaccional por alojamiento. Sin sincronización externa: Booking/Airbnb requieren bloqueo manual.
+- Temporada alta en junio–septiembre y 20 diciembre–6 enero, incluida Navidad al cruzar de año.
+- Copias SQLite online en el proceso web, verificación, retención de 14 instantáneas y estado en el panel; cierre de solicitudes si falla una copia requerida. Protección frente a apertura de SQLite WAL por NFS/SMB.
+- Menú y páginas funcionales en los tres idiomas. Los nombres de meses se incluyen localmente para que el navegador no sustituya el euskera por español.
+- Consultas generales por WhatsApp en un panel flotante y consultas de estancia con datos parciales, sin contacto obligatorio ni registro automático.
+- Calendario compartido de entrada/salida con selección de intervalos, edición manual, teclado y adaptación móvil; revisión editorial de euskera batua.
+- Calendario privado por alojamiento y próximas llegadas/salidas, independiente de la paginación de solicitudes.
+- Edición de estancias con recálculo, precio acordado opcional, motivo e historial; revisiones y transacciones impiden pisar cambios o confirmar solapamientos.
+- Registro auxiliar de señales, pagos y devoluciones en céntimos, reintentos idempotentes y saldo. No ejecuta operaciones bancarias ni factura.
+- Primera persona del plural en ES/EN/EU, página de llegada y accesos desde alojamientos, reserva y correo de confirmación.
+- Aviso legal, privacidad, condiciones y cookies en borrador, primera capa informativa y versión del aviso. Comprobación de completitud previa a publicación; revisión pendiente del titular según [CUMPLIMIENTO.md](CUMPLIMIENTO.md).
+- Tipografías alojadas localmente; assets con hash y una lista explícita de imágenes publicables.
+- Retirada del antiguo service worker para evitar contenido desactualizado y caché de datos de reserva.
+- Tests de precios, migración, validación, API, privacidad, correo y coherencia de páginas.
 
-## 3) Inventario del repositorio
+## UX en revisión
 
-### 3.1 Raiz
+La siguiente mejora de UX está preparada para revisión, **todavía sin desplegar**:
+conservación de criterios al cambiar idioma, recuperación de disponibilidad,
+resumen móvil y carga del motor de reservas solo donde se necesita. Detalles y
+mediciones en [UX-2026-09-08.md](UX-2026-09-08.md).
 
-- `index.html`: pagina principal y secciones (hero, servicios, disponibilidad, formulario, contacto, footer).
-- `css/index.css`: variables de diseno, tipografia, base y utilidades.
-- `css/components.css`: estilos de componentes (navbar, calendario, formulario, cards, etc.).
-- `css/responsive.css`: ajustes responsive y media queries.
-- `js/i18n.js`: sistema de traducciones (ES/EN/EU) y switcher.
-- `js/main.js`: logica UI (navbar, calendario, galeria, scroll, formulario).
-- `images/*.jpg`: recursos visuales del sitio.
-- `.gitignore`: exclusiones (logs, node_modules, `.env`, BD local de backend).
+## Deliberadamente fuera de esta fase
 
-### 3.2 Backend
+- iCal, Google Calendar y sincronización con Booking/Airbnb.
+- Cobros online y confirmación inmediata.
+- Cuentas de huéspedes, múltiples roles de personal y pagos automatizados.
+- Venta directa de productos, logística e inventario.
+- Supuestas valoraciones verificadas, premios concretos no documentados o disponibilidad inventada.
 
-- `backend/package.json`: scripts y dependencias del backend.
-- `backend/package-lock.json`: lockfile de dependencias.
-- `backend/.env.example`: plantilla de variables de entorno.
-- `backend/src/server.js`: servidor Express, rutas API, seguridad base y static serving.
-- `backend/src/db.js`: inicializacion SQLite y acceso a tabla de solicitudes.
-- `backend/src/validation.js`: validacion de payload del formulario.
-- `backend/README.md`: guia de uso local y despliegue.
-- `backend/data/app.db`: base de datos SQLite local (ignorada por git).
+## Antes del lanzamiento
 
-### 3.3 Git / estado de trabajo
+1. Revisar textos de marca e idiomas con el titular; confirmar teléfono de contacto, servicios, capacidad, precio y condiciones infantiles.
+2. Hosting alwaysdata, dominio/HTTPS y proxy por visitante verificados; solicitudes abiertas el 7 de septiembre de 2026.
+3. SMTP configurado; el titular confirma recepción en `pablosainz1998@gmail.com` tanto del mensaje inicial como de los tres correos del ciclo completo: solicitud, aceptación y cancelación con datos ficticios.
+4. Contraseña de gestión independiente, login y primera copia automática verificados. Acordar conservación de datos, restauración de prueba y copias externas; rotar las credenciales SSH/SMTP expuestas.
+5. Completar/revisar información legal y condiciones de reserva. Validar los datos de `shared/legal-config.json`, contratos con proveedores y obligaciones turísticas/fiscales; `npm run check:legal` debe pasar sin confundirlo con una certificación. La conservación y el borrado todavía requieren un procedimiento aprobado.
+6. Revisar y fusionar el PR. Publicar de forma deliberada, sin sustituir producción automáticamente desde esta rama.
 
-- Remote principal: `origin` -> `https://github.com/PabloSainz98/mendien-artean-web.git`
-- Commits recientes clave:
-- `810bbb1` backend propio + conexion de formulario.
-- `2d5d907` hardening seguridad + mejora visual calendario desktop.
+## Posibles mejoras posteriores
 
-## 4) Funcionalidad implementada hoy
+La siguiente etapa es la entrega a la persona que gestionará las reservas y la revisión legal y operativa. El flujo ya está probado en producción: solicitud ficticia web cancelada y solicitud manual rechazada, sin ocupar fechas. El titular confirma que no hay ocupaciones previas que importar. La sincronización iCal puede evaluarse después. No existe garantía de evitar conflictos con plataformas que aún no estén registradas en el panel.
 
-### 4.1 Frontend
+## Fuentes del contenido
 
-- Web multiidioma ES/EN/EU.
-- Calendario visual de disponibilidad (actualmente simulado).
-- CTA a Booking/Airbnb.
-- Formulario de reserva con UX inline de envio:
-- estado "enviando",
-- mensaje de exito,
-- mensaje de error.
+La historia, las tarifas y las características proceden de las indicaciones del propietario. Fotografías y logos ya existentes en el repositorio. Los enlaces originales se conservan en `site/content.js`, sin parámetros de sesión ni seguimiento:
 
-### 4.2 Backend API
+- BBK Azoka: https://azoka.bbk.eus/colecciones/uxarbeiti-baserri
+- Casa en Booking: https://www.booking.com/hotel/es/casa-de-campo-entre-dos-parques-naturales.es.html
+- Casa en Airbnb: https://www.airbnb.es/rooms/26868295
+- Domo en Booking: https://www.booking.com/hotel/es/domo-en-plena-naturaleza.es.html
+- Domo en Airbnb: https://www.airbnb.es/rooms/1550920029631784546
 
-- `GET /api/health`: estado de servicio.
-- `POST /api/booking-requests`: recibe y persiste solicitudes.
-- `GET /api/admin/booking-requests`: listado (protegido por token).
-
-### 4.3 Persistencia
-
-- Tabla `booking_requests` con campos:
-- `name`, `email`, `phone`, `guests`, `checkin_date`, `checkout_date`, `message`.
-- `status`, `source`, `ip_hash`, `created_at`.
-
-## 5) Seguridad actual
-
-- Enlaces externos con `rel="noopener noreferrer"`.
-- Aperturas en nueva pestaña endurecidas (`noopener` / `noreferrer`).
-- Sanitizacion de traducciones con subconjunto de HTML permitido (`BR`, `STRONG`, `EM`).
-- Cabeceras de seguridad via `helmet` en backend.
-- `x-powered-by` deshabilitado.
-- Validacion server-side estricta del formulario.
-- Rate limit basico por IP en memoria.
-- Honeypot anti-bots.
-- Hash SHA-256 de IP antes de persistir.
-
-## 6) Flujo funcional actual de reservas
-
-1. Usuario rellena formulario en la web.
-2. Frontend envia `POST /api/booking-requests` por `fetch`.
-3. Backend valida payload.
-4. Si pasa validacion, guarda en SQLite.
-5. Frontend muestra confirmacion en la propia pagina (sin abrir cliente de correo).
-
-## 7) Limitaciones actuales
-
-- Calendario de disponibilidad aun no refleja reservas reales (es simulado).
-- Endpoint admin usa token estatico (sin panel UI ni gestion de sesiones).
-- Rate limit en memoria (se pierde al reiniciar proceso).
-- Sin suite de tests automatizados (solo checks de sintaxis y pruebas manuales).
-- Sin pipeline CI/CD definido.
-
-## 8) Direccion objetivo (sin terceros y facil mantenimiento)
-
-### Fase A: Cierre del backend MVP (inmediata)
-
-1. Endurecer autenticacion admin (usuario + password con hash, no solo token fijo).
-2. Exponer un mini panel admin para ver y cambiar estado de solicitudes.
-3. Registrar auditoria minima de cambios de estado.
-4. Agregar backups automatizados de SQLite.
-
-### Fase B: Operacion segura en produccion
-
-1. Despliegue en VPS propio con Node LTS.
-2. Reverse proxy con Caddy o Nginx y TLS.
-3. Servicio gestionado por `systemd`.
-4. Rotacion de logs y monitoreo basico (healthcheck + alertas sencillas).
-
-### Fase C: Disponibilidad real (cuando se decida)
-
-1. Integrar sync por iCal de Airbnb/Booking.
-2. Unificar bloqueos en BD local.
-3. Pintar calendario real en frontend via endpoint propio.
-4. Mantener la UX de reserva directa para conversion.
-
-## 9) Criterios de exito
-
-- El formulario siempre envia sin abrir aplicaciones externas.
-- Las solicitudes quedan persistidas y consultables por admin.
-- El stack sigue siendo simple de operar por una sola persona.
-- No se introducen costes de SaaS para el flujo base.
-- Se minimiza superficie de ataque con configuracion segura por defecto.
-
-## 10) Comandos utiles
-
-- Instalar backend: `cd backend && npm install`
-- Ejecutar en desarrollo: `cd backend && npm run dev`
-- Ejecutar checks: `cd backend && npm run check`
-- Healthcheck local: `curl http://localhost:8787/api/health`
-
-## 11) Decision log breve
-
-- Decidido: backend propio, sin terceros para envio de formulario.
-- Decidido: posponer integracion iCal para una fase posterior.
-- En curso: consolidar backend y operaciones para preparar merge a `main`.
-
+Los anuncios externos no se usan como fuente automática de precios o disponibilidad. No se ha incorporado una copia de su contenido ni una API de scraping.
