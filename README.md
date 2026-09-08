@@ -57,7 +57,8 @@ PLAYWRIGHT_CHROME_CHANNEL=chrome npm run test:browser
 | `shared/legal-config.json` | Datos públicos legales pendientes de verificación y aprobación             |
 | `site/management/`         | Panel privado de reservas, calendario y registro de pagos                  |
 | `site/styles.css`          | Diseño responsive común a los tres idiomas                                 |
-| `site/app.js`              | Menú móvil, galerías, calendario y formulario                              |
+| `site/app.js`              | Menú móvil, galerías y consultas generales por WhatsApp                    |
+| `site/booking.js`          | Calendario, formulario y resumen móvil; solo se carga en reserva           |
 | `site/fonts/`              | Fuentes locales y licencias OFL                                            |
 | `shared/pricing.js`        | Única implementación de tarifas y fechas                                   |
 | `scripts/build.js`         | Generador estático; solo copia recursos públicos permitidos                |

@@ -37,6 +37,7 @@ function build() {
   for (const [key, source, extension] of [
     ['css', 'site/styles.css', 'css'],
     ['js', 'site/app.js', 'js'],
+    ['booking', 'site/booking.js', 'js'],
     ['pricing', 'shared/pricing.js', 'js'],
   ]) {
     const content = fs.readFileSync(path.join(root, source));

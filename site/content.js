@@ -1114,6 +1114,11 @@ const calendarLabels = {
     manualDates: 'Escribir las fechas a mano',
     dateDone: 'Aplicar fechas',
     dateClear: 'Borrar fechas',
+    continue: 'Continuar',
+    retry: 'Volver a intentar',
+    availabilityLoading: 'Comprobando disponibilidad…',
+    availabilityFailed:
+      'No hemos podido actualizar la disponibilidad. Puedes seguir calculando el precio; comprobaremos las fechas al enviar tu solicitud.',
     datesHelp:
       'Elige entrada y salida en el mismo calendario. Después podrás modificar cualquiera de las dos fechas.',
     whatsappRequest: 'Consultar esta estancia por WhatsApp',
@@ -1150,6 +1155,11 @@ const calendarLabels = {
     manualDates: 'Enter dates manually',
     dateDone: 'Apply dates',
     dateClear: 'Clear dates',
+    continue: 'Continue',
+    retry: 'Try again',
+    availabilityLoading: 'Checking availability…',
+    availabilityFailed:
+      'We could not update availability. You can still calculate a price; we will check your dates when you send your request.',
     datesHelp:
       'Choose arrival and departure in the same calendar. You can change either date afterwards.',
     whatsappRequest: 'Ask about this stay on WhatsApp',
@@ -1186,6 +1196,11 @@ const calendarLabels = {
     manualDates: 'Datak eskuz idatzi',
     dateDone: 'Datak aplikatu',
     dateClear: 'Datak ezabatu',
+    continue: 'Jarraitu',
+    retry: 'Saiatu berriro',
+    availabilityLoading: 'Erabilgarritasuna egiaztatzen…',
+    availabilityFailed:
+      'Ezin izan dugu erabilgarritasuna eguneratu. Prezioa kalkulatzen jarrai dezakezu; eskaera bidaltzean egiaztatuko ditugu datak.',
     whatsappRequest: 'Egonaldi honi buruz galdetu WhatsApp bidez',
     whatsappHelp:
       'Ez duzu formularioa bete edo datak aukeratu behar. Adierazitako egonaldiaren xehetasunak soilik sartuko ditugu mezuan, ez zure izena, helbide elektronikoa edo telefonoa. Zuk bidaliko duzu mezua WhatsApp bidez; hemen ez da erreserbarik gordetzen.',

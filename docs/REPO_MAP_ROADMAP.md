@@ -35,6 +35,13 @@ La ampliación del panel, la revisión editorial en primera persona y «Cómo ll
 - Retirada del antiguo service worker para evitar contenido desactualizado y caché de datos de reserva.
 - Tests de precios, migración, validación, API, privacidad, correo y coherencia de páginas.
 
+## UX en revisión
+
+La siguiente mejora de UX está preparada para revisión, **todavía sin desplegar**:
+conservación de criterios al cambiar idioma, recuperación de disponibilidad,
+resumen móvil y carga del motor de reservas solo donde se necesita. Detalles y
+mediciones en [UX-2026-09-08.md](UX-2026-09-08.md).
+
 ## Deliberadamente fuera de esta fase
 
 - iCal, Google Calendar y sincronización con Booking/Airbnb.

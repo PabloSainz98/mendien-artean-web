@@ -283,8 +283,9 @@ test('legal drafts cannot pass publication checks and notices are versioned with
       const html = renderPage(
         page,
         lang,
-        { css: 'x.css', js: 'x.js', pricing: 'p.js' },
+        { css: 'x.css', js: 'x.js', pricing: 'p.js', booking: 'b.js' },
         'https://example.test/',
+        { legalMode: 'draft' },
       );
       assert.match(html, /noindex,nofollow/);
       assert.ok(html.includes(legal.draft));
@@ -306,7 +307,7 @@ test('partial publication preserves the existing notice without publishing draft
       const html = renderPage(
         page,
         lang,
-        { css: 'a.css', js: 'a.js', pricing: 'p.js' },
+        { css: 'a.css', js: 'a.js', pricing: 'p.js', booking: 'b.js' },
         'https://example.test/',
         { legalMode: 'published' },
       );

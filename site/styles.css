@@ -3118,6 +3118,73 @@ dialog::backdrop {
     margin-bottom: 0;
   }
 }
+.availability-status {
+  padding: 12px 14px;
+  border-left: 2px solid currentColor;
+  background: #eeeae0;
+}
+.availability-status .text-link,
+.service-status .text-link {
+  margin: 8px 16px 0 0;
+}
+.booking-dock {
+  display: none;
+}
+@media (max-width: 760px) {
+  .booking-dock:not([hidden]) {
+    position: fixed;
+    z-index: 40;
+    inset: auto 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
+    background: #f8f7f1;
+    border-top: 1px solid #d4d8cc;
+    box-shadow: 0 -8px 30px #243e3210;
+  }
+  .booking-dock > div {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: baseline;
+    gap: 0 8px;
+    line-height: 1.4;
+  }
+  .booking-dock small {
+    font-size: 10px;
+  }
+  .booking-dock small:first-child {
+    grid-column: 1 / -1;
+  }
+  .booking-dock strong {
+    font-size: 20px;
+    white-space: nowrap;
+  }
+  .booking-dock .button {
+    padding: 14px 16px;
+    flex-shrink: 0;
+  }
+  .has-booking-dock .contact-launcher {
+    bottom: calc(100px + env(safe-area-inset-bottom));
+  }
+  body[data-page='reserva'] .contact-launcher {
+    padding: 14px;
+    width: 52px;
+    justify-content: center;
+  }
+  body[data-page='reserva'] .contact-launcher span {
+    display: none;
+  }
+  body:has(dialog[open]) .booking-dock {
+    display: none;
+  }
+  #booking-form input,
+  #booking-form textarea,
+  #booking-form .submit-button {
+    scroll-margin-block: 120px;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

@@ -49,3 +49,30 @@ test('public output does not contain server code, private data or the raw photo 
   assert.match(html, /Domo Gorbeia/);
   assert.match(html, /Urkiola Etxea/);
 });
+
+test('only reservation pages load the booking engine and pricing, within script budgets', () => {
+  const scripts = (html) =>
+    Array.from(html.matchAll(/<script defer src="([^"]+)"/g), ([, src]) => src);
+  for (const lang of Object.keys(locales))
+    for (const page of pages) {
+      const filename = path.join(dist, lang === 'es' ? '' : lang, `${page}.html`);
+      const sources = scripts(fs.readFileSync(filename, 'utf8'));
+      assert.equal(sources.length, page === 'reserva' ? 3 : 1);
+      const total = sources.reduce(
+        (sum, src) => sum + fs.statSync(path.resolve(path.dirname(filename), src)).size,
+        0,
+      );
+      assert.ok(
+        total < (page === 'reserva' ? 42000 : 7000),
+        `Script budget: ${lang}/${page}: ${total}`,
+      );
+      assert.equal(
+        sources.some((src) => /booking\./.test(src)),
+        page === 'reserva',
+      );
+      assert.equal(
+        sources.some((src) => /pricing\./.test(src)),
+        page === 'reserva',
+      );
+    }
+});

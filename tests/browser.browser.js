@@ -29,20 +29,22 @@ test(
     mount.use('/mendien-artean-web', runtime.app);
     const server = mount.listen(0, '127.0.0.1');
     await once(server, 'listening');
-    t.after(async () => {
-      await new Promise((resolve) => server.close(resolve));
-      await runtime.close();
-      db.close();
-    });
     const browser = await chromium.launch({
       headless: true,
       ...(process.env.PLAYWRIGHT_CHROME_CHANNEL
         ? { channel: process.env.PLAYWRIGHT_CHROME_CHANNEL }
         : {}),
     });
-    t.after(() => browser.close());
+    t.after(async () => {
+      await browser.close();
+      server.closeAllConnections();
+      await new Promise((resolve) => server.close(resolve));
+      await runtime.close();
+      db.close();
+    });
     const base = `http://127.0.0.1:${server.address().port}/mendien-artean-web/`;
     const context = await browser.newContext();
+    context.setDefaultTimeout(15000);
     const page = await context.newPage();
     const errors = [];
     const missing = [];
